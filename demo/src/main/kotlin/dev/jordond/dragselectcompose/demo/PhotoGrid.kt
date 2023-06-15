@@ -5,7 +5,6 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -30,13 +28,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.semantics.onLongClick
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import dev.jordond.dragselectcompose.DragSelectState
 import dev.jordond.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
+import dev.jordond.dragselectcompose.extensions.dragSelectToggleableItem
 import dev.jordond.dragselectcompose.gridDragSelect
 import dev.jordond.dragselectcompose.rememberDragSelectState
 
@@ -62,28 +59,7 @@ fun PhotoGrid(
                 photo = photo,
                 inSelectionMode = dragSelectState.inSelectionMode,
                 selected = selected,
-                modifier = Modifier
-                    .semantics {
-                        if (!dragSelectState.inSelectionMode) {
-                            onLongClick("Select") {
-                                dragSelectState.addSelected(photo)
-                                true
-                            }
-                        }
-                    }
-                    .then(
-                        if (dragSelectState.inSelectionMode) {
-                            Modifier.toggleable(
-                                value = selected,
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null, // do not show a ripple
-                                onValueChange = { toggled ->
-                                    if (toggled) dragSelectState.addSelected(photo)
-                                    else dragSelectState.removeSelected(photo)
-                                }
-                            )
-                        } else Modifier,
-                    ),
+                modifier = Modifier.dragSelectToggleableItem(dragSelectState, photo),
             )
         }
     }
