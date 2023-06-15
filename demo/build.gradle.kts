@@ -59,6 +59,7 @@ android {
 
 dependencies {
     implementation(project(":library"))
+    implementation(project(":extensions"))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)

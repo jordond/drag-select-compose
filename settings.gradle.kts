@@ -14,5 +14,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Drag Select Compose"
-include(":demo")
-include(":library")
+include(
+    ":library",
+    ":extensions",
+    ":demo",
+)
