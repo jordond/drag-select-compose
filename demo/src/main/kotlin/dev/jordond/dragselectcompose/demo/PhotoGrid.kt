@@ -27,9 +27,7 @@ import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -40,15 +38,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import dev.jordond.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import dev.jordond.dragselectcompose.gridDragSelect
+import dev.jordond.dragselectcompose.rememberGridDragSelectState
 
 @Composable
 fun PhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
 ) {
-    val selectedItems = rememberSaveable { mutableStateOf(emptyList<PhotoItem>()) }
-    val inSelectionMode by remember { derivedStateOf { selectedItems.value.isNotEmpty() } }
     val gridState = rememberLazyGridState()
+    val gridDragSelectState = rememberGridDragSelectState<PhotoItem>(lazyGridState = gridState)
 
     LazyVerticalGrid(
         state = gridState,
@@ -57,37 +55,38 @@ fun PhotoGrid(
         horizontalArrangement = Arrangement.spacedBy(3.dp),
         modifier = modifier.gridDragSelect(
             items = photoItems,
-            lazyGridState = gridState,
-            selected = selectedItems,
+            state = gridDragSelectState,
             enableAutoScroll = false,
         )
     ) {
         items(photoItems, key = { it.id }) { photo ->
-            val selected by remember { derivedStateOf { selectedItems.value.contains(photo) } }
+            val selected by remember { derivedStateOf { gridDragSelectState.selected.contains(photo) } }
             ImageItem(
-                photo, inSelectionMode, selected,
-                Modifier
+                photo = photo,
+                inSelectionMode = gridDragSelectState.inSelectionMode,
+                selected = selected,
+                modifier = Modifier
                     .semantics {
-                        if (!inSelectionMode) {
+                        if (!gridDragSelectState.inSelectionMode) {
                             onLongClick("Select") {
-                                selectedItems.value += photo
+                                gridDragSelectState.addSelected(photo)
                                 true
                             }
                         }
                     }
                     .then(
-                        if (inSelectionMode) {
+                        if (gridDragSelectState.inSelectionMode) {
                             Modifier.toggleable(
                                 value = selected,
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null, // do not show a ripple
                                 onValueChange = { toggled ->
-                                    if (toggled) selectedItems.value += photo
-                                    else selectedItems.value -= photo
+                                    if (toggled) gridDragSelectState.addSelected(photo)
+                                    else gridDragSelectState.removeSelected(photo)
                                 }
                             )
                         } else Modifier,
-                    )
+                    ),
             )
         }
     }

@@ -16,7 +16,3 @@ public object GridDragSelectDefaults {
 
     private const val DEFAULT_THRESHOLD_DP = 40
 }
-
-public data class GridDragSelectState(
-    public val selected: Int,
-)
