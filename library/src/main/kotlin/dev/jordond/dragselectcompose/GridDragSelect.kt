@@ -47,7 +47,7 @@ public fun <Item> Modifier.gridDragSelect(
                     val item = items.getOrNull(startIndex)
                     if (item != null && state.selected.contains(item).not()) {
                         haptics?.performHapticFeedback(HapticFeedbackType.LongPress)
-                        state.initializeIndexes(initial = startIndex, current = startIndex)
+                        state.initialIndex = startIndex
                         state.addSelected(item)
                     }
                 }
@@ -55,7 +55,7 @@ public fun <Item> Modifier.gridDragSelect(
             onDragCancel = state::resetDrag,
             onDragEnd = state::resetDrag,
             onDrag = { change, _ ->
-                state.withIndexes { initial, _ ->
+                state.withIndexes { initial ->
                     autoScrollSpeed.value =
                         lazyGridState.calculateScrollSpeed(change, scrollThreshold)
 
@@ -65,7 +65,6 @@ public fun <Item> Modifier.gridDragSelect(
                         }
 
                         updateSelected(newSelected)
-                        updateCurrentIndex(newIndex)
                     }
                 }
             },

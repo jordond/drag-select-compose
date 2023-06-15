@@ -7,78 +7,66 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import java.io.Serializable
+import androidx.compose.runtime.setValue
+import dev.jordond.dragselectcompose.DragSelectState.Companion.None
 
 @Composable
 public fun <Item> rememberDragSelectState(
     lazyGridState: LazyGridState = rememberLazyGridState(),
     initialSelection: List<Item> = emptyList(),
 ): DragSelectState<Item> {
-    val indexes by rememberSaveable { mutableStateOf(DragSelectState.Indexes()) }
-    return remember {
+    val indexes by rememberSaveable { mutableStateOf(None) }
+    return remember(lazyGridState) {
         DragSelectState(lazyGridState, indexes, initialSelection)
     }
 }
 
 public class DragSelectState<Item>(
     public val lazyGridState: LazyGridState,
-    private var indexes: Indexes,
+    internal var initialIndex: Int = -1,
     initialSelection: List<Item>,
 ) {
 
-    private val selectedState = mutableStateOf(initialSelection)
+    private var selectedState by mutableStateOf(initialSelection)
     public val selected: List<Item>
-        get() = selectedState.value
+        get() = selectedState
 
     public val inSelectionMode: Boolean
-        get() = selectedState.value.isNotEmpty()
+        get() = selectedState.isNotEmpty()
 
     internal val autoScrollSpeed = mutableStateOf(0f)
 
     internal fun withIndexes(
-        block: DragSelectState<Item>.(initial: Int, current: Int) -> Unit,
+        block: DragSelectState<Item>.(initial: Int) -> Unit,
     ) {
-        if (indexes.valid) {
-            val (initial, current) = indexes
-            block(this, initial, current)
+        if (initialIndex != None) {
+            block(this, initialIndex)
         }
     }
 
     public fun updateSelected(selected: List<Item>) {
-        selectedState.value = selected
+        selectedState = selected
     }
 
     public fun addSelected(item: Item) {
-        selectedState.value += item
+        selectedState += item
     }
 
     public fun removeSelected(photo: Item) {
-        selectedState.value -= photo
+        selectedState -= photo
     }
 
-    internal fun initializeIndexes(initial: Int, current: Int) {
-        indexes = Indexes(initial, current)
-    }
-
-    internal fun updateCurrentIndex(index: Int) {
-        indexes = indexes.copy(current = index)
+    public fun clear() {
+        selectedState = emptyList()
     }
 
     internal fun resetDrag() {
-        indexes = indexes.copy(initial = Indexes.None)
+        initialIndex = None
         autoScrollSpeed.value = 0f
     }
 
-    public data class Indexes(
-        val initial: Int = None,
-        val current: Int = None,
-    ) : Serializable {
+    internal companion object {
 
-        internal val valid: Boolean = initial != None && current != None
-
-        internal companion object {
-
-            internal val None = -1
-        }
+        const val None = -1
     }
 }

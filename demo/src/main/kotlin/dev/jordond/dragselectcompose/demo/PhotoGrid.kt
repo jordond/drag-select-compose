@@ -35,6 +35,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import dev.jordond.dragselectcompose.DragSelectState
 import dev.jordond.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import dev.jordond.dragselectcompose.gridDragSelect
 import dev.jordond.dragselectcompose.rememberDragSelectState
@@ -43,9 +44,8 @@ import dev.jordond.dragselectcompose.rememberDragSelectState
 fun PhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
+    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
 ) {
-    val dragSelectState = rememberDragSelectState<PhotoItem>()
-
     LazyVerticalGrid(
         state = dragSelectState.lazyGridState,
         columns = GridCells.Adaptive(minSize = 128.dp),
