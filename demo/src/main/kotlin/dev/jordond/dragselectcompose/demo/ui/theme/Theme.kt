@@ -1,4 +1,4 @@
-package dev.jordond.dragselectcompose.ui.theme
+package dev.jordond.dragselectcompose.demo.ui.theme
 
 import android.app.Activity
 import android.os.Build

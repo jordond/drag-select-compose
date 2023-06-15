@@ -1,4 +1,4 @@
-package dev.jordond.dragselectcompose.ui.theme
+package dev.jordond.dragselectcompose.demo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
