@@ -15,7 +15,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Drag Select Compose"
 include(
-    ":library",
+    ":core",
     ":extensions",
     ":demo",
 )
