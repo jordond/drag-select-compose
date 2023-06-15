@@ -1,6 +1,7 @@
 package dev.jordond.dragselectcompose
 
 import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,18 +10,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import java.io.Serializable
 
 @Composable
-public fun <Item> rememberGridDragSelectState(
-    lazyGridState: LazyGridState,
+public fun <Item> rememberDragSelectState(
+    lazyGridState: LazyGridState = rememberLazyGridState(),
     initialSelection: List<Item> = emptyList(),
-): GridDragSelectState<Item> {
-    val indexes by rememberSaveable { mutableStateOf(GridDragSelectState.Indexes()) }
+): DragSelectState<Item> {
+    val indexes by rememberSaveable { mutableStateOf(DragSelectState.Indexes()) }
     return remember {
-        GridDragSelectState(lazyGridState, indexes, initialSelection)
+        DragSelectState(lazyGridState, indexes, initialSelection)
     }
 }
 
-public class GridDragSelectState<Item>(
-    internal val lazyGridState: LazyGridState,
+public class DragSelectState<Item>(
+    public val lazyGridState: LazyGridState,
     private var indexes: Indexes,
     initialSelection: List<Item>,
 ) {
@@ -35,7 +36,7 @@ public class GridDragSelectState<Item>(
     internal val autoScrollSpeed = mutableStateOf(0f)
 
     internal fun withIndexes(
-        block: GridDragSelectState<Item>.(initial: Int, current: Int) -> Unit,
+        block: DragSelectState<Item>.(initial: Int, current: Int) -> Unit,
     ) {
         if (indexes.valid) {
             val (initial, current) = indexes

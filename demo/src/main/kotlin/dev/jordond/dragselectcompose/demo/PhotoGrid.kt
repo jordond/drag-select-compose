@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,51 +37,49 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import dev.jordond.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import dev.jordond.dragselectcompose.gridDragSelect
-import dev.jordond.dragselectcompose.rememberGridDragSelectState
+import dev.jordond.dragselectcompose.rememberDragSelectState
 
 @Composable
 fun PhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
 ) {
-    val gridState = rememberLazyGridState()
-    val gridDragSelectState = rememberGridDragSelectState<PhotoItem>(lazyGridState = gridState)
+    val dragSelectState = rememberDragSelectState<PhotoItem>()
 
     LazyVerticalGrid(
-        state = gridState,
+        state = dragSelectState.lazyGridState,
         columns = GridCells.Adaptive(minSize = 128.dp),
         verticalArrangement = Arrangement.spacedBy(3.dp),
         horizontalArrangement = Arrangement.spacedBy(3.dp),
         modifier = modifier.gridDragSelect(
             items = photoItems,
-            state = gridDragSelectState,
-            enableAutoScroll = false,
+            state = dragSelectState,
         )
     ) {
         items(photoItems, key = { it.id }) { photo ->
-            val selected by remember { derivedStateOf { gridDragSelectState.selected.contains(photo) } }
+            val selected by remember { derivedStateOf { dragSelectState.selected.contains(photo) } }
             ImageItem(
                 photo = photo,
-                inSelectionMode = gridDragSelectState.inSelectionMode,
+                inSelectionMode = dragSelectState.inSelectionMode,
                 selected = selected,
                 modifier = Modifier
                     .semantics {
-                        if (!gridDragSelectState.inSelectionMode) {
+                        if (!dragSelectState.inSelectionMode) {
                             onLongClick("Select") {
-                                gridDragSelectState.addSelected(photo)
+                                dragSelectState.addSelected(photo)
                                 true
                             }
                         }
                     }
                     .then(
-                        if (gridDragSelectState.inSelectionMode) {
+                        if (dragSelectState.inSelectionMode) {
                             Modifier.toggleable(
                                 value = selected,
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null, // do not show a ripple
                                 onValueChange = { toggled ->
-                                    if (toggled) gridDragSelectState.addSelected(photo)
-                                    else gridDragSelectState.removeSelected(photo)
+                                    if (toggled) dragSelectState.addSelected(photo)
+                                    else dragSelectState.removeSelected(photo)
                                 }
                             )
                         } else Modifier,

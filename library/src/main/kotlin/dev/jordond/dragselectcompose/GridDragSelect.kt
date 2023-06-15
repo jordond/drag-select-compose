@@ -13,11 +13,12 @@ import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.round
 import androidx.compose.ui.unit.toIntRect
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 public fun <Item> Modifier.gridDragSelect(
     items: List<Item>,
-    state: GridDragSelectState<Item>,
+    state: DragSelectState<Item>,
     enableAutoScroll: Boolean = true,
     autoScrollThreshold: Float? = null,
     enableHaptics: Boolean = true,
@@ -25,11 +26,12 @@ public fun <Item> Modifier.gridDragSelect(
 ): Modifier = composed {
     val scrollThreshold: Float = autoScrollThreshold ?: GridDragSelectDefaults.autoScrollThreshold
     if (enableAutoScroll) {
-        LaunchedEffect(state.autoScrollSpeed) {
+        LaunchedEffect(state.autoScrollSpeed.value) {
             if (state.autoScrollSpeed.value == 0f) return@LaunchedEffect
 
             while (isActive) {
                 state.lazyGridState.scrollBy(state.autoScrollSpeed.value)
+                delay(10)
             }
         }
     }
