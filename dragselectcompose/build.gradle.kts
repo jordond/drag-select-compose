@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.jordond.dragselectcompose.extensions"
+    namespace = "dev.jordond.dragselectcompose"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -35,7 +35,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    api(project(":core"))
+    api(project(":extensions"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
