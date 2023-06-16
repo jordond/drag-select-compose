@@ -5,13 +5,12 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -22,9 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -33,8 +30,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import dev.jordond.dragselectcompose.DragSelectState
 import dev.jordond.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
-import dev.jordond.dragselectcompose.extensions.dragSelectToggleableItem
-import dev.jordond.dragselectcompose.gridDragSelect
+import dev.jordond.dragselectcompose.grid.LazyDragSelectVerticalGrid
 import dev.jordond.dragselectcompose.rememberDragSelectState
 
 @Composable
@@ -43,24 +39,21 @@ fun PhotoGrid(
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
     dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
 ) {
-    LazyVerticalGrid(
-        state = dragSelectState.lazyGridState,
+    LazyDragSelectVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp),
+        items = photoItems,
+        state = dragSelectState,
         verticalArrangement = Arrangement.spacedBy(3.dp),
-        horizontalArrangement = Arrangement.spacedBy(3.dp),
-        modifier = modifier.gridDragSelect(
-            items = photoItems,
-            state = dragSelectState,
-        )
+        horizontalArrangement = Arrangement.spacedBy(3.dp)
     ) {
-        items(photoItems, key = { it.id }) { photo ->
-            val selected by remember { derivedStateOf { dragSelectState.selected.contains(photo) } }
-            ImageItem(
-                photo = photo,
-                inSelectionMode = dragSelectState.inSelectionMode,
-                selected = selected,
-                modifier = Modifier.dragSelectToggleableItem(dragSelectState, photo),
-            )
+        items(key = { it.id }) { photo ->
+            SelectableItem(item = photo) { selected ->
+                ImageItem(
+                    photo = photo,
+                    inSelectionMode = dragSelectState.inSelectionMode,
+                    selected = selected,
+                )
+            }
         }
     }
 }

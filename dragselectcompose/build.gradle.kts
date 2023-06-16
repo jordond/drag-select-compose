@@ -37,6 +37,7 @@ android {
 dependencies {
     api(project(":core"))
     api(project(":extensions"))
+    api(project(":grid"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
