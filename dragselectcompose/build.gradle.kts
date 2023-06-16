@@ -58,7 +58,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "dev.jordond.dragselectcompose"
-            artifactId = "extensions"
+            artifactId = "dragselectcompose"
 
             afterEvaluate {
                 from(components["release"])
