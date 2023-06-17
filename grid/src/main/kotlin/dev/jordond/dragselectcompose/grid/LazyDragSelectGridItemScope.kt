@@ -77,7 +77,7 @@ public class LazyDragSelectGridItemScope<Item>(
         Box(
             modifier = modifier
                 .dragSelectToggleableItem(
-                    dragSelectState = state,
+                    state = state,
                     item = item,
                     semanticsLabel = semanticsLabel,
                     interactionSource = interactionSource,

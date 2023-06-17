@@ -43,7 +43,6 @@ fun LazyDragSelectPhotoGrid(
         items(key = { it.id }) { photo ->
             SelectableItem(
                 item = photo,
-                animateSelection = true,
                 selectedIcon = { SelectedIcon(Modifier.align(Alignment.BottomEnd)) },
                 unselectedIcon = { UnselectedIcon(Modifier.align(Alignment.BottomEnd)) },
             ) {

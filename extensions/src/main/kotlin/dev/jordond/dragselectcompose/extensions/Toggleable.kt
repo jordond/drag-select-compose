@@ -12,23 +12,23 @@ import dev.jordond.dragselectcompose.DragSelectState
  *
  * This is useful for enabling selection when the user is in selection mode.
  *
- * @param[dragSelectState] The [DragSelectState] that will be used to determine if the user is
+ * @param[state] The [DragSelectState] that will be used to determine if the user is
  * in selection mode and selection state of item.
  * @param[item] The item that will be selected or deselected when the toggleable is toggled.
  * @param[interactionSource] the [MutableInteractionSource] that will be used to
  * emit `PressInteraction.Press` when this toggleable is being pressed.
  */
 public fun <Item> Modifier.dragSelectToggleable(
-    dragSelectState: DragSelectState<Item>,
+    state: DragSelectState<Item>,
     item: Item,
     interactionSource: MutableInteractionSource? = null,
 ): Modifier = dragSelectToggleable(
-    inSelectionMode = dragSelectState.inSelectionMode,
-    selected = dragSelectState.selected.contains(item),
+    inSelectionMode = state.inSelectionMode,
+    selected = state.selected.contains(item),
     interactionSource = interactionSource,
 ) { toggled ->
-    if (toggled) dragSelectState.addSelected(item)
-    else dragSelectState.removeSelected(item)
+    if (toggled) state.addSelected(item)
+    else state.removeSelected(item)
 }
 
 
