@@ -117,7 +117,7 @@ fun MyGrid(models: List<Model>) {
         ),
     ) {
         items(models, key = { it.id }) { model ->
-            val isSelected by remember { derivedStateOf { dragSelectState.selected.contains(model) } }
+            val isSelected by remember { derivedStateOf { dragSelectState.isSelected(model) } }
             val inSelectionMode = dragSelectState.inSelectionMode
 
             // Define your Model Composeable and use `isSelected` or `inSelectionMode`
