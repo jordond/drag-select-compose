@@ -168,6 +168,35 @@ You can see a full extensions example in [`ExtensionsDragSelectPhotoGrid`](demo/
 
 ## Wrapper
 
+Included in the `:grid` artifact is a "all-inclusive" drag-select experience. It includes wrappers around `LazyHorizontalGrid` and `LazyVerticalGrid` that takes care of adding the `Modifier.gridDragSelect`.
+
+When using `LazyDragSelectVerticalGrid` or `LazyDragSelectHorizontalGrid` the `content()` is scoped to a custom scope that provides a helper composable for handling the selection indicator, and animating the padding.
+
+Here is a quick example:
+
+```kotlin
+@Composeable
+fun MyGrid(models: List<Model>) {
+    val dragSelectState = rememberDragSelectState<Model>()
+    
+    LazyDragSelectVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 128.dp),
+        items = models,
+        state = dragSelectState,
+    ) {
+        items(key = { it.id }) { model ->
+            SelectableItem(item = model) {
+                // Your Composeable for your item
+            }
+        }
+    }
+}
+```
+
+Now your item will have an animated padding and clipped shape when selected. As well as displaying indicator icons when the grid is in selection mode, and the item is selected or not.
+
+See the documentation for `LazyDragSelectVerticalGrid` and `SelectableItem` for all the options you can customize.
+
 ## Demo App
 
 A demo app is included in the `demo` module, run it by following these steps:
