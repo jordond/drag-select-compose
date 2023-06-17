@@ -20,7 +20,9 @@ You can view the KDocs at [docs.drag-select-compose.jordond.dev](https://docs.dr
 
 ## Inspiration
 
+This library was inspired by this [article](https://medium.com/androiddevelopers/now-in-android-85-8bdb9ce34428) and the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247e2).
 
+As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview) library.
 
 ## Getting Started
 
@@ -51,7 +53,7 @@ Then add the dependency to your app level `build.gradle.kts` file:
 
 ```kotlin
 dependencies {
-    // Includes the core functionality along with the extensions
+    // Includes the core functionality along with all of the optional modules
     implementation("dev.jordond:drag-select-compose:drag-select-compose:1.0.0")
   
     // Or use the modules you want
@@ -61,10 +63,70 @@ dependencies {
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
     implementation("dev.jordond:drag-select-compose:extensions:1.0.0")
+
+    // Optional wrappers around LazyGrid that implement the selection UI for you
+    implementation("dev.jordond:drag-select-compose:grid:1.0.0")
 }
 ```
 
 ## Usage
+
+The `:core` artifact provides a `Modifier` extension for adding a drag-to-select functionality to your `LazyGrid`:
+
+```kotlin
+fun <Item> Modifier.gridDragSelect(
+    items: List<Item>,
+    state: DragSelectState<Item>,
+    enableAutoScroll: Boolean = true,
+    autoScrollThreshold: Float? = null,
+    enableHaptics: Boolean = true,
+    hapticFeedback: HapticFeedback? = null,
+): Modifier
+```
+
+It provides the following functionality:
+
+- Adds a long-press drag gesture to select items.
+- Maintains a list of selected items.
+- Expose a `inSelectionMode: Boolean` which you can use to display a unselected state.
+- If `enableAutoScroll` is `true` then the list will start to scroll when reaching the top or bottom of the list.
+- Will trigger a "long-press" haptics if `enableHaptics` is `true`.
+
+You can then use `DragSelectState` to render your list of items:
+
+### Basic Example
+
+```kotlin
+data class Model(
+    val id: Int,
+    val title: String,
+    val imageUrl: String,
+)
+
+@Composeable
+fun MyGrid(models: List<Model>) {
+    val dragSelectState = rememberDragSelectState<Model>()
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 128.dp),
+        state = dragSelectState.lazyGridState,
+        verticalArrangement = Arrangement.spacedBy(3.dp),
+        horizontalArrangement = Arrangement.spacedBy(3.dp),
+        modifier = Modifier.gridDragSelect(
+            items = models,
+            state = dragSelectState,
+        ),
+    ) {
+        items(models, key = { it.id }) { model ->
+            val isSelected by remember { derivedStateOf { dragSelectState.selected.contains(model) } }
+            val inSelectionMode = dragSelectState.inSelectionMode
+
+            // Define your Model Composeable and use `isSelected` or `inSelectionMode`
+        }
+    }
+}
+```
+
+You can see a full basic example in [`BasicDragSelectPhotoGrid`](demo/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
 
 ## Demo App
 
