@@ -23,4 +23,5 @@ include(
     ":dragselectcompose",
     ":core",
     ":extensions",
+    ":grid",
 )

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.jordond.dragselectcompose"
+    namespace = "dev.jordond.dragselectcompose.grid"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -16,7 +16,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
         }
     }
 
@@ -35,9 +35,8 @@ android {
 }
 
 dependencies {
-    api(project(":core"))
-    api(project(":extensions"))
-    api(project(":grid"))
+    implementation(project(":core"))
+    implementation(project(":extensions"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -47,6 +46,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.ui.icons)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
@@ -59,7 +59,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "dev.jordond.dragselectcompose"
-            artifactId = "dragselectcompose"
+            artifactId = "grid"
 
             afterEvaluate {
                 from(components["release"])
