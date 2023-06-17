@@ -93,9 +93,12 @@ internal class DefaultLazyDragSelectGridScope<Item>(
         contentType: Any?,
         content: @Composable() (LazyDragSelectGridItemScope<Item>.() -> Unit),
     ) {
-        val lazyDragSelectGridItemScope = DefaultLazyDragSelectGridItemScope(stateProvider())
         gridScope.item(key, span, contentType) {
-            content(lazyDragSelectGridItemScope)
+            val scope = LazyDragSelectGridItemScope(
+                state = this@DefaultLazyDragSelectGridScope.stateProvider(),
+                lazyGridItemScope = this,
+            )
+            content(scope)
         }
     }
 
@@ -111,7 +114,6 @@ internal class DefaultLazyDragSelectGridScope<Item>(
         contentType: (item: Item) -> Any?,
         itemContent: @Composable() (LazyDragSelectGridItemScope<Item>.(item: Item) -> Unit),
     ) {
-        val lazyDragSelectGridItemScope = DefaultLazyDragSelectGridItemScope(stateProvider())
         val items = this.items
         gridScope.items(
             count = items.size,
@@ -121,7 +123,11 @@ internal class DefaultLazyDragSelectGridScope<Item>(
             } else null,
             contentType = { index: Int -> contentType(items[index]) }
         ) { index ->
-            itemContent(lazyDragSelectGridItemScope, items[index])
+            val scope = LazyDragSelectGridItemScope(
+                state = this@DefaultLazyDragSelectGridScope.stateProvider(),
+                lazyGridItemScope = this,
+            )
+            itemContent(scope, items[index])
         }
     }
 }
