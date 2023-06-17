@@ -98,7 +98,7 @@ public fun <Item> LazyDragSelectHorizontalGrid(
     LazyHorizontalGrid(
         rows = rows,
         modifier = dragSelectModifier,
-        state = state.lazyGridState,
+        state = state.gridState,
         contentPadding = contentPadding,
         reverseLayout = reverseLayout,
         horizontalArrangement = horizontalArrangement,
