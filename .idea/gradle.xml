@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/demo" />
             <option value="$PROJECT_DIR$/dragselectcompose" />
             <option value="$PROJECT_DIR$/extensions" />
+            <option value="$PROJECT_DIR$/grid" />
           </set>
         </option>
       </GradleProjectSettings>
