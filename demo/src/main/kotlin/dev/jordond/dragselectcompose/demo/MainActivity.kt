@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) { padding ->
-                    PhotoGrid(
+                    LazyDragSelectPhotoGrid(
                         dragSelectState = dragSelectState,
                         photoItems = items,
                         modifier = Modifier.padding(padding)

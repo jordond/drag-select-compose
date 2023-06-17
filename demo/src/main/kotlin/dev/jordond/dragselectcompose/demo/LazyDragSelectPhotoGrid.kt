@@ -17,8 +17,17 @@ import dev.jordond.dragselectcompose.grid.indicator.SelectedIcon
 import dev.jordond.dragselectcompose.grid.indicator.UnselectedIcon
 import dev.jordond.dragselectcompose.rememberDragSelectState
 
+/**
+ * This example shows how to use the [LazyDragSelectVerticalGrid] along with `SelectableItem`.
+ *
+ * The adding of Semantics is automatic, and so is adding the Toggleable modifier to the items when
+ * [DragSelectState.inSelectionMode] is true.
+ *
+ * `SelectableItem` takes care of rendering an icon when the item is selected, and animating the
+ * content when selected or deselected.
+ */
 @Composable
-fun PhotoGrid(
+fun LazyDragSelectPhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
     dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
@@ -53,8 +62,8 @@ fun PhotoGrid(
 
 @Preview
 @Composable
-private fun PhotoGridPreview() {
+private fun LazyDragSelectPhotoGridPreview() {
     DragSelectComposeTheme {
-        PhotoGrid()
+        LazyDragSelectPhotoGrid()
     }
 }
