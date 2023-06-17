@@ -1,3 +1,4 @@
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -15,5 +16,9 @@ configure(allprojects.filter { it.name != "demo" }) {
 
             freeCompilerArgs = freeCompilerArgs + "-Xexplicit-api=strict"
         }
+    }
+
+    tasks.withType<DokkaMultiModuleTask>().configureEach {
+        outputDirectory.set(rootDir.resolve("dokka"))
     }
 }
