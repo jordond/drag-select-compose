@@ -1,14 +1,16 @@
+# Drag Select Compose
+
 <p>
     <a href="https://jitpack.io/#dev.jordond/drag-select-compose"><img src="https://jitpack.io/v/dev.jordond/drag-select-compose.svg"></a>
     <a href="https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml"><img src="https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml/badge.svg"></a>
     <img src="https://img.shields.io/github/license/jordond/drag-select-compose" />   
 </p>
 
-# Drag Select Compose
-
 This is a library that allows you to easily implement a "Google Photos"-style multi-selection in your Compose apps.
 
 You can view the KDocs at [docs.drag-select-compose.jordond.dev](https://docs.drag-select-compose.jordond.dev)
+
+<img width="250px" src="art/drag-select-compose-demo.gif" />
 
 ## Table of Contents
 
