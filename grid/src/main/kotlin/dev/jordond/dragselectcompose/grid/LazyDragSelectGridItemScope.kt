@@ -7,6 +7,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyGridScopeMarker
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
@@ -66,26 +68,31 @@ public class LazyDragSelectGridItemScope<Item>(
         unselectedIcon: @Composable BoxScope.() -> Unit = { UnselectedIcon() },
         animateSelection: Boolean = true,
         animateSelectionOptions: AnimateSelectionOptions = AnimateSelectionDefaults.Default,
+        aspectRatio: Float = 1.0f,
         content: @Composable (toggled: Boolean) -> Unit,
     ) {
-        val selected by remember { derivedStateOf { state.selected.contains(item) } }
+        val selected by remember { derivedStateOf { state.isSelected(item) } }
 
         // Add the semantics and toggleable item modifier to the content.
         Box(
             modifier = modifier
                 .dragSelectToggleableItem(
-                    dragSelectState = state,
+                    state = state,
                     item = item,
                     semanticsLabel = semanticsLabel,
                     interactionSource = interactionSource,
                 ),
         ) {
-            val animateSelectionModifier =
+            val contentModifier =
                 if (!animateSelection) Modifier
                 else Modifier.animateSelection(selected, animateSelectionOptions)
 
             // Animate the padding and shape when `animateSelection` is true.
-            Box(modifier = animateSelectionModifier) {
+            Box(
+                propagateMinConstraints = true,
+                contentAlignment = Alignment.Center,
+                modifier = contentModifier.aspectRatio(aspectRatio),
+            ) {
                 content(selected)
             }
 

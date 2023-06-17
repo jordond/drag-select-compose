@@ -97,7 +97,7 @@ public fun <Item> LazyDragSelectVerticalGrid(
     LazyVerticalGrid(
         columns = columns,
         modifier = dragSelectModifier,
-        state = state.lazyGridState,
+        state = state.gridState,
         contentPadding = contentPadding,
         reverseLayout = reverseLayout,
         verticalArrangement = verticalArrangement,

@@ -16,6 +16,37 @@ import androidx.compose.ui.unit.toIntRect
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
+/**
+ * A [Modifier] that enables drag selection for a [LazyGridState].
+ *
+ * Example usage:
+ *
+ * ```
+ * val items: List<Int> = (0..100).map { it }
+ *
+ * LazyVerticalGrid(
+ *     state = dragSelectState.lazyGridState,
+ *     columns = GridCells.Adaptive(minSize = 128.dp),
+ *     verticalArrangement = Arrangement.spacedBy(3.dp),
+ *     horizontalArrangement = Arrangement.spacedBy(3.dp),
+ *     modifier = modifier.gridDragSelect(
+ *         items = items,
+ *         state = dragSelectState,
+ *     ),
+ * ) {
+ *    // Build your gird
+ * }
+ * ```
+ *
+ * @param[Item] The type of item in the grid.
+ * @param[items] The list of items in the grid.
+ * @param[state] The [DragSelectState] for maintaining state
+ * @param[enableAutoScroll] Whether to enable auto-scrolling when dragging near the edge of the grid.
+ * @param[autoScrollThreshold] The distance from the edge of the grid to start auto-scrolling.
+ * @param[enableHaptics] Whether to enable haptic feedback when dragging.
+ * @param[hapticFeedback] The [HapticFeedback] to use, defaults to [GridDragSelectDefaults.hapticsFeedback].
+ * @return A [Modifier] that enables drag selection for a [LazyGridState].
+ */
 public fun <Item> Modifier.gridDragSelect(
     items: List<Item>,
     state: DragSelectState<Item>,
@@ -30,7 +61,7 @@ public fun <Item> Modifier.gridDragSelect(
             if (state.autoScrollSpeed.value == 0f) return@LaunchedEffect
 
             while (isActive) {
-                state.lazyGridState.scrollBy(state.autoScrollSpeed.value)
+                state.gridState.scrollBy(state.autoScrollSpeed.value)
                 delay(10)
             }
         }
@@ -43,7 +74,7 @@ public fun <Item> Modifier.gridDragSelect(
     pointerInput(Unit) {
         detectDragGesturesAfterLongPress(
             onDragStart = { offset ->
-                state.lazyGridState.itemIndexAtPosition(offset)?.let { startIndex ->
+                state.gridState.itemIndexAtPosition(offset)?.let { startIndex ->
                     val item = items.getOrNull(startIndex)
                     if (item != null && state.selected.contains(item).not()) {
                         haptics?.performHapticFeedback(HapticFeedbackType.LongPress)
@@ -55,11 +86,10 @@ public fun <Item> Modifier.gridDragSelect(
             onDragCancel = state::resetDrag,
             onDragEnd = state::resetDrag,
             onDrag = { change, _ ->
-                state.withIndexes { initial ->
-                    autoScrollSpeed.value =
-                        lazyGridState.calculateScrollSpeed(change, scrollThreshold)
+                state.withInitialIndex { initial ->
+                    autoScrollSpeed.value = gridState.calculateScrollSpeed(change, scrollThreshold)
 
-                    lazyGridState.itemIndexAtPosition(change.position)?.let { newIndex ->
+                    gridState.itemIndexAtPosition(change.position)?.let { newIndex ->
                         val newSelected = items.filterIndexed { index, _ ->
                             index in initial..newIndex || index in newIndex..initial
                         }
