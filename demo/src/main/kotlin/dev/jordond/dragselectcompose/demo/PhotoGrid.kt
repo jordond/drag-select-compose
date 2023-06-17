@@ -2,8 +2,6 @@ package dev.jordond.dragselectcompose.demo
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -41,8 +39,7 @@ fun PhotoGrid(
                 unselectedIcon = { UnselectedIcon(Modifier.align(Alignment.BottomEnd)) },
             ) {
                 Surface(
-                    modifier = Modifier.aspectRatio(1.0f),
-                    tonalElevation = 3.dp
+                    tonalElevation = 3.dp,
                 ) {
                     Image(
                         painter = rememberAsyncImagePainter(photo.url),
