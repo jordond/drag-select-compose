@@ -55,7 +55,7 @@ public fun <Item> Modifier.gridDragSelect(
             onDragCancel = state::resetDrag,
             onDragEnd = state::resetDrag,
             onDrag = { change, _ ->
-                state.withIndexes { initial ->
+                state.withInitialIndex { initial ->
                     autoScrollSpeed.value =
                         lazyGridState.calculateScrollSpeed(change, scrollThreshold)
 

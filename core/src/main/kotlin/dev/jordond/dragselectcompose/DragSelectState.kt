@@ -23,7 +23,7 @@ public fun <Item> rememberDragSelectState(
 
 public class DragSelectState<Item>(
     public val lazyGridState: LazyGridState,
-    internal var initialIndex: Int = -1,
+    internal var initialIndex: Int,
     initialSelection: List<Item>,
 ) {
 
@@ -36,13 +36,15 @@ public class DragSelectState<Item>(
 
     internal val autoScrollSpeed = mutableStateOf(0f)
 
-    internal fun withIndexes(
+    internal fun withInitialIndex(
         block: DragSelectState<Item>.(initial: Int) -> Unit,
     ) {
         if (initialIndex != None) {
             block(this, initialIndex)
         }
     }
+
+    public fun isSelected(item: Item): Boolean = selectedState.contains(item)
 
     public fun updateSelected(selected: List<Item>) {
         selectedState = selected

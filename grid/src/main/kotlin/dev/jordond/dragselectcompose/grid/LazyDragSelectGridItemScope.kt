@@ -68,7 +68,7 @@ public class LazyDragSelectGridItemScope<Item>(
         animateSelectionOptions: AnimateSelectionOptions = AnimateSelectionDefaults.Default,
         content: @Composable (toggled: Boolean) -> Unit,
     ) {
-        val selected by remember { derivedStateOf { state.selected.contains(item) } }
+        val selected by remember { derivedStateOf { state.isSelected(item) } }
 
         // Add the semantics and toggleable item modifier to the content.
         Box(

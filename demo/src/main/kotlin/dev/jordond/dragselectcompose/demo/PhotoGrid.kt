@@ -35,7 +35,7 @@ fun PhotoGrid(
         items(key = { it.id }) { photo ->
             SelectableItem(
                 item = photo,
-                animateSelection = false,
+                animateSelection = true,
                 selectedIcon = { SelectedIcon(Modifier.align(Alignment.BottomEnd)) },
                 unselectedIcon = { UnselectedIcon(Modifier.align(Alignment.BottomEnd)) },
             ) {
@@ -46,7 +46,6 @@ fun PhotoGrid(
                     Image(
                         painter = rememberAsyncImagePainter(photo.url),
                         contentDescription = null,
-                        modifier = Modifier
                     )
                 }
             }
