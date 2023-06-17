@@ -38,9 +38,9 @@ jobs:
       - name: Generate documentation
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: :transformerkt:dokkaHtml
+          arguments: dokkaHtmlMultiModule
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: transformerkt/build/dokka/html
+          folder: build/dokka/htmlMultiModule/index.html
