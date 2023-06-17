@@ -17,6 +17,8 @@ You can view the KDocs at [docs.drag-select-compose.jordond.dev](https://docs.dr
 - [Inspiration](#inspiration)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [Extensions](#extensions)
+- [Grid Wrapper](#wrapper)
 - [Demo App](#demo-app)
 - [License](#license)
 
@@ -129,6 +131,42 @@ fun MyGrid(models: List<Model>) {
 ```
 
 You can see a full basic example in [`BasicDragSelectPhotoGrid`](demo/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
+
+## Extensions
+
+Included in the `:dragselectcompose` and `:extensions` artifact are a couple extensions on `Modifer` to easily add support for accessibility semantics and toggling selection while the Grid is in selection mode.
+
+- [`Modifier.dragSelectSemantics()`](extensions/src/main/kotlin/dev/jordond/dragselectcompose/Semantics.kt)
+    - Adds a long click semantics to the modifier for accessibility.
+- [`Modifier.dragSelectToggleable()`](extensions/src/main/kotlin/dev/jordond/dragselectcompose/Toggleable.kt)
+    - Allows you to toggle the item when the Grid is in Selection Mode.
+- [`Modifier.dragSelectToggleableItem()`](extensions/src/main/kotlin/dev/jordond/dragselectcompose/ToggleableItem.kt)
+    - Combines the above two extensions.
+
+```kotlin
+@Composeable
+fun MyGrid(models: List<Model>) {
+    val dragSelectState = rememberDragSelectState<Model>()
+    LazyVerticalGrid(
+        // ...
+    ) {
+        items(models, key = { it.id }) { model ->
+            // Add semantics and toggleable modifiers
+            MyItemContent(
+                item = model,
+                modifier = Modifier.dragSelectToggleable(
+                    state = dragSelectState,
+                    item = model,
+                ),
+            )
+        }
+    }
+}
+```
+
+You can see a full extensions example in [`ExtensionsDragSelectPhotoGrid`](demo/src/main/kotlin/dev/jordond/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
+
+## Wrapper
 
 ## Demo App
 
