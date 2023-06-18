@@ -1,18 +1,67 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.compose)
     alias(libs.plugins.dokka)
+    kotlin("multiplatform")
     id("maven-publish")
 }
 
+kotlin {
+    android()
+    jvm("desktop")
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(project(":core"))
+                api(project(":extensions"))
+
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                api(libs.appcompat)
+                api(libs.core.ktx)
+            }
+        }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+        val desktopMain by getting {
+            dependencies {
+                implementation(compose.desktop.common)
+            }
+        }
+    }
+}
+
 android {
-    namespace = "dev.jordond.dragselectcompose.grid"
     compileSdk = libs.versions.sdk.compile.get().toInt()
+    namespace = "dev.jordond.dragselectcompose.grid"
+
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -21,39 +70,9 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
+    kotlin {
+        jvmToolchain(11)
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
-dependencies {
-    implementation(project(":core"))
-    implementation(project(":extensions"))
-
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    implementation(libs.ui.icons)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
 }
 
 publishing {
@@ -61,10 +80,6 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "dev.jordond.dragselectcompose"
             artifactId = "grid"
-
-            afterEvaluate {
-                from(components["release"])
-            }
         }
     }
 }

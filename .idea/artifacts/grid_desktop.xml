@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="grid-desktop">
+    <output-path>$PROJECT_DIR$/grid/build/libs</output-path>
+    <root id="archive" name="grid-desktop.jar">
+      <element id="module-output" name="Drag_Select_Compose.grid.desktopMain" />
+    </root>
+  </artifact>
+</component>

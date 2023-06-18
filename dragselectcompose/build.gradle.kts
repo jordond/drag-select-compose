@@ -19,6 +19,7 @@ kotlin {
             dependencies {
                 api(project(":core"))
                 api(project(":extensions"))
+                api(project(":grid"))
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -29,8 +30,6 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api(project(":grid"))
-
                 api(libs.appcompat)
                 api(libs.core.ktx)
             }
