@@ -3,7 +3,6 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
-    alias(libs.plugins.dokka)
     kotlin("multiplatform")
     id("maven-publish")
 }
@@ -19,6 +18,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":core"))
+                api(project(":extensions"))
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -29,7 +29,6 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api(project(":extensions"))
                 api(project(":grid"))
 
                 api(libs.appcompat)
