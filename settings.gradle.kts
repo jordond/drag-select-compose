@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "Drag Select Compose"
 
 if (System.getenv()["JITPACK"] == null) {
-    include(":demo")
+    include(":demo:androidApp")
 }
 
 include(

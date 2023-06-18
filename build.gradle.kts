@@ -15,7 +15,7 @@ plugins {
     kotlin("jvm") version kotlinVersion apply false
 }
 
-configure(allprojects.filter { it.name != "demo" }) {
+configure(allprojects.filter { it.name != "androidApp" }) {
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = "11"
