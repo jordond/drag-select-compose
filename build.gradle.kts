@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.dependencies)
+    alias(libs.plugins.binaryCompatibility)
 
     val kotlinVersion = libs.versions.kotlin.get()
     kotlin("multiplatform") version kotlinVersion apply false

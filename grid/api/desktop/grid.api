@@ -1,0 +1,69 @@
+public final class com/dragselectcompose/grid/LazyDragSelectGridItemScope {
+	public static final field $stable I
+	public fun <init> (Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/lazy/grid/LazyGridItemScope;)V
+	public final fun SelectableItem (Ljava/lang/Object;Landroidx/compose/ui/Modifier;Ljava/lang/String;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZLcom/dragselectcompose/grid/indicator/AnimateSelectionOptions;FLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public final fun animateItemPlacement (Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+}
+
+public abstract interface class com/dragselectcompose/grid/LazyDragSelectGridScope {
+	public abstract fun item (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;)V
+	public abstract fun items (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)V
+}
+
+public final class com/dragselectcompose/grid/LazyDragSelectGridScope$DefaultImpls {
+	public static synthetic fun item$default (Lcom/dragselectcompose/grid/LazyDragSelectGridScope;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)V
+	public static synthetic fun items$default (Lcom/dragselectcompose/grid/LazyDragSelectGridScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;ILjava/lang/Object;)V
+}
+
+public final class com/dragselectcompose/grid/LazyDragSelectHorizontalGridKt {
+	public static final fun LazyDragSelectHorizontalGrid (Landroidx/compose/foundation/lazy/grid/GridCells;Ljava/util/List;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/foundation/gestures/FlingBehavior;ZZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/dragselectcompose/grid/LazyDragSelectVerticalGridKt {
+	public static final fun LazyDragSelectVerticalGrid (Landroidx/compose/foundation/lazy/grid/GridCells;Ljava/util/List;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/gestures/FlingBehavior;ZZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/dragselectcompose/grid/indicator/AnimateSelectionDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/dragselectcompose/grid/indicator/AnimateSelectionDefaults;
+	public final fun getDefault ()Lcom/dragselectcompose/grid/indicator/AnimateSelectionOptions;
+	public final fun options-YgX7TsA (FF)Lcom/dragselectcompose/grid/indicator/AnimateSelectionOptions;
+	public static synthetic fun options-YgX7TsA$default (Lcom/dragselectcompose/grid/indicator/AnimateSelectionDefaults;FFILjava/lang/Object;)Lcom/dragselectcompose/grid/indicator/AnimateSelectionOptions;
+}
+
+public final class com/dragselectcompose/grid/indicator/AnimateSelectionOptions {
+	public static final field $stable I
+	public final fun getCornerRadius-D9Ej5fM ()F
+	public final fun getPadding-D9Ej5fM ()F
+}
+
+public final class com/dragselectcompose/grid/indicator/IndicatorIconDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/dragselectcompose/grid/indicator/IndicatorIconDefaults;
+	public final fun getIconShape ()Landroidx/compose/ui/graphics/Shape;
+	public final fun selectedIconOptions-zmyGCE0 (Landroidx/compose/ui/graphics/vector/ImageVector;JLjava/lang/String;FJFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/runtime/Composer;II)Lcom/dragselectcompose/grid/indicator/IndicatorIconOptions;
+	public final fun unselectedIconOptions-UsbTRkM (Landroidx/compose/ui/graphics/vector/ImageVector;JLjava/lang/String;FLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/runtime/Composer;II)Lcom/dragselectcompose/grid/indicator/IndicatorIconOptions;
+}
+
+public final class com/dragselectcompose/grid/indicator/IndicatorIconKt {
+	public static final fun IndicatorIcon (Lcom/dragselectcompose/grid/LazyDragSelectGridItemScope;Lcom/dragselectcompose/grid/indicator/IndicatorIconOptions;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun IndicatorIcon-59qflAg (Lcom/dragselectcompose/grid/LazyDragSelectGridItemScope;Landroidx/compose/ui/graphics/vector/ImageVector;JLjava/lang/String;FLandroidx/compose/ui/graphics/Color;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun SelectedIcon (Lcom/dragselectcompose/grid/LazyDragSelectGridItemScope;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/grid/indicator/IndicatorIconOptions;Landroidx/compose/runtime/Composer;II)V
+	public static final fun UnselectedIcon (Lcom/dragselectcompose/grid/LazyDragSelectGridItemScope;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/grid/indicator/IndicatorIconOptions;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/dragselectcompose/grid/indicator/IndicatorIconOptions {
+	public static final field $stable I
+	public final fun getBackgroundColor-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
+	public final fun getBorder-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun getContentDescription ()Ljava/lang/String;
+	public final fun getIcon ()Landroidx/compose/ui/graphics/vector/ImageVector;
+	public final fun getPadding-D9Ej5fM ()F
+	public final fun getShape ()Landroidx/compose/ui/graphics/Shape;
+	public final fun getTint-0d7_KjU ()J
+}
+
+public final class com/dragselectcompose/grid/indicator/internal/RadioButtonUncheckedKt {
+	public static final fun getRadioButtonUnchecked (Landroidx/compose/material/icons/Icons$Filled;)Landroidx/compose/ui/graphics/vector/ImageVector;
+}
+
