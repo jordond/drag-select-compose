@@ -11,11 +11,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.dragselectcompose.core.DragSelectState
+import com.dragselectcompose.core.rememberDragSelectState
 import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import com.dragselectcompose.grid.LazyDragSelectVerticalGrid
 import com.dragselectcompose.grid.indicator.SelectedIcon
 import com.dragselectcompose.grid.indicator.UnselectedIcon
-import com.dragselectcompose.core.rememberDragSelectState
 
 /**
  * This example shows how to use the [LazyDragSelectVerticalGrid] along with `SelectableItem`.

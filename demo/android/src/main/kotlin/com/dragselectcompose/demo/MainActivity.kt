@@ -13,8 +13,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
-import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import com.dragselectcompose.core.rememberDragSelectState
+import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 
 class MainActivity : ComponentActivity() {
 

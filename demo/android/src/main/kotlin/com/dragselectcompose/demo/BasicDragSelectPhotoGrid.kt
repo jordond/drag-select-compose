@@ -36,9 +36,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.dragselectcompose.core.DragSelectState
-import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import com.dragselectcompose.core.gridDragSelect
 import com.dragselectcompose.core.rememberDragSelectState
+import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 
 /**
  * A basic example on how to use [Modifier.gridDragSelect] with a [LazyVerticalGrid].
