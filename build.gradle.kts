@@ -8,10 +8,24 @@ plugins {
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.dependencies)
+    alias(libs.plugins.binaryCompatibility)
 
     val kotlinVersion = libs.versions.kotlin.get()
     kotlin("multiplatform") version kotlinVersion apply false
     kotlin("jvm") version kotlinVersion apply false
+}
+
+apiValidation {
+    if (System.getenv("CI") == null) {
+        ignoredProjects.addAll(
+            listOf(
+                "android",
+                "androidApp",
+                "desktopApp",
+                "shared",
+            ),
+        )
+    }
 }
 
 tasks.withType<DokkaMultiModuleTask>().configureEach {

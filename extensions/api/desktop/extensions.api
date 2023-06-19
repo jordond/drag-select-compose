@@ -1,0 +1,21 @@
+public final class com/dragselectcompose/extensions/SemanticsKt {
+	public static final fun dragSelectSemantics (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/Object;Ljava/lang/String;)Landroidx/compose/ui/Modifier;
+	public static final fun dragSelectSemantics (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Landroidx/compose/ui/Modifier;
+	public static final fun dragSelectSemantics (Landroidx/compose/ui/Modifier;ZLjava/lang/String;Lkotlin/jvm/functions/Function0;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun dragSelectSemantics$default (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/Object;Ljava/lang/String;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun dragSelectSemantics$default (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun dragSelectSemantics$default (Landroidx/compose/ui/Modifier;ZLjava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/dragselectcompose/extensions/ToggleableItemKt {
+	public static final fun dragSelectToggleableItem (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/Object;Ljava/lang/String;Landroidx/compose/foundation/interaction/MutableInteractionSource;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun dragSelectToggleableItem$default (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/Object;Ljava/lang/String;Landroidx/compose/foundation/interaction/MutableInteractionSource;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/dragselectcompose/extensions/ToggleableKt {
+	public static final fun dragSelectToggleable (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/Object;Landroidx/compose/foundation/interaction/MutableInteractionSource;)Landroidx/compose/ui/Modifier;
+	public static final fun dragSelectToggleable (Landroidx/compose/ui/Modifier;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function1;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun dragSelectToggleable$default (Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Ljava/lang/Object;Landroidx/compose/foundation/interaction/MutableInteractionSource;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun dragSelectToggleable$default (Landroidx/compose/ui/Modifier;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
