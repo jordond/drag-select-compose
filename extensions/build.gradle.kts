@@ -6,14 +6,16 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.publish)
     kotlin("multiplatform")
-    id("maven-publish")
 }
 
 kotlin {
     explicitApi = ExplicitApiMode.Strict
 
-    android()
+    android {
+        publishLibraryVariants("debug", "release")
+    }
     jvm("desktop")
 
     listOf(
