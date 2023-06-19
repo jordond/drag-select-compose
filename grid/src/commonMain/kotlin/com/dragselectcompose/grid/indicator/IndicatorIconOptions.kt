@@ -8,6 +8,9 @@ import androidx.compose.ui.unit.Dp
 /**
  * Options for the indicator icon.
  *
+ * Use [IndicatorIconDefaults.selectedIconOptions] or [IndicatorIconDefaults.unselectedIconOptions]
+ * to create a default instance of this class.
+ *
  * @param[icon] Icon [ImageVector] to display.
  * @param[tint] Tint to apply to the icon.
  * @param[contentDescription] Content description to apply to the icon.
@@ -16,12 +19,12 @@ import androidx.compose.ui.unit.Dp
  * @param[border] Border to apply to the icon.
  * @param[shape] Shape to clip the icon to.
  */
-public data class IndicatorIconOptions(
-    val icon: ImageVector,
-    val tint: Color,
-    val contentDescription: String?,
-    val padding: Dp,
-    val backgroundColor: Color?,
-    val border: Dp?,
-    val shape: Shape?,
+public class IndicatorIconOptions internal constructor(
+    public val icon: ImageVector,
+    public val tint: Color,
+    public val contentDescription: String?,
+    public val padding: Dp,
+    public val backgroundColor: Color?,
+    public val border: Dp?,
+    public val shape: Shape?,
 )

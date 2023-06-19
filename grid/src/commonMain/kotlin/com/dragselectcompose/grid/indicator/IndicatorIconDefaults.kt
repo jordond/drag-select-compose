@@ -29,6 +29,13 @@ public object IndicatorIconDefaults {
      *
      * @see IndicatorIconOptions
      * @see SelectedIcon
+     * @param[icon] Icon [ImageVector] to display.
+     * @param[tint] Tint to apply to the icon.
+     * @param[contentDescription] Content description to apply to the icon.
+     * @param[padding] Padding to apply to the icon.
+     * @param[backgroundColor] Background color to apply to the icon.
+     * @param[border] Border to apply to the icon.
+     * @param[shape] Shape to clip the icon to.
      */
     @Composable
     public fun selectedIconOptions(
@@ -54,6 +61,13 @@ public object IndicatorIconDefaults {
      *
      * @see IndicatorIconOptions
      * @see UnselectedIcon
+     * @param[icon] Icon [ImageVector] to display.
+     * @param[tint] Tint to apply to the icon.
+     * @param[contentDescription] Content description to apply to the icon.
+     * @param[padding] Padding to apply to the icon.
+     * @param[backgroundColor] Background color to apply to the icon.
+     * @param[border] Border to apply to the icon.
+     * @param[shape] Shape to clip the icon to.
      */
     @Composable
     public fun unselectedIconOptions(
@@ -61,13 +75,16 @@ public object IndicatorIconDefaults {
         tint: Color = Color.White.copy(alpha = 0.7f),
         contentDescription: String? = "Not Selected",
         padding: Dp = 4.dp,
+        backgroundColor: Color? = null,
+        border: Dp? = null,
+        shape: Shape? = null,
     ): IndicatorIconOptions = IndicatorIconOptions(
         icon = icon,
         tint = tint,
         contentDescription = contentDescription,
         padding = padding,
-        backgroundColor = null,
-        border = null,
-        shape = null,
+        backgroundColor = backgroundColor,
+        border = border,
+        shape = shape,
     )
 }
