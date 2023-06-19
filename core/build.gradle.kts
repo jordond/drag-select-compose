@@ -1,5 +1,7 @@
 @file:Suppress("UNUSED_VARIABLE")
 
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
@@ -9,6 +11,8 @@ plugins {
 }
 
 kotlin {
+    explicitApi = ExplicitApiMode.Strict
+
     android()
     jvm("desktop")
     iosX64()
