@@ -40,8 +40,8 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
 
-                implementation("media.kamel:kamel-image:0.5.1")
-                implementation("io.ktor:ktor-client-core:2.3.1")
+                implementation(libs.kamel)
+                implementation(libs.ktor.core)
             }
         }
         val androidMain by getting {
@@ -49,8 +49,7 @@ kotlin {
                 api(libs.activity.compose)
                 api(libs.appcompat)
                 api(libs.core.ktx)
-
-                implementation("io.ktor:ktor-client-android:2.3.1")
+                implementation(libs.ktor.android)
             }
         }
         val iosX64Main by getting
@@ -62,14 +61,13 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:2.3.1")
+                implementation(libs.ktor.darwin)
             }
         }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
-
-                implementation("io.ktor:ktor-client-java:2.3.1")
+                implementation(libs.ktor.java)
             }
         }
     }
