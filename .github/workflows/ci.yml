@@ -86,37 +86,31 @@ jobs:
         with:
           arguments: assembleRelease --scan
 
-  build-on-macos:
-    name: "Build on macOS"
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: setup-java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: adopt
-
-      # AGP 8.2 requires 34.0.0-rc3 - see https://issuetracker.google.com/issues/236167971#comment36
-      # and https://github.com/actions/runner-images/issues/7506#issuecomment-1533097084
-      # TODO: Remove when AGP updates Build Tools to 34.0.0 and pre-installed in the runner
-      - name: Install Android Build Tools 34.0.0-rc3
-        run: echo "y" | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0-rc3"
-        shell: bash
-
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Build
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: assemble --scan
+# TODO: Currently broken until build tools 34.0.0-rc3 is pre-installed in the runner
+#  build-on-macos:
+#    name: "Build on macOS"
+#    runs-on: macos-latest
+#    timeout-minutes: 30
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: setup-java
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: 17
+#          distribution: adopt
+#
+#      - uses: actions/cache@v3
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+#          restore-keys: |
+#            ${{ runner.os }}-gradle-
+#
+#      - name: Build
+#        uses: gradle/gradle-build-action@v2
+#        with:
+#          arguments: assemble --scan
