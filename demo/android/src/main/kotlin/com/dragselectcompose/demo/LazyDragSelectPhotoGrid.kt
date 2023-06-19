@@ -1,23 +1,33 @@
-package dev.jordond.dragselectcompose.demo
+package com.dragselectcompose.demo
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.dragselectcompose.core.DragSelectState
+import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 import com.dragselectcompose.grid.LazyDragSelectVerticalGrid
 import com.dragselectcompose.grid.indicator.SelectedIcon
 import com.dragselectcompose.grid.indicator.UnselectedIcon
 import com.dragselectcompose.core.rememberDragSelectState
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
-import io.ktor.http.Url
 
+/**
+ * This example shows how to use the [LazyDragSelectVerticalGrid] along with `SelectableItem`.
+ *
+ * The adding of Semantics is automatic, and so is adding the Toggleable modifier to the items when
+ * [DragSelectState.inSelectionMode] is true.
+ *
+ * `SelectableItem` takes care of rendering an icon when the item is selected, and animating the
+ * content when selected or deselected.
+ */
 @Composable
-fun PhotoGrid(
+fun LazyDragSelectPhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
     dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
@@ -39,12 +49,20 @@ fun PhotoGrid(
                 Surface(
                     tonalElevation = 3.dp,
                 ) {
-                    KamelImage(
-                        resource = asyncPainterResource(Url(photo.url)),
+                    Image(
+                        painter = rememberAsyncImagePainter(photo.url),
                         contentDescription = null,
                     )
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun LazyDragSelectPhotoGridPreview() {
+    DragSelectComposeTheme {
+        LazyDragSelectPhotoGrid()
     }
 }

@@ -57,7 +57,7 @@ kotlin {
 
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
-    namespace = "dev.jordond.dragselectcompose.grid"
+    namespace = "com.dragselectcompose.grid"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
@@ -81,7 +81,7 @@ android {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "dev.jordond.dragselectcompose"
+            groupId = "com.dragselectcompose"
             artifactId = "grid"
         }
     }
