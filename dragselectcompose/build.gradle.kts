@@ -82,7 +82,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "com.dragselectcompose"
-            artifactId = "dragselectcompose"
+            artifactId = "full"
         }
     }
 }
