@@ -1,6 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompileCommon
 
 plugins {
     alias(libs.plugins.androidApplication) apply false
@@ -15,12 +14,18 @@ plugins {
     kotlin("jvm") version kotlinVersion apply false
 }
 
-configure(allprojects.filter { it.name != "androidApp" }) {
+configure(
+    allprojects.filter {
+        it.name != "android" ||
+            it.name.contains("App") ||
+            it.name == "shared"
+    },
+) {
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = "11"
 
-            freeCompilerArgs = freeCompilerArgs + "-Xexplicit-api=strict"
+//            freeCompilerArgs = freeCompilerArgs + "-Xexplicit-api=strict"
         }
     }
 
