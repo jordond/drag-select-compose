@@ -15,9 +15,16 @@ kotlin {
 
     android()
     jvm("desktop")
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { framework ->
+        framework.binaries.framework {
+            baseName = "core"
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
