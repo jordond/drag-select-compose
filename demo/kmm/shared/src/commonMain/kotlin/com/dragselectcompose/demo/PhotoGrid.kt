@@ -1,4 +1,4 @@
-package dev.jordond.dragselectcompose.demo
+package com.dragselectcompose.demo
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.grid.GridCells

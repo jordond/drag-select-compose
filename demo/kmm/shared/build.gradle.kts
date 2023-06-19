@@ -75,7 +75,7 @@ kotlin {
 
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
-    namespace = "dev.jordond.dragselectcompose.demo"
+    namespace = "com.dragselectcompose.demo"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")

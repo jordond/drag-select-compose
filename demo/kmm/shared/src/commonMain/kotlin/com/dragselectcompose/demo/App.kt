@@ -1,4 +1,4 @@
-package dev.jordond.dragselectcompose.demo
+package com.dragselectcompose.demo
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

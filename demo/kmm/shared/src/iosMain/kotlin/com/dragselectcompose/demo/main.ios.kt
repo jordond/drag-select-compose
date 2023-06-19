@@ -1,4 +1,4 @@
-package dev.jordond.dragselectcompose.demo
+package com.dragselectcompose.demo
 
 import androidx.compose.ui.window.ComposeUIViewController
 
