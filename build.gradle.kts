@@ -15,6 +15,17 @@ plugins {
     kotlin("jvm") version kotlinVersion apply false
 }
 
+apiValidation {
+    ignoredProjects.addAll(
+        listOf(
+            "android",
+            "androidApp",
+            "desktopApp",
+            "shared",
+        ),
+    )
+}
+
 tasks.withType<DokkaMultiModuleTask>().configureEach {
     outputDirectory.set(rootDir.resolve("dokka"))
 }
