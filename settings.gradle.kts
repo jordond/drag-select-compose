@@ -27,7 +27,7 @@ gradleEnterprise {
     }
 }
 
-rootProject.name = "Drag Select Compose"
+rootProject.name = "DragSelectCompose"
 
 if (System.getenv("CI") == null) {
     include(":demo:android")

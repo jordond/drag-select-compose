@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="desktopApp-jvm">
     <output-path>$PROJECT_DIR$/demo/kmm/desktopApp/build/libs</output-path>
-    <root id="archive" name="desktopApp-jvm.jar">
-      <element id="module-output" name="Drag_Select_Compose.demo.kmm.desktopApp.jvmMain" />
-    </root>
+    <root id="archive" name="desktopApp-jvm.jar" />
   </artifact>
 </component>

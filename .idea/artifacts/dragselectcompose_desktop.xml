@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="dragselectcompose-desktop">
     <output-path>$PROJECT_DIR$/dragselectcompose/build/libs</output-path>
-    <root id="archive" name="dragselectcompose-desktop.jar">
-      <element id="module-output" name="Drag_Select_Compose.dragselectcompose.desktopMain" />
-    </root>
+    <root id="archive" name="dragselectcompose-desktop.jar" />
   </artifact>
 </component>

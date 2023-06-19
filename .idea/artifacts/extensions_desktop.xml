@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="extensions-desktop">
     <output-path>$PROJECT_DIR$/extensions/build/libs</output-path>
-    <root id="archive" name="extensions-desktop.jar">
-      <element id="module-output" name="Drag_Select_Compose.extensions.desktopMain" />
-    </root>
+    <root id="archive" name="extensions-desktop.jar" />
   </artifact>
 </component>
