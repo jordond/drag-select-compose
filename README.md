@@ -6,9 +6,10 @@
     <img src="https://img.shields.io/github/license/jordond/drag-select-compose" />   
 </p>
 
-This is a library that allows you to easily implement a "Google Photos"-style multi-selection in your Compose apps.
+This is a library that allows you to easily implement a "Google Photos"-style multi-selection in
+your Compose apps.
 
-You can view the KDocs at [docs.drag-select-compose.jordond.dev](https://docs.drag-select-compose.jordond.dev)
+You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectcompose.com)
 
 <img width="250px" src="art/drag-select-compose-demo.gif" />
 
@@ -24,9 +25,12 @@ You can view the KDocs at [docs.drag-select-compose.jordond.dev](https://docs.dr
 
 ## Inspiration
 
-This library was inspired by this [article](https://medium.com/androiddevelopers/now-in-android-85-8bdb9ce34428) and the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247e2).
+This library was inspired by
+this [article](https://medium.com/androiddevelopers/now-in-android-85-8bdb9ce34428) and
+the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247e2).
 
-As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview) library.
+As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview)
+library.
 
 ## Getting Started
 
@@ -58,24 +62,25 @@ Then add the dependency to your app level `build.gradle.kts` file:
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("dev.jordond:drag-select-compose:drag-select-compose:1.0.0")
-  
+    implementation("com.dragselectcompose:dragselectcompose:1.0.0")
+
     // Or use the modules you want
-    
+
     // Core functionality
-    implementation("dev.jordond:drag-select-compose:core:1.0.0")
+    implementation("com.dragselectcompose:core:1.0.0")
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
-    implementation("dev.jordond:drag-select-compose:extensions:1.0.0")
+    implementation("com.dragselectcompose:extensions:1.0.0")
 
     // Optional wrappers around LazyGrid that implement the selection UI for you
-    implementation("dev.jordond:drag-select-compose:grid:1.0.0")
+    implementation("com.dragselectcompose:grid:1.0.0")
 }
 ```
 
 ## Usage
 
-The `:core` artifact provides a `Modifier` extension for adding a drag-to-select functionality to your `LazyGrid`:
+The `:core` artifact provides a `Modifier` extension for adding a drag-to-select functionality to
+your `LazyGrid`:
 
 ```kotlin
 fun <Item> Modifier.gridDragSelect(
@@ -93,7 +98,8 @@ It provides the following functionality:
 - Adds a long-press drag gesture to select items.
 - Maintains a list of selected items.
 - Expose a `inSelectionMode: Boolean` which you can use to display a unselected state.
-- If `enableAutoScroll` is `true` then the list will start to scroll when reaching the top or bottom of the list.
+- If `enableAutoScroll` is `true` then the list will start to scroll when reaching the top or bottom
+  of the list.
 - Will trigger a "long-press" haptics if `enableHaptics` is `true`.
 
 You can then use `DragSelectState` to render your list of items:
@@ -130,11 +136,14 @@ fun MyGrid(models: List<Model>) {
 }
 ```
 
-You can see a full basic example in [`BasicDragSelectPhotoGrid`](demo/androidApp/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
+You can see a full basic example
+in [`BasicDragSelectPhotoGrid`](demo/android/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
 
 ## Extensions
 
-Included in the `:dragselectcompose` and `:extensions` artifact are a couple extensions on `Modifer` to easily add support for accessibility semantics and toggling selection while the Grid is in selection mode.
+Included in the `:dragselectcompose` and `:extensions` artifact are a couple extensions on `Modifer`
+to easily add support for accessibility semantics and toggling selection while the Grid is in
+selection mode.
 
 - [`Modifier.dragSelectSemantics()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/Semantics.kt)
     - Adds a long click semantics to the modifier for accessibility.
@@ -164,13 +173,18 @@ fun MyGrid(models: List<Model>) {
 }
 ```
 
-You can see a full extensions example in [`ExtensionsDragSelectPhotoGrid`](demo/androidApp/src/main/kotlin/dev/jordond/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
+You can see a full extensions example
+in [`ExtensionsDragSelectPhotoGrid`](demo/android/src/main/kotlin/dev/jordond/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
 
 ## Wrapper
 
-Included in the `:grid` artifact is a "all-inclusive" drag-select experience. It includes wrappers around `LazyHorizontalGrid` and `LazyVerticalGrid` that takes care of adding the `Modifier.gridDragSelect`.
+Included in the `:grid` artifact is a "all-inclusive" drag-select experience. It includes wrappers
+around `LazyHorizontalGrid` and `LazyVerticalGrid` that takes care of adding
+the `Modifier.gridDragSelect`.
 
-When using `LazyDragSelectVerticalGrid` or `LazyDragSelectHorizontalGrid` the `content()` is scoped to a custom scope that provides a helper composable for handling the selection indicator, and animating the padding.
+When using `LazyDragSelectVerticalGrid` or `LazyDragSelectHorizontalGrid` the `content()` is scoped
+to a custom scope that provides a helper composable for handling the selection indicator, and
+animating the padding.
 
 Here is a quick example:
 
@@ -178,7 +192,7 @@ Here is a quick example:
 @Composeable
 fun MyGrid(models: List<Model>) {
     val dragSelectState = rememberDragSelectState<Model>()
-    
+
     LazyDragSelectVerticalGrid(
         columns = GridCells.Adaptive(minSize = 128.dp),
         items = models,
@@ -193,9 +207,11 @@ fun MyGrid(models: List<Model>) {
 }
 ```
 
-Now your item will have an animated padding and clipped shape when selected. As well as displaying indicator icons when the grid is in selection mode, and the item is selected or not.
+Now your item will have an animated padding and clipped shape when selected. As well as displaying
+indicator icons when the grid is in selection mode, and the item is selected or not.
 
-See the documentation for `LazyDragSelectVerticalGrid` and `SelectableItem` for all the options you can customize.
+See the documentation for `LazyDragSelectVerticalGrid` and `SelectableItem` for all the options you
+can customize.
 
 ## Demo App
 
@@ -207,7 +223,7 @@ cd drag-select-compose
 ./gradlew assembleRelease
 ```
 
-Then install the `demo/androidApp/build/outputs/apk/release/demo-release.apk` file on your device.
+Then install the `demo/android/build/outputs/apk/release/demo-release.apk` file on your device.
 
 ## License
 
