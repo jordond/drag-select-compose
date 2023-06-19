@@ -12,6 +12,9 @@ import dev.jordond.dragselectcompose.grid.LazyDragSelectVerticalGrid
 import dev.jordond.dragselectcompose.grid.indicator.SelectedIcon
 import dev.jordond.dragselectcompose.grid.indicator.UnselectedIcon
 import dev.jordond.dragselectcompose.rememberDragSelectState
+import io.kamel.image.KamelImage
+import io.kamel.image.asyncPainterResource
+import io.ktor.http.Url
 
 @Composable
 fun PhotoGrid(
@@ -36,8 +39,8 @@ fun PhotoGrid(
                 Surface(
                     tonalElevation = 3.dp,
                 ) {
-                    AsyncImage(
-                        url = photo.url,
+                    KamelImage(
+                        resource = asyncPainterResource(Url(photo.url)),
                         contentDescription = null,
                     )
                 }
