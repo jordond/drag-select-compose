@@ -8,3 +8,4 @@ dev.jordond.dragselectcompose.extensions
 module:grid
 dev.jordond.dragselectcompose.grid
 dev.jordond.dragselectcompose.grid.indicator
+dev.jordond.dragselectcompose.grid.indicator.internal
