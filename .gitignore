@@ -7,6 +7,11 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/artifacts
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea
 .DS_Store
 /build
 /captures
@@ -14,3 +19,10 @@
 .cxx
 local.properties
 /dokka
+build/
+iosApp/Podfile.lock
+iosApp/Pods/*
+iosApp/iosApp.xcworkspace/*
+iosApp/iosApp.xcodeproj/*
+!iosApp/iosApp.xcodeproj/project.pbxproj
+shared/shared.podspec

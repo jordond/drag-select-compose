@@ -1,24 +1,32 @@
+import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.compose) apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.dependencies)
+
+    val kotlinVersion = libs.versions.kotlin.get()
+    kotlin("multiplatform") version kotlinVersion apply false
+    kotlin("jvm") version kotlinVersion apply false
 }
 
-configure(allprojects.filter { it.name != "demo" }) {
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "11"
+tasks.withType<DokkaMultiModuleTask>().configureEach {
+    outputDirectory.set(rootDir.resolve("dokka"))
+}
 
-            freeCompilerArgs = freeCompilerArgs + "-Xexplicit-api=strict"
+// Temporary workaround for https://github.com/Kotlin/dokka/issues/2977#issuecomment-1567328937
+subprojects {
+    tasks {
+        val taskClass = "org.jetbrains.kotlin.gradle.targets.native.internal." +
+            "CInteropMetadataDependencyTransformationTask"
+
+        @Suppress("UNCHECKED_CAST")
+        withType(Class.forName(taskClass) as Class<Task>) {
+            onlyIf { gradle.taskGraph.allTasks.none { it is AbstractDokkaTask } }
         }
-    }
-
-    tasks.withType<DokkaMultiModuleTask>().configureEach {
-        outputDirectory.set(rootDir.resolve("dokka"))
     }
 }

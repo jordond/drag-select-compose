@@ -130,17 +130,17 @@ fun MyGrid(models: List<Model>) {
 }
 ```
 
-You can see a full basic example in [`BasicDragSelectPhotoGrid`](demo/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
+You can see a full basic example in [`BasicDragSelectPhotoGrid`](demo/androidApp/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
 
 ## Extensions
 
 Included in the `:dragselectcompose` and `:extensions` artifact are a couple extensions on `Modifer` to easily add support for accessibility semantics and toggling selection while the Grid is in selection mode.
 
-- [`Modifier.dragSelectSemantics()`](extensions/src/main/kotlin/dev/jordond/dragselectcompose/extensions/Semantics.kt)
+- [`Modifier.dragSelectSemantics()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/Semantics.kt)
     - Adds a long click semantics to the modifier for accessibility.
-- [`Modifier.dragSelectToggleable()`](extensions/src/main/kotlin/dev/jordond/dragselectcompose/extensions/Toggleable.kt)
+- [`Modifier.dragSelectToggleable()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/Toggleable.kt)
     - Allows you to toggle the item when the Grid is in Selection Mode.
-- [`Modifier.dragSelectToggleableItem()`](extensions/src/main/kotlin/dev/jordond/dragselectcompose/extensions/ToggleableItem.kt)
+- [`Modifier.dragSelectToggleableItem()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/ToggleableItem.kt)
     - Combines the above two extensions.
 
 ```kotlin
@@ -164,7 +164,7 @@ fun MyGrid(models: List<Model>) {
 }
 ```
 
-You can see a full extensions example in [`ExtensionsDragSelectPhotoGrid`](demo/src/main/kotlin/dev/jordond/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
+You can see a full extensions example in [`ExtensionsDragSelectPhotoGrid`](demo/androidApp/src/main/kotlin/dev/jordond/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
 
 ## Wrapper
 
@@ -207,7 +207,7 @@ cd drag-select-compose
 ./gradlew assembleRelease
 ```
 
-Then install the `demo/build/outputs/apk/release/demo-release.apk` file on your device.
+Then install the `demo/androidApp/build/outputs/apk/release/demo-release.apk` file on your device.
 
 ## License
 

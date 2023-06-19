@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -10,6 +11,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/demo" />
+            <option value="$PROJECT_DIR$/demo/android" />
+            <option value="$PROJECT_DIR$/demo/kmm" />
+            <option value="$PROJECT_DIR$/demo/kmm/androidApp" />
+            <option value="$PROJECT_DIR$/demo/kmm/desktopApp" />
+            <option value="$PROJECT_DIR$/demo/kmm/shared" />
             <option value="$PROJECT_DIR$/dragselectcompose" />
             <option value="$PROJECT_DIR$/extensions" />
             <option value="$PROJECT_DIR$/grid" />
