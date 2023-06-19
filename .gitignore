@@ -11,6 +11,7 @@
 /.idea/compiler.xml
 /.idea/misc.xml
 /.idea/vcs.xml
+/.idea
 .DS_Store
 /build
 /captures

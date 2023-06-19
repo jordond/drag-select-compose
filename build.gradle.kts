@@ -1,3 +1,4 @@
+import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 plugins {
@@ -15,4 +16,17 @@ plugins {
 
 tasks.withType<DokkaMultiModuleTask>().configureEach {
     outputDirectory.set(rootDir.resolve("dokka"))
+}
+
+// Temporary workaround for https://github.com/Kotlin/dokka/issues/2977#issuecomment-1567328937
+subprojects {
+    tasks {
+        val taskClass = "org.jetbrains.kotlin.gradle.targets.native.internal." +
+            "CInteropMetadataDependencyTransformationTask"
+
+        @Suppress("UNCHECKED_CAST")
+        withType(Class.forName(taskClass) as Class<Task>) {
+            onlyIf { gradle.taskGraph.allTasks.none { it is AbstractDokkaTask } }
+        }
+    }
 }
