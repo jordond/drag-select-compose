@@ -40,7 +40,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
 
-                implementation(libs.kamel)
+                api(libs.kamel)
                 implementation(libs.ktor.core)
             }
         }
@@ -49,7 +49,7 @@ kotlin {
                 api(libs.activity.compose)
                 api(libs.appcompat)
                 api(libs.core.ktx)
-                implementation(libs.ktor.android)
+                implementation(libs.coil)
             }
         }
         val iosX64Main by getting
