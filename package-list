@@ -2,10 +2,10 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 
 module:core
-dev.jordond.dragselectcompose
+com.dragselectcompose.core
 module:extensions
-dev.jordond.dragselectcompose.extensions
+com.dragselectcompose.extensions
 module:grid
-dev.jordond.dragselectcompose.grid
-dev.jordond.dragselectcompose.grid.indicator
-dev.jordond.dragselectcompose.grid.indicator.internal
+com.dragselectcompose.grid
+com.dragselectcompose.grid.indicator
+com.dragselectcompose.grid.indicator.internal
