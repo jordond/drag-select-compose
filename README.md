@@ -53,18 +53,18 @@ file:
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("com.dragselectcompose:dragselect:2.0.0-alpha03")
+    implementation("com.dragselectcompose:dragselect:2.0.0-alpha04")
 
     // Or use the modules you want
 
     // Core functionality
-    implementation("com.dragselectcompose:core:2.0.0-alpha03")
+    implementation("com.dragselectcompose:core:2.0.0-alpha04")
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
-    implementation("com.dragselectcompose:extensions:2.0.0-alpha03")
+    implementation("com.dragselectcompose:extensions:2.0.0-alpha04")
 
     // Optional wrappers around LazyGrid that implement the selection UI for you
-    implementation("com.dragselectcompose:grid:2.0.0-alpha03")
+    implementation("com.dragselectcompose:grid:2.0.0-alpha04")
 }
 ```
 
@@ -78,18 +78,18 @@ kotlin {
         commonMain {
             dependencies {
                 // Includes the core functionality along with all of the optional modules
-                implementation("com.dragselectcompose:dragselect:2.0.0-alpha03")
+                implementation("com.dragselectcompose:dragselect:2.0.0-alpha04")
 
                 // Or use the modules you want
 
                 // Core functionality
-                implementation("com.dragselectcompose:core:2.0.0-alpha03")
+                implementation("com.dragselectcompose:core:2.0.0-alpha04")
 
                 // Optional extensions for adding semantics and toggle Modifiers to Grid items
-                implementation("com.dragselectcompose:extensions:2.0.0-alpha03")
+                implementation("com.dragselectcompose:extensions:2.0.0-alpha04")
 
                 // Optional wrappers around LazyGrid that implement the selection UI for you
-                implementation("com.dragselectcompose:grid:2.0.0-alpha03")
+                implementation("com.dragselectcompose:grid:2.0.0-alpha04")
             }
         }
     }
