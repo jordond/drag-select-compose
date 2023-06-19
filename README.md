@@ -21,11 +21,15 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
 ## Table of Contents
 
 - [Inspiration](#inspiration)
-- [Getting Started](#getting-started)
+- [Setup](#setup)
+    - [Single Platform](#single-platform)
+    - [Multiplatform](#multiplatform)
 - [Usage](#usage)
 - [Extensions](#extensions)
 - [Grid Wrapper](#wrapper)
-- [Demo App](#demo-app)
+- [Demo](#demo)
+    - [Android](#android-demo)
+    - [Multiplatform](#multiplatform-demo)
 - [License](#license)
 
 ## Inspiration
@@ -37,7 +41,7 @@ the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247
 As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview)
 library.
 
-## Getting Started
+## Setup
 
 First you need to add jitpack to either your root level `build.gradle.kts` or
 your `settings.gradle.kts` file:
@@ -62,25 +66,58 @@ dependencyResolutionManagement {
 }
 ```
 
-Then add the dependency to your app level `build.gradle.kts` file:
+### Single Platform
+
+To add to a single platform like Android, add the dependency to your app level `build.gradle.kts`
+file:
 
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("com.dragselectcompose:dragselectcompose:1.0.0")
+    implementation("com.dragselectcompose:dragselectcompose:2.0.0")
 
     // Or use the modules you want
 
     // Core functionality
-    implementation("com.dragselectcompose:core:1.0.0")
+    implementation("com.dragselectcompose:core:2.0.0")
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
-    implementation("com.dragselectcompose:extensions:1.0.0")
+    implementation("com.dragselectcompose:extensions:2.0.0")
 
     // Optional wrappers around LazyGrid that implement the selection UI for you
-    implementation("com.dragselectcompose:grid:1.0.0")
+    implementation("com.dragselectcompose:grid:2.0.0")
 }
 ```
+
+### Multiplatform
+
+To add to a multiplatform project, add the dependency to the common source-set:
+
+```kotlin
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                // Includes the core functionality along with all of the optional modules
+                implementation("com.dragselectcompose:dragselectcompose:2.0.0")
+
+                // Or use the modules you want
+
+                // Core functionality
+                implementation("com.dragselectcompose:core:2.0.0")
+
+                // Optional extensions for adding semantics and toggle Modifiers to Grid items
+                implementation("com.dragselectcompose:extensions:2.0.0")
+
+                // Optional wrappers around LazyGrid that implement the selection UI for you
+                implementation("com.dragselectcompose:grid:2.0.0")
+            }
+        }
+    }
+}
+```
+
+For the supported platforms, see the badges at the top of the README.
 
 ## Usage
 
@@ -142,7 +179,7 @@ fun MyGrid(models: List<Model>) {
 ```
 
 You can see a full basic example
-in [`BasicDragSelectPhotoGrid`](demo/android/src/main/kotlin/dev/jordond/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
+in [`BasicDragSelectPhotoGrid`](demo/android/src/main/kotlin/com/dragselectcompose/demo/BasicDragSelectPhotoGrid.kt).
 
 ## Extensions
 
@@ -150,11 +187,11 @@ Included in the `:dragselectcompose` and `:extensions` artifact are a couple ext
 to easily add support for accessibility semantics and toggling selection while the Grid is in
 selection mode.
 
-- [`Modifier.dragSelectSemantics()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/Semantics.kt)
+- [`Modifier.dragSelectSemantics()`](extensions/src/commonMain/kotlin/com/dragselectcompose/extensions/Semantics.kt)
     - Adds a long click semantics to the modifier for accessibility.
-- [`Modifier.dragSelectToggleable()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/Toggleable.kt)
+- [`Modifier.dragSelectToggleable()`](extensions/src/commonMain/kotlin/com/dragselectcompose/extensions/Toggleable.kt)
     - Allows you to toggle the item when the Grid is in Selection Mode.
-- [`Modifier.dragSelectToggleableItem()`](extensions/src/commonMain/kotlin/dev/jordond/dragselectcompose/extensions/ToggleableItem.kt)
+- [`Modifier.dragSelectToggleableItem()`](extensions/src/commonMain/kotlin/com/dragselectcompose/extensions/ToggleableItem.kt)
     - Combines the above two extensions.
 
 ```kotlin
@@ -179,7 +216,7 @@ fun MyGrid(models: List<Model>) {
 ```
 
 You can see a full extensions example
-in [`ExtensionsDragSelectPhotoGrid`](demo/android/src/main/kotlin/dev/jordond/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
+in [`ExtensionsDragSelectPhotoGrid`](demo/android/src/main/kotlin/com/dragselectcompose/demo/ExtensionsDragSelectPhotoGrid.kt).
 
 ## Wrapper
 
@@ -218,9 +255,14 @@ indicator icons when the grid is in selection mode, and the item is selected or 
 See the documentation for `LazyDragSelectVerticalGrid` and `SelectableItem` for all the options you
 can customize.
 
-## Demo App
+## Demo
 
-A demo app is included in the `demo` module, run it by following these steps:
+To run a demo for the library you can look inside of `/demo` to see a standard Android application,
+and a Compose Multiplatform application.
+
+### Android Demo
+
+A demo app is included in the `:demo:android` module, run it by following these steps:
 
 ```shell
 git clone git@github.com:jordond/drag-select-compose.git drag-select-compose
@@ -229,6 +271,17 @@ cd drag-select-compose
 ```
 
 Then install the `demo/android/build/outputs/apk/release/demo-release.apk` file on your device.
+
+### Multiplatform Demo
+
+The demo is inside of `:demo:kmm` module. In order to run it you should have the latest version of
+Android studio installed.
+
+1. Clone the repository and open it in Android Studio.
+2. Let Gradle Sync
+3. From the target drop-down select `demo.kmm.androidApp` or `desktopApp`
+    - In order to run the `kmm.ios` configuration you need to be on a Mac with Xcode installed.
+4. Run the application
 
 ## License
 
