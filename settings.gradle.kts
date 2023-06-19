@@ -29,8 +29,13 @@ gradleEnterprise {
 
 rootProject.name = "Drag Select Compose"
 
-if (System.getenv()["JITPACK"] == null) {
-    include(":demo:androidApp")
+if (System.getenv("CI") == null) {
+    include(":demo:android")
+    include(
+        ":demo:kmm:shared",
+        ":demo:kmm:desktopApp",
+        ":demo:kmm:androidApp",
+    )
 }
 
 include(
