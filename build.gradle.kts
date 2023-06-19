@@ -1,3 +1,6 @@
+@file:Suppress("UnstableApiUsage")
+
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
@@ -9,6 +12,7 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.dependencies)
     alias(libs.plugins.binaryCompatibility)
+    alias(libs.plugins.publish)
 
     val kotlinVersion = libs.versions.kotlin.get()
     kotlin("multiplatform") version kotlinVersion apply false
@@ -26,6 +30,11 @@ apiValidation {
             ),
         )
     }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
+    signAllPublications()
 }
 
 tasks.withType<DokkaMultiModuleTask>().configureEach {

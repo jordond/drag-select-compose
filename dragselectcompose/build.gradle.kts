@@ -5,18 +5,27 @@ import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
+    alias(libs.plugins.publish)
     kotlin("multiplatform")
-    id("maven-publish")
 }
 
 kotlin {
     explicitApi = ExplicitApiMode.Strict
 
-    android()
+    android {
+        publishLibraryVariants("debug", "release")
+    }
     jvm("desktop")
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { framework ->
+        framework.binaries.framework {
+            baseName = "full"
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -82,7 +91,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "com.dragselectcompose"
-            artifactId = "full"
+            artifactId = "dragselect"
         }
     }
 }
