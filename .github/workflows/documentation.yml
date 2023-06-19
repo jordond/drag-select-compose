@@ -23,9 +23,6 @@ jobs:
           java-version: 17
           distribution: adopt
 
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1
-
       # AGP 8.2 requires 34.0.0-rc3 - see https://issuetracker.google.com/issues/236167971#comment36
       # and https://github.com/actions/runner-images/issues/7506#issuecomment-1533097084
       # TODO: Remove when AGP updates Build Tools to 34.0.0 and pre-installed in the runner
