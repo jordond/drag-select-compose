@@ -37,6 +37,6 @@ android {
     }
 
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain(jdkVersion = 11)
     }
 }

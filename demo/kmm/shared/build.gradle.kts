@@ -24,7 +24,6 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
@@ -39,8 +38,10 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
+                implementation(compose.materialIconsExtended)
+
+                implementation("media.kamel:kamel-image:0.5.1")
+                implementation("io.ktor:ktor-client-core:2.3.1")
             }
         }
         val androidMain by getting {
@@ -48,6 +49,8 @@ kotlin {
                 api(libs.activity.compose)
                 api(libs.appcompat)
                 api(libs.core.ktx)
+
+                implementation("io.ktor:ktor-client-android:2.3.1")
             }
         }
         val iosX64Main by getting
@@ -58,10 +61,15 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:2.3.1")
+            }
         }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
+
+                implementation("io.ktor:ktor-client-java:2.3.1")
             }
         }
     }
@@ -73,7 +81,6 @@ android {
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
@@ -85,6 +92,6 @@ android {
     }
 
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain(jdkVersion = 11)
     }
 }
