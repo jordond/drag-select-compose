@@ -13,7 +13,7 @@ kotlin {
     explicitApi = ExplicitApiMode.Strict
 
     android {
-        publishLibraryVariants("debug", "release")
+        publishLibraryVariants("release")
     }
     jvm("desktop")
 

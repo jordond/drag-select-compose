@@ -28,7 +28,7 @@ jobs:
           NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
           echo "New version: ${NEW_VERSION}"
           export ORG_GRADLE_PROJECT_VERSION_NAME=${NEW_VERSION}
-          ./gradlew publish --stacktrace
+          ./gradlew publishAllPublicationsToMavenCentral --no-configuration-cache --stacktrace
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
