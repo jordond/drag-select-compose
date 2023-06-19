@@ -25,8 +25,6 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
             }
         }
         val androidMain by getting {
@@ -54,7 +52,7 @@ kotlin {
 
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
-    namespace = "dev.jordond.dragselectcompose"
+    namespace = "com.dragselectcompose.core"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
@@ -78,7 +76,7 @@ android {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "dev.jordond.dragselectcompose"
+            groupId = "com.dragselectcompose"
             artifactId = "core"
         }
     }

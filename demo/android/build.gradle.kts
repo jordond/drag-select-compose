@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.jordond.dragselectcompose.demo"
+    namespace = "com.dragselectcompose.demo"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
-        applicationId = "dev.jordond.dragselectcompose.demo"
+        applicationId = "com.dragselectcompose.demo"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = 1
