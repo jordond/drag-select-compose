@@ -20,6 +20,7 @@ coil = "2.4.0"
 kamel = "0.5.1"
 ktor = "2.3.1"
 binaryCompatibility = "0.13.2"
+publish = "0.22.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -53,5 +54,6 @@ dependencies = { id = "com.github.ben-manes.versions", version.ref = "versions" 
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibility" }
+publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
 
 [bundles]
