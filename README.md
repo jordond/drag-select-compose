@@ -74,7 +74,7 @@ file:
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("com.dragselectcompose:dragselectcompose:2.0.0")
+    implementation("com.dragselectcompose:drag-select-compose:2.0.0")
 
     // Or use the modules you want
 
@@ -99,7 +99,7 @@ kotlin {
         commonMain {
             dependencies {
                 // Includes the core functionality along with all of the optional modules
-                implementation("com.dragselectcompose:dragselectcompose:2.0.0")
+                implementation("com.dragselectcompose:drag-select-compose:2.0.0")
 
                 // Or use the modules you want
 
