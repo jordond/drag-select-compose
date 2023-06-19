@@ -1,17 +1,22 @@
 # Drag Select Compose
 
-<p>
-    <a href="https://jitpack.io/#dev.jordond/drag-select-compose"><img src="https://jitpack.io/v/dev.jordond/drag-select-compose.svg"></a>
-    <a href="https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml"><img src="https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml/badge.svg"></a>
-    <img src="https://img.shields.io/github/license/jordond/drag-select-compose" />   
-</p>
+[![Build](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml)
+[![Verify Gradle](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml)
+[![Version](https://jitpack.io/v/dev.jordond/drag-select-compose.svg)](https://jitpack.io/#dev.jordond/drag-select-compose)
+[![Kotlin](https://img.shields.io/badge/kotlin-v1.8.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.4.0-blue)](https://github.com/JetBrains/compose-multiplatform)
+[![License](https://img.shields.io/github/license/jordond/drag-select-compose)](http://www.apache.org/licenses/LICENSE-2.0)
+
+![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
+![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
+![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
 
 This is a library that allows you to easily implement a "Google Photos"-style multi-selection in
 your Compose apps.
 
 You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectcompose.com)
 
-<img width="250px" src="art/drag-select-compose-demo.gif" />
+<img width="250px" alt="demo" src="art/drag-select-compose-demo.gif" />
 
 ## Table of Contents
 
