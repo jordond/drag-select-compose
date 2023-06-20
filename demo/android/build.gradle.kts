@@ -58,8 +58,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":dragselectcompose"))
 
+    implementation(project(":dragselect"))
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)

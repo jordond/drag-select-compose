@@ -33,7 +33,7 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(project(":dragselectcompose"))
+                implementation(project(":dragselect"))
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)

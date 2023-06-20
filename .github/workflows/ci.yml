@@ -2,13 +2,18 @@ name: CI
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
   pull_request:
     branches:
       - main
     types: [ opened, synchronize, reopened, ready_for_review ]
-  push:
-    branches:
-      - main
+    paths-ignore:
+      - 'art/**'
+      - '**.md'
 
 concurrency:
   group: build-${{ github.ref }}

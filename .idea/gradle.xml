@@ -16,7 +16,7 @@
             <option value="$PROJECT_DIR$/demo/kmm/androidApp" />
             <option value="$PROJECT_DIR$/demo/kmm/desktopApp" />
             <option value="$PROJECT_DIR$/demo/kmm/shared" />
-            <option value="$PROJECT_DIR$/dragselectcompose" />
+            <option value="$PROJECT_DIR$/dragselect" />
             <option value="$PROJECT_DIR$/extensions" />
             <option value="$PROJECT_DIR$/grid" />
           </set>

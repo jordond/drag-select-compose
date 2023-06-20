@@ -41,7 +41,7 @@ if (System.getenv("CI") == null) {
 }
 
 include(
-    ":dragselectcompose",
+    ":dragselect",
     ":core",
     ":extensions",
     ":grid",
