@@ -11,7 +11,7 @@
 ![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
 
-This is a library that allows you to easily implement a "Google Photos"-style multi-selection in
+This is a Compose Multiplatform library that allows you to easily implement a "Google Photos"-style multi-selection in
 your Compose apps.
 
 You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectcompose.com)
