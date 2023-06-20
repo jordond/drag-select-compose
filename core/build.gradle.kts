@@ -86,12 +86,3 @@ android {
         jvmToolchain(jdkVersion = 11)
     }
 }
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.dragselectcompose"
-            artifactId = "core"
-        }
-    }
-}
