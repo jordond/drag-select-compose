@@ -248,6 +248,8 @@ indicator icons when the grid is in selection mode, and the item is selected or 
 See the documentation for `LazyDragSelectVerticalGrid` and `SelectableItem` for all the options you
 can customize.
 
+You can see a full example in [`LazyDragSelectPhotoGrid`](demo/android/src/main/kotlin/com/dragselectcompose/demo/LazyDragSelectPhotoGrid.kt)
+
 ## Demo
 
 To run a demo for the library you can look inside of `/demo` to see a standard Android application,
