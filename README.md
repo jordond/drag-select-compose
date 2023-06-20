@@ -1,6 +1,6 @@
 # Drag Select Compose
 
-[![Version](https://jitpack.io/v/com.dragselectcompose/drag-select-compose.svg)](https://jitpack.io/#com.dragselectcompose/drag-select-compose)
+![Maven Central](https://img.shields.io/maven-central/v/com.dragselectcompose/dragselect)
 [![Kotlin](https://img.shields.io/badge/kotlin-v1.8.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Build](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml)
 [![Verify Gradle](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml)
