@@ -24,6 +24,7 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
 - [Setup](#setup)
     - [Single Platform](#single-platform)
     - [Multiplatform](#multiplatform)
+    - [Version Catalog](#version-catalog)
 - [Usage](#usage)
 - [Extensions](#extensions)
 - [Grid Wrapper](#wrapper)
@@ -97,6 +98,19 @@ kotlin {
 ```
 
 For the supported platforms, see the badges at the top of the README.
+
+### Version catalog
+
+```toml
+[versions]
+dragselectcompose = "2.0.0"
+
+[libraries]
+dragselect = { module = "com.dragselectcompose:dragselect", version.ref = "dragselectcompose" }
+dragselect-core = { module = "com.dragselectcompose:core", version.ref = "dragselectcompose" }
+dragselect-extensions = { module = "com.dragselectcompose:extensions", version.ref = "dragselectcompose" }
+dragselect-grid = { module = "com.dragselectcompose:grid", version.ref = "dragselectcompose" }
+```
 
 ## Usage
 
