@@ -3,5 +3,8 @@
   "extends": [
     "config:base"
   ],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "ignoreDeps": [
+    "org.jetbrains.kotlin.android"
+  ]
 }
