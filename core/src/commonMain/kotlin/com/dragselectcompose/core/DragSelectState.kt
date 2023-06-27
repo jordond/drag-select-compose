@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.dragselectcompose.core.DragSelectState.Companion.None
+import com.dragselectcompose.core.Drag.Companion.None
 
 /**
  * Creates a [DragSelectState] that is remembered across compositions.
@@ -26,9 +26,9 @@ public fun <Item> rememberDragSelectState(
     lazyGridState: LazyGridState = rememberLazyGridState(),
     initialSelection: List<Item> = emptyList(),
 ): DragSelectState<Item> {
-    val indexes by rememberSaveable { mutableStateOf(None) }
+    val indexes by rememberSaveable { mutableStateOf(None to None) }
     return remember(lazyGridState) {
-        DragSelectState(lazyGridState, indexes, initialSelection)
+        DragSelectState(lazyGridState, indexes.first, indexes.second, initialSelection)
     }
 }
 
@@ -43,9 +43,12 @@ public fun <Item> rememberDragSelectState(
  */
 public class DragSelectState<Item>(
     public val gridState: LazyGridState,
-    internal var initialIndex: Int,
+    initialIndex: Int,
+    currentIndex: Int,
     initialSelection: List<Item>,
 ) {
+
+    private var dragState: Drag = Drag(initialIndex, currentIndex)
 
     /**
      * The state containing the selected items.
@@ -69,12 +72,24 @@ public class DragSelectState<Item>(
     /**
      * Will only invoke [block] if the initial index is not [None]. Meaning we are in selection mode.
      */
-    internal fun withInitialIndex(
-        block: DragSelectState<Item>.(initial: Int) -> Unit,
+    internal fun whenDragging(
+        block: DragSelectState<Item>.(drag: Drag) -> Unit,
     ) {
-        if (initialIndex != None) {
-            block(this, initialIndex)
+        if (dragState.isDragging) {
+            block(this, dragState)
         }
+    }
+
+    internal fun updateDrag(
+        initialIndex: Int = dragState.initial,
+        currentIndex: Int = dragState.current,
+    ) {
+        dragState = dragState.copy(initial = initialIndex, current = currentIndex)
+    }
+
+    internal fun startDrag(item: Item, index: Int) {
+        dragState = Drag(index, index)
+        addSelected(item)
     }
 
     /**
@@ -122,13 +137,8 @@ public class DragSelectState<Item>(
     /**
      * Resets the drag state.
      */
-    internal fun resetDrag() {
-        initialIndex = None
+    internal fun stopDrag() {
+        dragState = dragState.copy(initial = Drag.None)
         autoScrollSpeed.value = 0f
-    }
-
-    internal companion object {
-
-        internal const val None = -1
     }
 }
