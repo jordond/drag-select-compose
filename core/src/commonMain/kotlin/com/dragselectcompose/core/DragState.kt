@@ -1,6 +1,6 @@
 package com.dragselectcompose.core
 
-internal data class Drag(
+internal data class DragState(
     val initial: Int,
     val current: Int,
 ) {

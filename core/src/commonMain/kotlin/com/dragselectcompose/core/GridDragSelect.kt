@@ -86,16 +86,16 @@ public fun <Item> Modifier.gridDragSelect(
             onDragCancel = state::stopDrag,
             onDragEnd = state::stopDrag,
             onDrag = { change, _ ->
-                state.whenDragging { drag ->
+                state.whenDragging { dragState ->
                     autoScrollSpeed.value = gridState.calculateScrollSpeed(change, scrollThreshold)
 
                     val newSelection = getSelectedByPosition(
                         gridState = gridState,
                         items = items,
                         itemComparator = itemComparator,
-                        dragState = drag,
+                        dragState = dragState,
                         change = change,
-                    ) ?: gridState.getOverscrollItems(items, drag, change)
+                    ) ?: gridState.getOverscrollItems(items, dragState, change)
 
                     if (newSelection != null) {
                         updateSelected(newSelection)
@@ -132,7 +132,7 @@ private fun <Item> DragSelectState<Item>.getSelectedByPosition(
     gridState: LazyGridState,
     items: List<Item>,
     itemComparator: (Item, Item) -> Boolean,
-    dragState: Drag,
+    dragState: DragState,
     change: PointerInputChange,
 ): List<Item>? {
     val itemPosition = gridState.itemIndexAtPosition(change.position) ?: return null
@@ -156,7 +156,7 @@ private fun <Item> DragSelectState<Item>.getSelectedByPosition(
  */
 private fun <Item> LazyGridState.getOverscrollItems(
     items: List<Item>,
-    dragState: Drag,
+    dragState: DragState,
     change: PointerInputChange,
 ): List<Item>? {
     // Get the last item in the list
