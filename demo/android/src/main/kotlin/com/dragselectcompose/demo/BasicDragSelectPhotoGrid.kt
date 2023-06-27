@@ -62,6 +62,7 @@ fun BasicDragSelectPhotoGrid(
         modifier = modifier.gridDragSelect(
             items = photoItems,
             state = dragSelectState,
+            key = { it.id },
         ),
     ) {
         items(photoItems, key = { it.id }) { item ->

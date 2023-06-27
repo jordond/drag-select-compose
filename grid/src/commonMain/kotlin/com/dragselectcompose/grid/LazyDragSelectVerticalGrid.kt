@@ -64,6 +64,12 @@ import com.dragselectcompose.core.rememberDragSelectState
  * @param[autoScrollThreshold] the threshold in dp from the edge of the grid to start auto scroll.
  * @param[enableHaptics] whether to enable haptic feedback when dragging outside of the grid.
  * @param[hapticFeedback] the haptic feedback to be played when dragging outside of the grid.
+ * @param[key] a factory of stable and unique keys representing the item. Using the
+ * same key for multiple items in the grid is not allowed. Type of the key should be saveable
+ * via Bundle on Android. If null is passed the position in the grid will represent the key.
+ * When you specify the key the scroll position will be maintained based on the key, which
+ * means if you add/remove items before the current visible item the item with the given key
+ * will be kept as the first visible one.
  * @param[content] the LazyGridScope which describes the content
  */
 @Composable
@@ -83,6 +89,7 @@ public fun <Item> LazyDragSelectVerticalGrid(
     autoScrollThreshold: Float? = null,
     enableHaptics: Boolean = true,
     hapticFeedback: HapticFeedback? = null,
+    key: (Item) -> Any = { it as Any },
     content: LazyDragSelectGridScope<Item>.() -> Unit,
 ) {
     val dragSelectModifier = modifier.gridDragSelect(
@@ -108,6 +115,7 @@ public fun <Item> LazyDragSelectVerticalGrid(
             val scope = DefaultLazyDragSelectGridScope(
                 gridScope = this,
                 items = items,
+                key = key,
                 stateProvider = { state },
             )
 

@@ -45,6 +45,12 @@ import kotlinx.coroutines.isActive
  * @param[autoScrollThreshold] The distance from the edge of the grid to start auto-scrolling.
  * @param[enableHaptics] Whether to enable haptic feedback when dragging.
  * @param[hapticFeedback] The [HapticFeedback] to use, defaults to [GridDragSelectDefaults.hapticsFeedback].
+ * @param[key] a factory of stable and unique keys representing the item. Using the
+ * same key for multiple items in the grid is not allowed. Type of the key should be saveable
+ * via Bundle on Android. If null is passed the position in the grid will represent the key.
+ * When you specify the key the scroll position will be maintained based on the key, which
+ * means if you add/remove items before the current visible item the item with the given key
+ * will be kept as the first visible one.
  * @return A [Modifier] that enables drag selection for a [LazyGridState].
  */
 public fun <Item> Modifier.gridDragSelect(
@@ -54,7 +60,7 @@ public fun <Item> Modifier.gridDragSelect(
     autoScrollThreshold: Float? = null,
     enableHaptics: Boolean = true,
     hapticFeedback: HapticFeedback? = null,
-    itemComparator: (Item, Item) -> Boolean = { a, b -> a == b },
+    key: (Item) -> Any = { it as Any },
 ): Modifier = composed {
     val scrollThreshold: Float = autoScrollThreshold ?: GridDragSelectDefaults.autoScrollThreshold
     if (enableAutoScroll) {
@@ -92,7 +98,7 @@ public fun <Item> Modifier.gridDragSelect(
                     val newSelection = getSelectedByPosition(
                         gridState = gridState,
                         items = items,
-                        itemComparator = itemComparator,
+                        key = key,
                         dragState = dragState,
                         change = change,
                     ) ?: gridState.getOverscrollItems(items, dragState, change)
@@ -131,7 +137,7 @@ private fun LazyGridState.itemIndexAtPosition(hitPoint: Offset): Int? {
 private fun <Item> DragSelectState<Item>.getSelectedByPosition(
     gridState: LazyGridState,
     items: List<Item>,
-    itemComparator: (Item, Item) -> Boolean,
+    key: (Item) -> Any,
     dragState: DragState,
     change: PointerInputChange,
 ): List<Item>? {
@@ -139,7 +145,8 @@ private fun <Item> DragSelectState<Item>.getSelectedByPosition(
     val (initial, current) = dragState
 
     return items.filterIndexed { index, item ->
-        val contains = selected.find { itemComparator(it, item) } != null
+        val itemKey = key(item)
+        val contains = selected.find { key(it) == itemKey } != null
 
         (contains && index !in initial..current && index !in current..initial) ||
             index in initial..itemPosition || index in itemPosition..initial

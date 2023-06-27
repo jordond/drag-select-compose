@@ -46,12 +46,6 @@ public interface LazyDragSelectGridScope<Item> {
      * Wrapper around [LazyGridScope.items].
      *
      * @see LazyGridScope.items
-     * @param[key] a factory of stable and unique keys representing the item. Using the
-     * same key for multiple items in the grid is not allowed. Type of the key should be saveable
-     * via Bundle on Android. If null is passed the position in the grid will represent the key.
-     * When you specify the key the scroll position will be maintained based on the key, which
-     * means if you add/remove items before the current visible item the item with the given key
-     * will be kept as the first visible one.
      * @param[span] define custom spans for the items. Default is 1x1. It is good practice to leave
      * it null when this matches the intended behavior, as providing a custom implementation
      * impacts performance.
@@ -61,7 +55,6 @@ public interface LazyDragSelectGridScope<Item> {
      * @param[itemContent] the content displayed by a single item.
      */
     public fun items(
-        key: ((item: Item) -> Any)? = null,
         span: (LazyGridItemSpanScope.(item: Item) -> GridItemSpan)? = null,
         contentType: (item: Item) -> Any? = { null },
         itemContent: @Composable LazyDragSelectGridItemScope<Item>.(item: Item) -> Unit,
@@ -73,11 +66,18 @@ public interface LazyDragSelectGridScope<Item> {
  *
  * @param[gridScope] The [LazyGridScope] to wrap.
  * @param[items] The list of items to display.
+ * @param[key] a factory of stable and unique keys representing the item. Using the
+ * same key for multiple items in the grid is not allowed. Type of the key should be saveable
+ * via Bundle on Android. If null is passed the position in the grid will represent the key.
+ * When you specify the key the scroll position will be maintained based on the key, which
+ * means if you add/remove items before the current visible item the item with the given key
+ * will be kept as the first visible one.
  * @param[stateProvider] A function that returns the [DragSelectState] for this grid.
  */
 internal class DefaultLazyDragSelectGridScope<Item>(
     private val gridScope: LazyGridScope,
     private val items: List<Item>,
+    private val key: (Item) -> Any,
     private val stateProvider: () -> DragSelectState<Item>,
 ) : LazyDragSelectGridScope<Item> {
 
@@ -109,7 +109,6 @@ internal class DefaultLazyDragSelectGridScope<Item>(
      * @see[LazyDragSelectGridScope.items]
      */
     override fun items(
-        key: ((item: Item) -> Any)?,
         span: (LazyGridItemSpanScope.(item: Item) -> GridItemSpan)?,
         contentType: (item: Item) -> Any?,
         itemContent: @Composable() (LazyDragSelectGridItemScope<Item>.(item: Item) -> Unit),
@@ -117,7 +116,7 @@ internal class DefaultLazyDragSelectGridScope<Item>(
         val items = this.items
         gridScope.items(
             count = items.size,
-            key = if (key != null) { index: Int -> key(items[index]) } else null,
+            key = { index: Int -> key(items[index]) },
             span = if (span != null) {
                 { span(items[it]) }
             } else null,
