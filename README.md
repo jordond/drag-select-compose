@@ -36,7 +36,7 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
 ## Inspiration
 
 This library was inspired by
-this [article](https://medium.com/androiddevelopers/now-in-android-85-8bdb9ce34428) and
+this [article](https://medium.com/androiddevelopers/create-a-photo-grid-with-multiselect-behavior-using-jetpack-compose-9a8d588a9b63) and
 the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247e2).
 
 As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview)
