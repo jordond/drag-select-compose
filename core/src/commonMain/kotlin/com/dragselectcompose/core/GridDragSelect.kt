@@ -54,6 +54,7 @@ public fun <Item> Modifier.gridDragSelect(
     autoScrollThreshold: Float? = null,
     enableHaptics: Boolean = true,
     hapticFeedback: HapticFeedback? = null,
+    itemComparator: (Item, Item) -> Boolean = { a, b -> a == b },
 ): Modifier = composed {
     val scrollThreshold: Float = autoScrollThreshold ?: GridDragSelectDefaults.autoScrollThreshold
     if (enableAutoScroll) {
@@ -85,15 +86,19 @@ public fun <Item> Modifier.gridDragSelect(
             onDragCancel = state::stopDrag,
             onDragEnd = state::stopDrag,
             onDrag = { change, _ ->
-                state.whenDragging { drag->
+                state.whenDragging { drag ->
                     autoScrollSpeed.value = gridState.calculateScrollSpeed(change, scrollThreshold)
 
-                    val newSelected =
-                        gridState.getSelectedByPosition(items, drag, change)
-                            ?: gridState.getOverscrollItems(items, drag, change)
+                    val newSelection = getSelectedByPosition(
+                        gridState = gridState,
+                        items = items,
+                        itemComparator = itemComparator,
+                        dragState = drag,
+                        change = change,
+                    ) ?: gridState.getOverscrollItems(items, drag, change)
 
-                    if (newSelected != null) {
-                        updateSelected(newSelected)
+                    if (newSelection != null) {
+                        updateSelected(newSelection)
                     }
                 }
             },
@@ -123,16 +128,23 @@ private fun LazyGridState.itemIndexAtPosition(hitPoint: Offset): Int? {
     return found?.index
 }
 
-private fun <Item> LazyGridState.getSelectedByPosition(
+private fun <Item> DragSelectState<Item>.getSelectedByPosition(
+    gridState: LazyGridState,
     items: List<Item>,
+    itemComparator: (Item, Item) -> Boolean,
     dragState: Drag,
     change: PointerInputChange,
 ): List<Item>? {
-    val itemAtPosition = itemIndexAtPosition(change.position) ?: return null
-
+    val itemPosition = gridState.itemIndexAtPosition(change.position) ?: return null
     val (initial, current) = dragState
-    return items.filterIndexed { index, _ ->
-        index in initial..itemAtPosition || index in itemAtPosition..initial
+
+    return items.filterIndexed { index, item ->
+        val contains = selected.find { itemComparator(it, item) } != null
+
+        (contains && index !in initial..current && index !in current..initial) ||
+            index in initial..itemPosition || index in itemPosition..initial
+    }.also {
+        updateDrag(current = itemPosition)
     }
 }
 
@@ -153,7 +165,7 @@ private fun <Item> LazyGridState.getOverscrollItems(
         ?: return null
 
     // Determine if we have dragged past the last item in the list
-    return  if (change.position.y > lastItem.offset.y) {
+    return if (change.position.y > lastItem.offset.y) {
         // If we have, return all items after the initial index
         items.filterIndexed { index, _ -> index >= dragState.initial }
     } else null
