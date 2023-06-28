@@ -89,11 +89,11 @@ public fun <Item> Modifier.gridDragSelect(
                 state.withInitialIndex { initial ->
                     autoScrollSpeed.value = gridState.calculateScrollSpeed(change, scrollThreshold)
 
-                    gridState.itemIndexAtPosition(change.position)?.let { newIndex ->
-                        val newSelected = items.filterIndexed { index, _ ->
-                            index in initial..newIndex || index in newIndex..initial
-                        }
+                    val newSelected =
+                        gridState.getSelectedByPosition(items, initial, change)
+                            ?: gridState.getOverscrollItems(items, initial, change)
 
+                    if (newSelected != null) {
                         updateSelected(newSelected)
                     }
                 }
@@ -122,4 +122,38 @@ private fun LazyGridState.itemIndexAtPosition(hitPoint: Offset): Int? {
     }
 
     return found?.index
+}
+
+private fun <Item> LazyGridState.getSelectedByPosition(
+    items: List<Item>,
+    initialIndex: Int,
+    change: PointerInputChange,
+): List<Item>? {
+    val itemAtPosition = itemIndexAtPosition(change.position) ?: return null
+    return items.filterIndexed { index, _ ->
+        index in initialIndex..itemAtPosition || index in itemAtPosition..initialIndex
+    }
+}
+
+/**
+ * Get the items that are overscrolled when dragging.
+ *
+ * If the user has dragged past the last item in the list, this will return all items after the
+ * initial index.
+ */
+private fun <Item> LazyGridState.getOverscrollItems(
+    items: List<Item>,
+    initialIndex: Int,
+    change: PointerInputChange,
+): List<Item>? {
+    // Get the last item in the list
+    val lastItem = layoutInfo.visibleItemsInfo.lastOrNull()
+        ?.takeIf { it.index == layoutInfo.totalItemsCount - 1 }
+        ?: return null
+
+    // Determine if we have dragged past the last item in the list
+    return  if (change.position.y > lastItem.offset.y) {
+        // If we have, return all items after the initial index
+        items.filterIndexed { index, _ -> index >= initialIndex }
+    } else null
 }
