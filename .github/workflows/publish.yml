@@ -4,6 +4,9 @@ on:
   release:
     types: [ prereleased, released ]
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Publish library
