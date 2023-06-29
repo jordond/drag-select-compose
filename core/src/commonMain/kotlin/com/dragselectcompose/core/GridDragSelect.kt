@@ -71,6 +71,10 @@ public fun <Item> Modifier.gridDragSelect(
         if (!enableHaptics) null
         else hapticFeedback ?: GridDragSelectDefaults.hapticsFeedback
 
+    val isSelected: (Item) -> Boolean = { item ->
+        state.selected.contains(item)
+    }
+
     pointerInput(Unit) {
         detectDragGesturesAfterLongPress(
             onDragStart = { offset ->
@@ -78,30 +82,35 @@ public fun <Item> Modifier.gridDragSelect(
                     val item = items.getOrNull(startIndex)
                     if (item != null && state.selected.contains(item).not()) {
                         haptics?.performHapticFeedback(HapticFeedbackType.LongPress)
-                        state.initialIndex = startIndex
-                        state.addSelected(item)
+                        state.startDrag(item, startIndex)
                     }
                 }
             },
-            onDragCancel = state::resetDrag,
-            onDragEnd = state::resetDrag,
+            onDragCancel = state::stopDrag,
+            onDragEnd = state::stopDrag,
             onDrag = { change, _ ->
-                state.withInitialIndex { initial ->
+                state.whenDragging { dragState ->
                     autoScrollSpeed.value = gridState.calculateScrollSpeed(change, scrollThreshold)
 
-                    val newSelected =
-                        gridState.getSelectedByPosition(items, initial, change)
-                            ?: gridState.getOverscrollItems(items, initial, change)
+                    val itemPosition = gridState.getItemPosition(change.position)
+                        ?: return@whenDragging
 
-                    if (newSelected != null) {
-                        updateSelected(newSelected)
-                    }
+                    val newSelection = items.getSelectedItems(itemPosition, dragState, isSelected)
+                    updateDrag(current = itemPosition)
+                    updateSelected(newSelection)
                 }
             },
         )
     }
 }
 
+/**
+ * Calculates the auto-scroll speed based on the current drag position.
+ *
+ * @param[change] The [PointerInputChange] for the current drag position.
+ * @param[scrollThreshold] The distance from the edge of the grid to start auto-scrolling.
+ * @return The auto-scroll speed.
+ */
 private fun LazyGridState.calculateScrollSpeed(
     change: PointerInputChange,
     scrollThreshold: Float,
@@ -116,6 +125,12 @@ private fun LazyGridState.calculateScrollSpeed(
     }
 }
 
+/**
+ * Gets the index of the item that was hit by the drag.
+ *
+ * @param[hitPoint] The point where the drag hit the grid.
+ * @return The index of the item that was hit by the drag.
+ */
 private fun LazyGridState.itemIndexAtPosition(hitPoint: Offset): Int? {
     val found = layoutInfo.visibleItemsInfo.find { itemInfo ->
         itemInfo.size.toIntRect().contains(hitPoint.round() - itemInfo.offset)
@@ -124,36 +139,58 @@ private fun LazyGridState.itemIndexAtPosition(hitPoint: Offset): Int? {
     return found?.index
 }
 
-private fun <Item> LazyGridState.getSelectedByPosition(
-    items: List<Item>,
-    initialIndex: Int,
-    change: PointerInputChange,
-): List<Item>? {
-    val itemAtPosition = itemIndexAtPosition(change.position) ?: return null
-    return items.filterIndexed { index, _ ->
-        index in initialIndex..itemAtPosition || index in itemAtPosition..initialIndex
-    }
+/**
+ * Gets the index of the item that was hit by the drag.
+ *
+ * @param[hitPoint] The point where the drag hit the grid.
+ * @return The index of the item that was hit by the drag, or the index of the last item if the
+ * drag has gone past the last item.
+ */
+private fun LazyGridState.getItemPosition(hitPoint: Offset): Int? {
+    return itemIndexAtPosition(hitPoint)
+        ?: if (isPastLastItem(hitPoint)) layoutInfo.totalItemsCount - 1 else null
 }
 
 /**
- * Get the items that are overscrolled when dragging.
+ * Determines if the drag has gone past the last item in the list.
  *
- * If the user has dragged past the last item in the list, this will return all items after the
- * initial index.
+ * @param[hitPoint] The point where the drag hit the grid.
+ * @return True if the drag has gone past the last item in the list, false otherwise.
  */
-private fun <Item> LazyGridState.getOverscrollItems(
-    items: List<Item>,
-    initialIndex: Int,
-    change: PointerInputChange,
-): List<Item>? {
+private fun LazyGridState.isPastLastItem(hitPoint: Offset): Boolean {
     // Get the last item in the list
     val lastItem = layoutInfo.visibleItemsInfo.lastOrNull()
         ?.takeIf { it.index == layoutInfo.totalItemsCount - 1 }
-        ?: return null
+        ?: return false
 
     // Determine if we have dragged past the last item in the list
-    return  if (change.position.y > lastItem.offset.y) {
-        // If we have, return all items after the initial index
-        items.filterIndexed { index, _ -> index >= initialIndex }
-    } else null
+    return hitPoint.y > lastItem.offset.y
+}
+
+/**
+ * Gets a list of items that are selected based on the current drag state.
+ *
+ * @receiver The list of items in the grid.
+ * @param[itemPosition] The position of the item that was hit by the drag.
+ * @param[dragState] The current drag state.
+ * @param[isSelected] A function to determine if an item is selected.
+ * @return A list of items that are selected based on the current drag state.
+ */
+private fun <Item> List<Item>.getSelectedItems(
+    itemPosition: Int,
+    dragState: DragState,
+    isSelected: (Item) -> Boolean,
+): List<Item> {
+    val (initial, current) = dragState
+    return filterIndexed { index, item ->
+        // Determine if the item is within the drag range
+        val withinRange = index in initial..itemPosition || index in itemPosition..initial
+
+        // Determine if the item was previously selected and is still within the drag range
+        val selected = isSelected(item)
+        val previouslySelectedInRange =
+            selected && index !in initial..current && index !in current..initial
+
+        withinRange || previouslySelectedInRange
+    }
 }
