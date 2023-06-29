@@ -87,7 +87,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Cache Konan
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         if: startsWith(matrix.config.os, 'macos')
         with:
           path: |
