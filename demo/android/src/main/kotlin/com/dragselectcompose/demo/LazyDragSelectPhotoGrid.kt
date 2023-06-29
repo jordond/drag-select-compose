@@ -39,9 +39,8 @@ fun LazyDragSelectPhotoGrid(
         state = dragSelectState,
         verticalArrangement = Arrangement.spacedBy(3.dp),
         horizontalArrangement = Arrangement.spacedBy(3.dp),
-        key = { it.id },
     ) {
-        items { photo ->
+        items(key = { it.id }) { photo ->
             SelectableItem(
                 item = photo,
                 selectedIcon = { SelectedIcon(Modifier.align(Alignment.BottomEnd)) },

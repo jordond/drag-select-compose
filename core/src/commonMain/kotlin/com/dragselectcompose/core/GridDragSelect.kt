@@ -45,12 +45,6 @@ import kotlinx.coroutines.isActive
  * @param[autoScrollThreshold] The distance from the edge of the grid to start auto-scrolling.
  * @param[enableHaptics] Whether to enable haptic feedback when dragging.
  * @param[hapticFeedback] The [HapticFeedback] to use, defaults to [GridDragSelectDefaults.hapticsFeedback].
- * @param[key] a factory of stable and unique keys representing the item. Using the
- * same key for multiple items in the grid is not allowed. Type of the key should be saveable
- * via Bundle on Android. If null is passed the position in the grid will represent the key.
- * When you specify the key the scroll position will be maintained based on the key, which
- * means if you add/remove items before the current visible item the item with the given key
- * will be kept as the first visible one.
  * @return A [Modifier] that enables drag selection for a [LazyGridState].
  */
 public fun <Item> Modifier.gridDragSelect(
@@ -60,7 +54,6 @@ public fun <Item> Modifier.gridDragSelect(
     autoScrollThreshold: Float? = null,
     enableHaptics: Boolean = true,
     hapticFeedback: HapticFeedback? = null,
-    key: (Item) -> Any = { it as Any },
 ): Modifier = composed {
     val scrollThreshold: Float = autoScrollThreshold ?: GridDragSelectDefaults.autoScrollThreshold
     if (enableAutoScroll) {
@@ -79,8 +72,7 @@ public fun <Item> Modifier.gridDragSelect(
         else hapticFeedback ?: GridDragSelectDefaults.hapticsFeedback
 
     val isSelected: (Item) -> Boolean = { item ->
-        val itemKey = key(item)
-        state.selected.find { key(it) == itemKey } != null
+        state.selected.contains(item)
     }
 
     pointerInput(Unit) {

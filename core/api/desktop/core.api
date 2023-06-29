@@ -25,7 +25,7 @@ public final class com/dragselectcompose/core/GridDragSelectDefaults {
 }
 
 public final class com/dragselectcompose/core/GridDragSelectKt {
-	public static final fun gridDragSelect (Landroidx/compose/ui/Modifier;Ljava/util/List;Lcom/dragselectcompose/core/DragSelectState;ZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;)Landroidx/compose/ui/Modifier;
-	public static synthetic fun gridDragSelect$default (Landroidx/compose/ui/Modifier;Ljava/util/List;Lcom/dragselectcompose/core/DragSelectState;ZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static final fun gridDragSelect (Landroidx/compose/ui/Modifier;Ljava/util/List;Lcom/dragselectcompose/core/DragSelectState;ZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun gridDragSelect$default (Landroidx/compose/ui/Modifier;Ljava/util/List;Lcom/dragselectcompose/core/DragSelectState;ZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
 }
 
