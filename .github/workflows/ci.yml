@@ -36,14 +36,8 @@ jobs:
           java-version: 17
           distribution: adopt
 
-      # AGP 8.2 requires 34.0.0-rc3 - see https://issuetracker.google.com/issues/236167971#comment36
-      # and https://github.com/actions/runner-images/issues/7506#issuecomment-1533097084
-      # TODO: Remove when AGP updates Build Tools to 34.0.0 and pre-installed in the runner
-      - name: Install Android Build Tools 34.0.0-rc3
-        run: echo "y" | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0-rc3"
-        shell: bash
-
-      - uses: actions/cache@v3
+      - name: Cache Gradle
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -52,14 +46,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+
       - name: Lint
         uses: gradle/gradle-build-action@v2
         with:
           arguments: lint --scan
 
   build:
-    name: "Build"
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config: [
+          { target: android, os: ubuntu-latest, tasks: :demo:kmm:androidApp:assemble, continueOnError: false },
+          { target: osx, os: macos-latest, tasks: packageDmg, continueOnError: false },
+          { target: windows, os: windows-latest, tasks: packageMsi, continueOnError: true },
+          { target: linux, os: ubuntu-latest, tasks: packageDeb, continueOnError: false },
+        ]
+    runs-on: ${{ matrix.config.os }}
+    name: Build ${{ matrix.config.target }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -70,14 +75,8 @@ jobs:
           java-version: 17
           distribution: adopt
 
-      # AGP 8.2 requires 34.0.0-rc3 - see https://issuetracker.google.com/issues/236167971#comment36
-      # and https://github.com/actions/runner-images/issues/7506#issuecomment-1533097084
-      # TODO: Remove when AGP updates Build Tools to 34.0.0 and pre-installed in the runner
-      - name: Install Android Build Tools 34.0.0-rc3
-        run: echo "y" | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0-rc3"
-        shell: bash
-
-      - uses: actions/cache@v3
+      - name: Cache Gradle
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -86,36 +85,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Build
+      - name: Cache Konan
+        uses: actions/cache@v2
+        if: startsWith(matrix.config.os, 'macos')
+        with:
+          path: |
+            ~/.konan/caches
+            ~/.konan/dependencies
+            ~/.konan/kotlin-native-prebuilt-macos-*
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/gradle/libs.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
+
+      - name: Build ${{ matrix.config.target }} targets
+        continue-on-error: ${{ matrix.config.continueOnError }}
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: assembleRelease --scan
-
-# TODO: Currently broken until build tools 34.0.0-rc3 is pre-installed in the runner
-#  build-on-macos:
-#    name: "Build on macOS"
-#    runs-on: macos-latest
-#    timeout-minutes: 30
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#
-#      - name: setup-java
-#        uses: actions/setup-java@v3
-#        with:
-#          java-version: 17
-#          distribution: adopt
-#
-#      - uses: actions/cache@v3
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-#          restore-keys: |
-#            ${{ runner.os }}-gradle-
-#
-#      - name: Build
-#        uses: gradle/gradle-build-action@v2
-#        with:
-#          arguments: assemble --scan
+          arguments: ${{ matrix.config.tasks }} --scan
