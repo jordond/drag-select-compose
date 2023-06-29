@@ -19,18 +19,41 @@ import androidx.compose.runtime.setValue
  * @param[Item] The type of the items in the list.
  * @param[lazyGridState] The [LazyGridState] that will be used to control the items in the grid.
  * @param[initialSelection] The initial selection of items.
- * @param[compare] A factory for selecting a property of [Item] to compare.
  * @return A [DragSelectState] that can be used to control the selection.
  */
 @Composable
 public fun <Item> rememberDragSelectState(
     lazyGridState: LazyGridState = rememberLazyGridState(),
     initialSelection: List<Item> = emptyList(),
-    compare: (Item) -> Any = { it as Any },
+): DragSelectState<Item> = rememberDragSelectState({ it as Any }, lazyGridState, initialSelection)
+
+/**
+ * Creates a [DragSelectState] that is remembered across compositions.
+ *
+ * Changes to the provided initial values will **not** result in the state being recreated or
+ * changed in any way if it has already been created.
+ *
+ * @param[Item] The type of the items in the list.
+ * @param[lazyGridState] The [LazyGridState] that will be used to control the items in the grid.
+ * @param[initialSelection] The initial selection of items.
+ * @param[compareSelector] A factory for selecting a property of [Item] to compare.
+ * @return A [DragSelectState] that can be used to control the selection.
+ */
+@Composable
+public fun <Item> rememberDragSelectState(
+    compareSelector: (Item) -> Any = { it as Any },
+    lazyGridState: LazyGridState = rememberLazyGridState(),
+    initialSelection: List<Item> = emptyList(),
 ): DragSelectState<Item> {
-    val indexes by rememberSaveable { mutableStateOf(DragState.None to DragState.None) }
+    val dragState = rememberSaveable(saver = DragState.Saver) { DragState.create() }
+
     return remember(lazyGridState) {
-        DragSelectState(lazyGridState, indexes.first, initialSelection, indexes.second, compare)
+        DragSelectState(
+            initialSelection = initialSelection,
+            gridState = lazyGridState,
+            compareSelector = compareSelector,
+            dragState = dragState,
+        )
     }
 }
 
@@ -40,27 +63,34 @@ public fun <Item> rememberDragSelectState(
  * In most cases, this will be created via [rememberDragSelectState].
  *
  * @param[Item] The type of the items in the list.
- * @param[gridState] The [LazyGridState] that will be used to control the items in the grid.
- * @param[initialIndex] The initial index of the item that was long pressed.
  * @param[initialSelection] The initial selection of items.
- * @param[currentIndex] The current index of the item that is being dragged over.
+ * @param[gridState] The [LazyGridState] that will be used to control the items in the grid.
+ * @param[dragState] The current drag state.
  * @param[compareSelector] A factory for selecting a property of [Item] to compare.
  */
 @Stable
 public class DragSelectState<Item>(
-    public val gridState: LazyGridState,
-    initialIndex: Int,
     initialSelection: List<Item>,
-    currentIndex: Int = initialIndex,
+    public val gridState: LazyGridState,
     internal val compareSelector: (Item) -> Any,
+    internal var dragState: DragState,
 ) {
 
+    /**
+     * A state object that can be hoisted to control and observe selected items.
+     *
+     * In most cases, this will be created via [rememberDragSelectState].
+     *
+     * @param[Item] The type of the items in the list.
+     * @param[gridState] The [LazyGridState] that will be used to control the items in the grid.
+     * @param[initialIndex] The initial index of the item that was long pressed.
+     * @param[initialSelection] The initial selection of items.
+     */
     public constructor(
         gridState: LazyGridState,
+        initialIndex: Int,
         initialSelection: List<Item>,
-    ) : this(gridState, DragState.None, initialSelection, DragState.None, { it as Any })
-
-    private var dragState: DragState = DragState(initialIndex, currentIndex)
+    ) : this(initialSelection, gridState, { it as Any }, DragState.create(initial = initialIndex))
 
     /**
      * The state containing the selected items.
@@ -96,11 +126,12 @@ public class DragSelectState<Item>(
     }
 
     internal fun updateDrag(current: Int) {
-        dragState = dragState.copy(current = current)
+        dragState.current = current
     }
 
     internal fun startDrag(item: Item, index: Int) {
-        dragState = DragState(index, index)
+        dragState.initial = index
+        dragState.current = index
         addSelected(item)
     }
 
@@ -152,7 +183,7 @@ public class DragSelectState<Item>(
      * Resets the drag state.
      */
     internal fun stopDrag() {
-        dragState = dragState.copy(initial = DragState.None)
+        dragState.initial = DragState.None
         autoScrollSpeed.value = 0f
     }
 

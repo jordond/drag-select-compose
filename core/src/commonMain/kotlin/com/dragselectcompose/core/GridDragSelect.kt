@@ -179,7 +179,7 @@ private fun <Item> List<Item>.getSelectedItems(
     dragState: DragState,
     isSelected: (Item) -> Boolean,
 ): List<Item> {
-    val (initial, current) = dragState
+    val (initial, current) = dragState.run { initial to current }
     return filterIndexed { index, item ->
         // Determine if the item is within the drag range
         val withinRange = index in initial..itemPosition || index in itemPosition..initial
