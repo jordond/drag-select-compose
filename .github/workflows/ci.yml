@@ -59,9 +59,9 @@ jobs:
       matrix:
         config: [
           { target: "android", os: "ubuntu-latest", tasks: ":demo:kmm:androidApp:assembleRelease", continueOnError: false },
-          { target: "osx", os: "macos-latest", tasks: "package", continueOnError: false },
-          { target: "windows", os: "windows-latest", tasks: "package", continueOnError: true },
-          { target: "linux", os: "ubuntu-latest", tasks: "package", continueOnError: false }
+          { target: "osx", os: "macos-latest", tasks: ":demo:kmm:desktopApp:packageDistributionForCurrentOS", continueOnError: false },
+          { target: "windows", os: "windows-latest", tasks: ":demo:kmm:desktopApp:packageDistributionForCurrentOS", continueOnError: true },
+          { target: "linux", os: "ubuntu-latest", tasks: ":demo:kmm:desktopApp:packageDistributionForCurrentOS", continueOnError: false }
         ]
     runs-on: ${{ matrix.config.os }}
     name: Build ${{ matrix.config.target }}
