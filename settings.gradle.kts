@@ -31,14 +31,12 @@ gradleEnterprise {
 
 rootProject.name = "DragSelectCompose"
 
-if (System.getenv("CI") == null) {
-    include(":demo:android")
-    include(
-        ":demo:kmm:shared",
-        ":demo:kmm:desktopApp",
-        ":demo:kmm:androidApp",
-    )
-}
+include(":demo:android")
+include(
+    ":demo:kmm:shared",
+    ":demo:kmm:desktopApp",
+    ":demo:kmm:androidApp",
+)
 
 include(
     ":dragselect",
