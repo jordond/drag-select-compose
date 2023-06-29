@@ -1,13 +1,14 @@
 public final class com/dragselectcompose/core/DragSelectState {
 	public static final field $stable I
-	public fun <init> (Landroidx/compose/foundation/lazy/grid/LazyGridState;ILjava/util/List;I)V
-	public synthetic fun <init> (Landroidx/compose/foundation/lazy/grid/LazyGridState;ILjava/util/List;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun <init> (Landroidx/compose/foundation/lazy/grid/LazyGridState;Ljava/util/List;)V
+	public fun <init> (Landroidx/compose/foundation/lazy/grid/LazyGridState;ILjava/util/List;)V
+	public fun <init> (Ljava/util/List;Landroidx/compose/foundation/lazy/grid/LazyGridState;Lkotlin/jvm/functions/Function1;Lcom/dragselectcompose/core/DragState;)V
 	public final fun addSelected (Ljava/lang/Object;)V
 	public final fun clear ()V
+	public fun equals (Ljava/lang/Object;)Z
 	public final fun getGridState ()Landroidx/compose/foundation/lazy/grid/LazyGridState;
 	public final fun getInSelectionMode ()Z
 	public final fun getSelected ()Ljava/util/List;
+	public fun hashCode ()I
 	public final fun isSelected (Ljava/lang/Object;)Z
 	public final fun removeSelected (Ljava/lang/Object;)V
 	public final fun updateSelected (Ljava/util/List;)V
@@ -15,6 +16,12 @@ public final class com/dragselectcompose/core/DragSelectState {
 
 public final class com/dragselectcompose/core/DragSelectStateKt {
 	public static final fun rememberDragSelectState (Landroidx/compose/foundation/lazy/grid/LazyGridState;Ljava/util/List;Landroidx/compose/runtime/Composer;II)Lcom/dragselectcompose/core/DragSelectState;
+	public static final fun rememberDragSelectState (Lkotlin/jvm/functions/Function1;Landroidx/compose/foundation/lazy/grid/LazyGridState;Ljava/util/List;Landroidx/compose/runtime/Composer;II)Lcom/dragselectcompose/core/DragSelectState;
+}
+
+public final class com/dragselectcompose/core/DragState {
+	public static final field $stable I
+	public fun <init> (II)V
 }
 
 public final class com/dragselectcompose/core/GridDragSelectDefaults {

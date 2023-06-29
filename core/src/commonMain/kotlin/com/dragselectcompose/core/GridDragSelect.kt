@@ -71,10 +71,6 @@ public fun <Item> Modifier.gridDragSelect(
         if (!enableHaptics) null
         else hapticFeedback ?: GridDragSelectDefaults.hapticsFeedback
 
-    val isSelected: (Item) -> Boolean = { item ->
-        state.selected.contains(item)
-    }
-
     pointerInput(Unit) {
         detectDragGesturesAfterLongPress(
             onDragStart = { offset ->
@@ -95,7 +91,9 @@ public fun <Item> Modifier.gridDragSelect(
                     val itemPosition = gridState.getItemPosition(change.position)
                         ?: return@whenDragging
 
-                    val newSelection = items.getSelectedItems(itemPosition, dragState, isSelected)
+                    val newSelection =
+                        items.getSelectedItems(itemPosition, dragState, state::isSelected)
+
                     updateDrag(current = itemPosition)
                     updateSelected(newSelection)
                 }
@@ -181,7 +179,7 @@ private fun <Item> List<Item>.getSelectedItems(
     dragState: DragState,
     isSelected: (Item) -> Boolean,
 ): List<Item> {
-    val (initial, current) = dragState
+    val (initial, current) = dragState.run { initial to current }
     return filterIndexed { index, item ->
         // Determine if the item is within the drag range
         val withinRange = index in initial..itemPosition || index in itemPosition..initial

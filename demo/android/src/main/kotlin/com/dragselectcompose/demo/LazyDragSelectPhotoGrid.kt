@@ -30,7 +30,7 @@ import com.dragselectcompose.grid.indicator.UnselectedIcon
 fun LazyDragSelectPhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
-    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
+    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(compareSelector = { it.id }),
 ) {
     LazyDragSelectVerticalGrid(
         modifier = modifier,

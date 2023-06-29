@@ -20,7 +20,7 @@ import io.ktor.http.Url
 fun PhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
-    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
+    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(compareSelector = { it.id }),
 ) {
     LazyDragSelectVerticalGrid(
         modifier = modifier,
@@ -30,7 +30,7 @@ fun PhotoGrid(
         verticalArrangement = Arrangement.spacedBy(3.dp),
         horizontalArrangement = Arrangement.spacedBy(3.dp),
     ) {
-        items(key = { it.id }) { photo ->
+        items { photo ->
             SelectableItem(
                 item = photo,
                 selectedIcon = { SelectedIcon(Modifier.align(Alignment.BottomEnd)) },
