@@ -137,6 +137,14 @@ It provides the following functionality:
   of the list.
 - Will trigger a "long-press" haptics if `enableHaptics` is `true`.
 
+**Note:** By default selected items will be compared using an equality check. If your item is not
+a `data class` you must implement `equals` and `hashCode` for your item. Or you can pass a lambda
+to `rememberDragSelectState` to compare your items:
+
+```kotlin
+val dragSelectState = rememberDragSelectState<Foo>(compareSelector = { it.someProperty })
+```
+
 You can then use `DragSelectState` to render your list of items:
 
 ### Basic Example
