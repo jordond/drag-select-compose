@@ -61,7 +61,7 @@ jobs:
           { target: android, os: ubuntu-latest, tasks: :demo:kmm:androidApp:assemble, continueOnError: false },
           { target: osx, os: macos-latest, tasks: packageDmg, continueOnError: false },
           { target: windows, os: windows-latest, tasks: packageMsi, continueOnError: true },
-          { target: linux, os: ubuntu-latest, tasks: packageDeb, continueOnError: false },
+          { target: linux, os: ubuntu-latest, tasks: packageDeb, continueOnError: false }
         ]
     runs-on: ${{ matrix.config.os }}
     name: Build ${{ matrix.config.target }}
