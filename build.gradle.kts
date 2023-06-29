@@ -18,16 +18,14 @@ plugins {
 }
 
 apiValidation {
-    if (System.getenv("CI") == null) {
-        ignoredProjects.addAll(
-            listOf(
-                "android",
-                "androidApp",
-                "desktopApp",
-                "shared",
-            ),
-        )
-    }
+    ignoredProjects.addAll(
+        listOf(
+            "android",
+            "androidApp",
+            "desktopApp",
+            "shared",
+        ),
+    )
 }
 
 tasks.withType<DokkaMultiModuleTask>().configureEach {

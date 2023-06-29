@@ -3,7 +3,6 @@
 ![Maven Central](https://img.shields.io/maven-central/v/com.dragselectcompose/dragselect)
 [![Kotlin](https://img.shields.io/badge/kotlin-v1.8.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Build](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml)
-[![Verify Gradle](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml)
 [![License](https://img.shields.io/github/license/jordond/drag-select-compose)](http://www.apache.org/licenses/LICENSE-2.0)
 
 [![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.4.1-blue)](https://github.com/JetBrains/compose-multiplatform)
@@ -11,8 +10,8 @@
 ![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
 
-This is a Compose Multiplatform library that allows you to easily implement a "Google Photos"-style multi-selection in
-your Compose apps.
+This is a Compose Multiplatform library that allows you to easily implement a "Google Photos"-style
+multi-selection in your Compose apps.
 
 You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectcompose.com)
 
@@ -36,7 +35,8 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
 ## Inspiration
 
 This library was inspired by
-this [article](https://medium.com/androiddevelopers/create-a-photo-grid-with-multiselect-behavior-using-jetpack-compose-9a8d588a9b63) and
+this [article](https://medium.com/androiddevelopers/create-a-photo-grid-with-multiselect-behavior-using-jetpack-compose-9a8d588a9b63)
+and
 the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247e2).
 
 As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview)
@@ -248,7 +248,8 @@ indicator icons when the grid is in selection mode, and the item is selected or 
 See the documentation for `LazyDragSelectVerticalGrid` and `SelectableItem` for all the options you
 can customize.
 
-You can see a full example in [`LazyDragSelectPhotoGrid`](demo/android/src/main/kotlin/com/dragselectcompose/demo/LazyDragSelectPhotoGrid.kt)
+You can see a full example
+in [`LazyDragSelectPhotoGrid`](demo/android/src/main/kotlin/com/dragselectcompose/demo/LazyDragSelectPhotoGrid.kt)
 
 ## Demo
 
