@@ -65,6 +65,7 @@ jobs:
         ]
     runs-on: ${{ matrix.config.os }}
     name: Build ${{ matrix.config.target }}
+    needs: verify
     steps:
       - name: Checkout
         uses: actions/checkout@v3
