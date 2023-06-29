@@ -49,7 +49,7 @@ import com.dragselectcompose.extensions.dragSelectToggleable
 fun ExtensionsDragSelectPhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
-    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
+    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(key = { it.id }),
 ) {
     LazyVerticalGrid(
         state = dragSelectState.gridState,
@@ -59,7 +59,6 @@ fun ExtensionsDragSelectPhotoGrid(
         modifier = modifier.gridDragSelect(
             items = photoItems,
             state = dragSelectState,
-            key = { it.id },
         ),
     ) {
         items(photoItems, key = { it.id }) { item ->

@@ -16,11 +16,11 @@ public final class com/dragselectcompose/grid/LazyDragSelectGridScope$DefaultImp
 }
 
 public final class com/dragselectcompose/grid/LazyDragSelectHorizontalGridKt {
-	public static final fun LazyDragSelectHorizontalGrid (Landroidx/compose/foundation/lazy/grid/GridCells;Ljava/util/List;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/foundation/gestures/FlingBehavior;ZZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+	public static final fun LazyDragSelectHorizontalGrid (Landroidx/compose/foundation/lazy/grid/GridCells;Ljava/util/List;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/foundation/gestures/FlingBehavior;ZZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/dragselectcompose/grid/LazyDragSelectVerticalGridKt {
-	public static final fun LazyDragSelectVerticalGrid (Landroidx/compose/foundation/lazy/grid/GridCells;Ljava/util/List;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/gestures/FlingBehavior;ZZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+	public static final fun LazyDragSelectVerticalGrid (Landroidx/compose/foundation/lazy/grid/GridCells;Ljava/util/List;Landroidx/compose/ui/Modifier;Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/gestures/FlingBehavior;ZZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/dragselectcompose/grid/indicator/AnimateSelectionDefaults {

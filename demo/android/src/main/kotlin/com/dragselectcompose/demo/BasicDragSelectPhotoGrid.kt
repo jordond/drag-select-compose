@@ -52,7 +52,7 @@ import com.dragselectcompose.demo.ui.theme.DragSelectComposeTheme
 fun BasicDragSelectPhotoGrid(
     modifier: Modifier = Modifier,
     photoItems: List<PhotoItem> = PhotoItem.createList(100),
-    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(),
+    dragSelectState: DragSelectState<PhotoItem> = rememberDragSelectState(key = { it.id }),
 ) {
     LazyVerticalGrid(
         state = dragSelectState.gridState,
@@ -62,7 +62,6 @@ fun BasicDragSelectPhotoGrid(
         modifier = modifier.gridDragSelect(
             items = photoItems,
             state = dragSelectState,
-            key = { it.id },
         ),
     ) {
         items(photoItems, key = { it.id }) { item ->
