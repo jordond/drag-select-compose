@@ -87,11 +87,8 @@ public class DragSelectState<Item>(
         }
     }
 
-    internal fun updateDrag(
-        initial: Int = dragState.initial,
-        current: Int = dragState.current,
-    ) {
-        dragState = dragState.copy(initial = initial, current = current)
+    internal fun updateDrag(current: Int) {
+        dragState = dragState.copy(current = current)
     }
 
     internal fun startDrag(item: Item, index: Int) {
