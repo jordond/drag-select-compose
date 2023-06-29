@@ -54,18 +54,18 @@ file:
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("com.dragselectcompose:dragselect:2.0.2")
+    implementation("com.dragselectcompose:dragselect:2.1.0")
 
     // Or use the modules you want
 
     // Core functionality
-    implementation("com.dragselectcompose:core:2.0.2")
+    implementation("com.dragselectcompose:core:2.1.0")
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
-    implementation("com.dragselectcompose:extensions:2.0.2")
+    implementation("com.dragselectcompose:extensions:2.1.0")
 
     // Optional wrappers around LazyGrid that implement the selection UI for you
-    implementation("com.dragselectcompose:grid:2.0.2")
+    implementation("com.dragselectcompose:grid:2.1.0")
 }
 ```
 
@@ -79,18 +79,18 @@ kotlin {
         commonMain {
             dependencies {
                 // Includes the core functionality along with all of the optional modules
-                implementation("com.dragselectcompose:dragselect:2.0.2")
+                implementation("com.dragselectcompose:dragselect:2.1.0")
 
                 // Or use the modules you want
 
                 // Core functionality
-                implementation("com.dragselectcompose:core:2.0.2")
+                implementation("com.dragselectcompose:core:2.1.0")
 
                 // Optional extensions for adding semantics and toggle Modifiers to Grid items
-                implementation("com.dragselectcompose:extensions:2.0.2")
+                implementation("com.dragselectcompose:extensions:2.1.0")
 
                 // Optional wrappers around LazyGrid that implement the selection UI for you
-                implementation("com.dragselectcompose:grid:2.0.2")
+                implementation("com.dragselectcompose:grid:2.1.0")
             }
         }
     }
@@ -103,7 +103,7 @@ For the supported platforms, see the badges at the top of the README.
 
 ```toml
 [versions]
-dragselectcompose = "2.0.2"
+dragselectcompose = "2.1.0"
 
 [libraries]
 dragselect = { module = "com.dragselectcompose:dragselect", version.ref = "dragselectcompose" }
