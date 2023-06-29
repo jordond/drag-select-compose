@@ -8,7 +8,6 @@ public final class com/dragselectcompose/core/DragSelectState {
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getGridState ()Landroidx/compose/foundation/lazy/grid/LazyGridState;
 	public final fun getInSelectionMode ()Z
-	public final fun getKey ()Lkotlin/jvm/functions/Function1;
 	public final fun getSelected ()Ljava/util/List;
 	public fun hashCode ()I
 	public final fun isSelected (Ljava/lang/Object;)Z

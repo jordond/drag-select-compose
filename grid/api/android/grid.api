@@ -7,12 +7,12 @@ public final class com/dragselectcompose/grid/LazyDragSelectGridItemScope {
 
 public abstract interface class com/dragselectcompose/grid/LazyDragSelectGridScope {
 	public abstract fun item (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;)V
-	public abstract fun items (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)V
+	public abstract fun items (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)V
 }
 
 public final class com/dragselectcompose/grid/LazyDragSelectGridScope$DefaultImpls {
 	public static synthetic fun item$default (Lcom/dragselectcompose/grid/LazyDragSelectGridScope;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/lang/Object;Lkotlin/jvm/functions/Function3;ILjava/lang/Object;)V
-	public static synthetic fun items$default (Lcom/dragselectcompose/grid/LazyDragSelectGridScope;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;ILjava/lang/Object;)V
+	public static synthetic fun items$default (Lcom/dragselectcompose/grid/LazyDragSelectGridScope;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;ILjava/lang/Object;)V
 }
 
 public final class com/dragselectcompose/grid/LazyDragSelectHorizontalGridKt {
