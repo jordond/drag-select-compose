@@ -165,11 +165,10 @@ public class DragSelectState<Item>(
     /**
      * Removes the provided item from the selected items.
      *
-     * @param[photo] The item to remove.
+     * @param[item] The item to remove.
      */
-    // TODO: Rename this argument to item, it is a breaking change.
-    public fun removeSelected(photo: Item) {
-        selectedState -= photo
+    public fun removeSelected(item: Item) {
+        selectedState -= item
     }
 
     /**
