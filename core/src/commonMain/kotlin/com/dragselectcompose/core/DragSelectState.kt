@@ -8,7 +8,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.dragselectcompose.core.DragState.Companion.None
 
 /**
  * Creates a [DragSelectState] that is remembered across compositions.
@@ -26,7 +25,7 @@ public fun <Item> rememberDragSelectState(
     lazyGridState: LazyGridState = rememberLazyGridState(),
     initialSelection: List<Item> = emptyList(),
 ): DragSelectState<Item> {
-    val indexes by rememberSaveable { mutableStateOf(None to None) }
+    val indexes by rememberSaveable { mutableStateOf(DragState.None to DragState.None) }
     return remember(lazyGridState) {
         DragSelectState(lazyGridState, indexes.first, initialSelection, indexes.second)
     }
@@ -53,7 +52,7 @@ public class DragSelectState<Item>(
     public constructor(
         gridState: LazyGridState,
         initialSelection: List<Item>,
-    ) : this(gridState, None, initialSelection, None)
+    ) : this(gridState, DragState.None, initialSelection, DragState.None)
 
     private var dragState: DragState = DragState(initialIndex, currentIndex)
 
@@ -87,11 +86,8 @@ public class DragSelectState<Item>(
         }
     }
 
-    internal fun updateDrag(
-        initial: Int = dragState.initial,
-        current: Int = dragState.current,
-    ) {
-        dragState = dragState.copy(initial = initial, current = current)
+    internal fun updateDrag(current: Int) {
+        dragState = dragState.copy(current = current)
     }
 
     internal fun startDrag(item: Item, index: Int) {

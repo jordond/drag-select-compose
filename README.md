@@ -6,7 +6,7 @@
 [![Verify Gradle](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/verify-gradle.yml)
 [![License](https://img.shields.io/github/license/jordond/drag-select-compose)](http://www.apache.org/licenses/LICENSE-2.0)
 
-[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.4.0-blue)](https://github.com/JetBrains/compose-multiplatform)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.4.1-blue)](https://github.com/JetBrains/compose-multiplatform)
 ![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
@@ -36,7 +36,7 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
 ## Inspiration
 
 This library was inspired by
-this [article](https://medium.com/androiddevelopers/now-in-android-85-8bdb9ce34428) and
+this [article](https://medium.com/androiddevelopers/create-a-photo-grid-with-multiselect-behavior-using-jetpack-compose-9a8d588a9b63) and
 the [gist](https://gist.github.com/JolandaVerhoef/bcaf96360b92bba974e3796fe37247e2).
 
 As well as the [drag-select-recyclerview](https://github.com/afollestad/drag-select-recyclerview)
@@ -54,18 +54,18 @@ file:
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("com.dragselectcompose:dragselect:2.0.0")
+    implementation("com.dragselectcompose:dragselect:2.0.1")
 
     // Or use the modules you want
 
     // Core functionality
-    implementation("com.dragselectcompose:core:2.0.0")
+    implementation("com.dragselectcompose:core:2.0.1")
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
-    implementation("com.dragselectcompose:extensions:2.0.0")
+    implementation("com.dragselectcompose:extensions:2.0.1")
 
     // Optional wrappers around LazyGrid that implement the selection UI for you
-    implementation("com.dragselectcompose:grid:2.0.0")
+    implementation("com.dragselectcompose:grid:2.0.1")
 }
 ```
 
@@ -79,18 +79,18 @@ kotlin {
         commonMain {
             dependencies {
                 // Includes the core functionality along with all of the optional modules
-                implementation("com.dragselectcompose:dragselect:2.0.0")
+                implementation("com.dragselectcompose:dragselect:2.0.1")
 
                 // Or use the modules you want
 
                 // Core functionality
-                implementation("com.dragselectcompose:core:2.0.0")
+                implementation("com.dragselectcompose:core:2.0.1")
 
                 // Optional extensions for adding semantics and toggle Modifiers to Grid items
-                implementation("com.dragselectcompose:extensions:2.0.0")
+                implementation("com.dragselectcompose:extensions:2.0.1")
 
                 // Optional wrappers around LazyGrid that implement the selection UI for you
-                implementation("com.dragselectcompose:grid:2.0.0")
+                implementation("com.dragselectcompose:grid:2.0.1")
             }
         }
     }
@@ -103,7 +103,7 @@ For the supported platforms, see the badges at the top of the README.
 
 ```toml
 [versions]
-dragselectcompose = "2.0.0"
+dragselectcompose = "2.0.1"
 
 [libraries]
 dragselect = { module = "com.dragselectcompose:dragselect", version.ref = "dragselectcompose" }
