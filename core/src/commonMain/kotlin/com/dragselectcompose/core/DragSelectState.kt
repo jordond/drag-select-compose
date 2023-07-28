@@ -104,12 +104,14 @@ public class DragSelectState<Item>(
     public val selected: List<Item>
         get() = selectedState
 
+    private var manualSelectionMode: Boolean by mutableStateOf(false)
+
     /**
      * Whether or not the grid is in selection mode.
      */
     @Stable
     public val inSelectionMode: Boolean
-        get() = selectedState.isNotEmpty()
+        get() = manualSelectionMode || selectedState.isNotEmpty()
 
     internal val autoScrollSpeed = mutableStateOf(0f)
 
@@ -132,6 +134,12 @@ public class DragSelectState<Item>(
     internal fun startDrag(item: Item, index: Int) {
         dragState = DragState(initial = index, current = index)
         addSelected(item)
+    }
+
+    public fun enableSelectionMode() {
+        if (selectedState.isEmpty()) {
+            manualSelectionMode = true
+        }
     }
 
     /**
@@ -168,6 +176,10 @@ public class DragSelectState<Item>(
      */
     public fun removeSelected(item: Item) {
         selectedState -= item
+
+        if (selectedState.isEmpty() && manualSelectionMode) {
+            manualSelectionMode = false
+        }
     }
 
     /**
@@ -175,6 +187,7 @@ public class DragSelectState<Item>(
      */
     public fun clear() {
         selectedState = emptyList()
+        manualSelectionMode = false
     }
 
     /**
