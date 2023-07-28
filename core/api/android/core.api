@@ -4,6 +4,7 @@ public final class com/dragselectcompose/core/DragSelectState {
 	public fun <init> (Ljava/util/List;Landroidx/compose/foundation/lazy/grid/LazyGridState;Lkotlin/jvm/functions/Function1;Lcom/dragselectcompose/core/DragState;)V
 	public final fun addSelected (Ljava/lang/Object;)V
 	public final fun clear ()V
+	public final fun disableSelectionMode ()V
 	public final fun enableSelectionMode ()V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getGridState ()Landroidx/compose/foundation/lazy/grid/LazyGridState;
@@ -12,6 +13,7 @@ public final class com/dragselectcompose/core/DragSelectState {
 	public fun hashCode ()I
 	public final fun isSelected (Ljava/lang/Object;)Z
 	public final fun removeSelected (Ljava/lang/Object;)V
+	public final fun toggleSelectionMode ()V
 	public final fun updateSelected (Ljava/util/List;)V
 }
 
