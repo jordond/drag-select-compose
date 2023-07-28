@@ -68,6 +68,7 @@ public fun <Item> rememberDragSelectState(
  * @param[dragState] The current drag state.
  * @param[compareSelector] A factory for selecting a property of [Item] to compare.
  */
+@Suppress("MemberVisibilityCanBePrivate")
 @Stable
 public class DragSelectState<Item>(
     initialSelection: List<Item>,
@@ -136,10 +137,29 @@ public class DragSelectState<Item>(
         addSelected(item)
     }
 
+    /**
+     * Enables selection mode with no items selected.
+     */
     public fun enableSelectionMode() {
         if (selectedState.isEmpty()) {
             manualSelectionMode = true
         }
+    }
+
+    /**
+     * Disables selection mode and clear selected items.
+     */
+    public fun disableSelectionMode() {
+        selectedState = emptyList()
+        manualSelectionMode = false
+    }
+
+    /**
+     * Toggle the selection mode.
+     */
+    public fun toggleSelectionMode() {
+        if (inSelectionMode) disableSelectionMode()
+        else enableSelectionMode()
     }
 
     /**
@@ -158,6 +178,10 @@ public class DragSelectState<Item>(
      */
     public fun updateSelected(selected: List<Item>) {
         selectedState = selected
+
+        if (selectedState.isEmpty() && manualSelectionMode) {
+            manualSelectionMode = false
+        }
     }
 
     /**
@@ -185,9 +209,13 @@ public class DragSelectState<Item>(
     /**
      * Clears the selected items.
      */
+    @Deprecated(
+        message = "Use disableSelectionMode() instead. Will be removed in future version.",
+        replaceWith = ReplaceWith("disableSelectionMode()"),
+        level = DeprecationLevel.WARNING,
+    )
     public fun clear() {
-        selectedState = emptyList()
-        manualSelectionMode = false
+        disableSelectionMode()
     }
 
     /**

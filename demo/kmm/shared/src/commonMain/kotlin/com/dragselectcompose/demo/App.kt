@@ -38,8 +38,7 @@ fun App() {
                     actions = {
                         Button(
                             onClick = {
-                                if (dragSelectState.inSelectionMode) dragSelectState.clear()
-                                else dragSelectState.enableSelectionMode()
+                                dragSelectState.toggleSelectionMode()
                             },
                         ) {
                             val text = if (dragSelectState.inSelectionMode) "Cancel" else "Select"
