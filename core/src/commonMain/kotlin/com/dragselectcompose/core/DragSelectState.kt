@@ -126,12 +126,11 @@ public class DragSelectState<Item>(
     }
 
     internal fun updateDrag(current: Int) {
-        dragState.current = current
+        dragState = dragState.copy(current = current)
     }
 
     internal fun startDrag(item: Item, index: Int) {
-        dragState.initial = index
-        dragState.current = index
+        dragState = DragState(initial = index, current = index)
         addSelected(item)
     }
 
@@ -182,7 +181,7 @@ public class DragSelectState<Item>(
      * Resets the drag state.
      */
     internal fun stopDrag() {
-        dragState.initial = DragState.None
+        dragState = dragState.copy(initial = DragState.None)
         autoScrollSpeed.value = 0f
     }
 
