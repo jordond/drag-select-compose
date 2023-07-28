@@ -1,5 +1,6 @@
 package com.dragselectcompose.core
 
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.saveable.Saver
 
 /**
@@ -8,13 +9,34 @@ import androidx.compose.runtime.saveable.Saver
  * @param[initial] The index of the item where the drag gesture started.
  * @param[current] The index of the item where the drag gesture is currently at.
  */
+@Stable
 public class DragState(
-    internal var initial: Int,
-    internal var current: Int,
+    internal val initial: Int,
+    internal val current: Int,
 ) {
 
     internal val isDragging: Boolean
         get() = initial != None && current != None
+
+    internal fun copy(initial: Int = this.initial, current: Int = this.current): DragState {
+        return DragState(initial = initial, current = current)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as DragState
+
+        if (initial != other.initial) return false
+        return current == other.current
+    }
+
+    override fun hashCode(): Int {
+        var result = initial
+        result = 31 * result + current
+        return result
+    }
 
     internal companion object {
 
@@ -27,7 +49,7 @@ public class DragState(
 
         internal val Saver = Saver<DragState, Pair<Int, Int>>(
             save = { it.initial to it.current },
-            restore = { (initial, current) -> create(initial = initial, current = current) }
+            restore = { (initial, current) -> DragState(initial = initial, current = current) },
         )
     }
 }

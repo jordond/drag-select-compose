@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ClearAll
 import androidx.compose.material.icons.outlined.CopyAll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +36,15 @@ fun App() {
                         }
                     },
                     actions = {
+                        Button(
+                            onClick = {
+                                dragSelectState.toggleSelectionMode()
+                            },
+                        ) {
+                            val text = if (dragSelectState.inSelectionMode) "Cancel" else "Select"
+                            Text(text = text)
+                        }
+
                         IconButton(onClick = { dragSelectState.updateSelected(items) }) {
                             Icon(
                                 imageVector = Icons.Outlined.CopyAll,

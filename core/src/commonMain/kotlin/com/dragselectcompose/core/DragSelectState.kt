@@ -68,6 +68,7 @@ public fun <Item> rememberDragSelectState(
  * @param[dragState] The current drag state.
  * @param[compareSelector] A factory for selecting a property of [Item] to compare.
  */
+@Suppress("MemberVisibilityCanBePrivate")
 @Stable
 public class DragSelectState<Item>(
     initialSelection: List<Item>,
@@ -104,12 +105,14 @@ public class DragSelectState<Item>(
     public val selected: List<Item>
         get() = selectedState
 
+    private var manualSelectionMode: Boolean by mutableStateOf(false)
+
     /**
      * Whether or not the grid is in selection mode.
      */
     @Stable
     public val inSelectionMode: Boolean
-        get() = selectedState.isNotEmpty()
+        get() = manualSelectionMode || selectedState.isNotEmpty()
 
     internal val autoScrollSpeed = mutableStateOf(0f)
 
@@ -126,13 +129,37 @@ public class DragSelectState<Item>(
     }
 
     internal fun updateDrag(current: Int) {
-        dragState.current = current
+        dragState = dragState.copy(current = current)
     }
 
     internal fun startDrag(item: Item, index: Int) {
-        dragState.initial = index
-        dragState.current = index
+        dragState = DragState(initial = index, current = index)
         addSelected(item)
+    }
+
+    /**
+     * Enables selection mode with no items selected.
+     */
+    public fun enableSelectionMode() {
+        if (selectedState.isEmpty()) {
+            manualSelectionMode = true
+        }
+    }
+
+    /**
+     * Disables selection mode and clear selected items.
+     */
+    public fun disableSelectionMode() {
+        selectedState = emptyList()
+        manualSelectionMode = false
+    }
+
+    /**
+     * Toggle the selection mode.
+     */
+    public fun toggleSelectionMode() {
+        if (inSelectionMode) disableSelectionMode()
+        else enableSelectionMode()
     }
 
     /**
@@ -151,6 +178,10 @@ public class DragSelectState<Item>(
      */
     public fun updateSelected(selected: List<Item>) {
         selectedState = selected
+
+        if (selectedState.isEmpty() && manualSelectionMode) {
+            manualSelectionMode = false
+        }
     }
 
     /**
@@ -169,20 +200,29 @@ public class DragSelectState<Item>(
      */
     public fun removeSelected(item: Item) {
         selectedState -= item
+
+        if (selectedState.isEmpty() && manualSelectionMode) {
+            manualSelectionMode = false
+        }
     }
 
     /**
      * Clears the selected items.
      */
+    @Deprecated(
+        message = "Use disableSelectionMode() instead. Will be removed in future version.",
+        replaceWith = ReplaceWith("disableSelectionMode()"),
+        level = DeprecationLevel.WARNING,
+    )
     public fun clear() {
-        selectedState = emptyList()
+        disableSelectionMode()
     }
 
     /**
      * Resets the drag state.
      */
     internal fun stopDrag() {
-        dragState.initial = DragState.None
+        dragState = dragState.copy(initial = DragState.None)
         autoScrollSpeed.value = 0f
     }
 
