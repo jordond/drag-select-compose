@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.dragselectcompose.demo"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.dragselectcompose.demo"
         minSdk = libs.versions.sdk.min.get().toInt()
-        targetSdk = libs.versions.sdk.target.get().toInt()
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
