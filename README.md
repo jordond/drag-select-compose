@@ -5,7 +5,7 @@
 [![Build](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml/badge.svg)](https://github.com/jordond/drag-select-compose/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/jordond/drag-select-compose)](http://www.apache.org/licenses/LICENSE-2.0)
 
-[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.5.1-blue)](https://github.com/JetBrains/compose-multiplatform)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-v1.5.2-blue)](https://github.com/JetBrains/compose-multiplatform)
 ![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
@@ -54,18 +54,18 @@ file:
 ```kotlin
 dependencies {
     // Includes the core functionality along with all of the optional modules
-    implementation("com.dragselectcompose:dragselect:2.2.2")
+    implementation("com.dragselectcompose:dragselect:2.2.3")
 
     // Or use the modules you want
 
     // Core functionality
-    implementation("com.dragselectcompose:core:2.2.2")
+    implementation("com.dragselectcompose:core:2.2.3")
 
     // Optional extensions for adding semantics and toggle Modifiers to Grid items
-    implementation("com.dragselectcompose:extensions:2.2.2")
+    implementation("com.dragselectcompose:extensions:2.2.3")
 
     // Optional wrappers around LazyGrid that implement the selection UI for you
-    implementation("com.dragselectcompose:grid:2.2.2")
+    implementation("com.dragselectcompose:grid:2.2.3")
 }
 ```
 
@@ -79,18 +79,18 @@ kotlin {
         commonMain {
             dependencies {
                 // Includes the core functionality along with all of the optional modules
-                implementation("com.dragselectcompose:dragselect:2.2.2")
+                implementation("com.dragselectcompose:dragselect:2.2.3")
 
                 // Or use the modules you want
 
                 // Core functionality
-                implementation("com.dragselectcompose:core:2.2.2")
+                implementation("com.dragselectcompose:core:2.2.3")
 
                 // Optional extensions for adding semantics and toggle Modifiers to Grid items
-                implementation("com.dragselectcompose:extensions:2.2.2")
+                implementation("com.dragselectcompose:extensions:2.2.3")
 
                 // Optional wrappers around LazyGrid that implement the selection UI for you
-                implementation("com.dragselectcompose:grid:2.2.2")
+                implementation("com.dragselectcompose:grid:2.2.3")
             }
         }
     }
@@ -103,7 +103,7 @@ For the supported platforms, see the badges at the top of the README.
 
 ```toml
 [versions]
-dragselectcompose = "2.2.2"
+dragselectcompose = "2.2.3"
 
 [libraries]
 dragselect = { module = "com.dragselectcompose:dragselect", version.ref = "dragselectcompose" }
