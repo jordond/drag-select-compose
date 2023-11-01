@@ -14,7 +14,7 @@
 This is a Compose Multiplatform library that allows you to easily implement a "Google Photos"-style
 multi-selection in your Compose apps.
 
-You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectcompose.com)
+You can run the demo at [demo.dragselectcompose.com[(https://demo.dragselectcompose.com) and view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectcompose.com)
 
 <img width="250px" alt="demo" src="art/drag-select-compose-demo.gif" />
 
