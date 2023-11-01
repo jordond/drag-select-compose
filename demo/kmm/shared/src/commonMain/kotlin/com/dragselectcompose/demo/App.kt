@@ -52,7 +52,7 @@ fun App() {
                             )
                         }
 
-                        IconButton(onClick = { dragSelectState.clear() }) {
+                        IconButton(onClick = { dragSelectState.disableSelectionMode() }) {
                             Icon(
                                 imageVector = Icons.Outlined.ClearAll,
                                 contentDescription = null,
