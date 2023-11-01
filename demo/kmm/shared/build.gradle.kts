@@ -1,16 +1,22 @@
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.multiplatform)
     kotlin("native.cocoapods")
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
 }
 
 kotlin {
-    android()
+    targetHierarchy.default()
+
+    androidTarget()
     jvm("desktop")
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    js(IR) {
+        browser()
+        binaries.executable()
+    }
 
     cocoapods {
         version = "1.0.0"
@@ -42,6 +48,7 @@ kotlin {
                 implementation(libs.ktor.core)
             }
         }
+
         val androidMain by getting {
             dependencies {
                 api(libs.activity.compose)
@@ -50,18 +57,13 @@ kotlin {
                 implementation(libs.ktor.android)
             }
         }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
+
+        val iosMain by getting {
             dependencies {
                 implementation(libs.ktor.darwin)
             }
         }
+
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
@@ -90,4 +92,8 @@ android {
     kotlin {
         jvmToolchain(jdkVersion = 17)
     }
+}
+
+compose.experimental {
+    web.application {}
 }

@@ -9,6 +9,7 @@
 ![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
+![badge-js](http://img.shields.io/badge/platform-js-FDD835.svg?style=flat)
 
 This is a Compose Multiplatform library that allows you to easily implement a "Google Photos"-style
 multi-selection in your Compose apps.
@@ -19,6 +20,7 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
 
 ## Table of Contents
 
+- [Platforms](#platforms)
 - [Inspiration](#inspiration)
 - [Setup](#setup)
     - [Single Platform](#single-platform)
@@ -31,6 +33,15 @@ You can view the KDocs at [docs.dragselectcompose.com](https://docs.dragselectco
     - [Android](#android-demo)
     - [Multiplatform](#multiplatform-demo)
 - [License](#license)
+
+## Platforms
+
+This library is written for Compose Multiplatform, and can be used on the following platforms:
+
+- Android
+- iOS
+- JVM (Desktop)
+- JavaScript (Browser)
 
 ## Inspiration
 
@@ -281,11 +292,7 @@ Then install the `demo/android/build/outputs/apk/release/demo-release.apk` file 
 The demo is inside of `:demo:kmm` module. In order to run it you should have the latest version of
 Android studio installed.
 
-1. Clone the repository and open it in Android Studio.
-2. Let Gradle Sync
-3. From the target drop-down select `demo.kmm.androidApp` or `desktopApp`
-    - In order to run the `kmm.ios` configuration you need to be on a Mac with Xcode installed.
-4. Run the application
+Check out [the README](demo/README.md) for more information.
 
 ## License
 
