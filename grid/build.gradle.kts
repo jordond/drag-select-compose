@@ -12,7 +12,12 @@ kotlin {
     androidTarget() {
         publishLibraryVariants("release")
     }
+
     jvm("desktop")
+
+    js(IR) {
+        browser()
+    }
 
     listOf(
         iosX64(),
