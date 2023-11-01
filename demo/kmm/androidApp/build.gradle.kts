@@ -1,13 +1,11 @@
-@file:Suppress("UNUSED_VARIABLE")
-
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.multiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.compose)
 }
 
 kotlin {
-    android()
+    androidTarget()
     sourceSets {
         val androidMain by getting {
             dependencies {
