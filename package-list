@@ -1,0 +1,11 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:core
+com.dragselectcompose.core
+module:extensions
+com.dragselectcompose.extensions
+module:grid
+com.dragselectcompose.grid
+com.dragselectcompose.grid.indicator
+com.dragselectcompose.grid.indicator.internal
