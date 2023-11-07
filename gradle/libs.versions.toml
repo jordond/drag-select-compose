@@ -18,7 +18,7 @@ compose-compiler = "1.5.3"
 appcompat = "1.6.1"
 coil = "2.5.0"
 kamel = "0.8.3"
-ktor = "2.3.5"
+ktor = "2.3.6"
 binaryCompatibility = "0.13.2"
 publish = "0.25.3"
 
