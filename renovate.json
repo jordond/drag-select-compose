@@ -3,7 +3,16 @@
   "extends": [
     "config:base"
   ],
-  "labels": [
-    "dependencies"
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "groupName": "Kotlin",
+      "matchPackagePrefixes": [
+        "androidx.compose.compiler",
+        "com.google.devtools.ksp",
+        "org.jetbrains.kotlin",
+        "org.jetbrains.kotlinx:binary-compatibility-validator"
+      ]
+    }
   ]
 }
