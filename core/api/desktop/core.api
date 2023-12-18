@@ -13,6 +13,7 @@ public final class com/dragselectcompose/core/DragSelectState {
 	public fun hashCode ()I
 	public final fun isSelected (Ljava/lang/Object;)Z
 	public final fun removeSelected (Ljava/lang/Object;)V
+	public fun toString ()Ljava/lang/String;
 	public final fun toggleSelectionMode ()V
 	public final fun updateSelected (Ljava/util/List;)V
 }
@@ -27,6 +28,7 @@ public final class com/dragselectcompose/core/DragState {
 	public fun <init> (II)V
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/dragselectcompose/core/GridDragSelectDefaults {
