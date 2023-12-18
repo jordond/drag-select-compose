@@ -21,6 +21,7 @@ kamel = "0.9.0"
 ktor = "2.3.7"
 binaryCompatibility = "0.13.2"
 publish = "0.25.3"
+poko = "0.15.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -56,5 +57,6 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibility" }
 publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 
 [bundles]

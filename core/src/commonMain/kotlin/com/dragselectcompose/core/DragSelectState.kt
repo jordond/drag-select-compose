@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import dev.drewhamilton.poko.Poko
 
 /**
  * Creates a [DragSelectState] that is remembered across compositions.
@@ -69,6 +70,7 @@ public fun <Item> rememberDragSelectState(
  * @param[compareSelector] A factory for selecting a property of [Item] to compare.
  */
 @Suppress("MemberVisibilityCanBePrivate")
+@Poko
 @Stable
 public class DragSelectState<Item>(
     initialSelection: List<Item>,
@@ -224,25 +226,5 @@ public class DragSelectState<Item>(
     internal fun stopDrag() {
         dragState = dragState.copy(initial = DragState.None)
         autoScrollSpeed.value = 0f
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as DragSelectState<*>
-
-        if (gridState != other.gridState) return false
-        if (compareSelector != other.compareSelector) return false
-        if (dragState != other.dragState) return false
-        return autoScrollSpeed == other.autoScrollSpeed
-    }
-
-    override fun hashCode(): Int {
-        var result = gridState.hashCode()
-        result = 31 * result + compareSelector.hashCode()
-        result = 31 * result + dragState.hashCode()
-        result = 31 * result + autoScrollSpeed.hashCode()
-        return result
     }
 }
