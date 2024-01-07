@@ -9,7 +9,7 @@
 ![badge-android](http://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](http://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
-![badge-js-wasm](http://img.shields.io/badge/platform-js%2wasmJs-FDD835.svg?style=flat)
+![badge-js-wasm](http://img.shields.io/badge/platform-js%2Fwasm-FDD835.svg?style=flat)
 
 This is a Compose Multiplatform library that allows you to easily implement a "Google Photos"-style
 multi-selection in your Compose apps.
