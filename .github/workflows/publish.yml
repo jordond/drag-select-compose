@@ -48,7 +48,7 @@ jobs:
             ${{ runner.os }}-konan-
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v2
 
       - name: Deploy to Sonatype
         run: |
@@ -89,7 +89,7 @@ jobs:
           distribution: adopt
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v2
 
       - name: Generate documentation
         uses: gradle/gradle-build-action@v2
