@@ -6,7 +6,7 @@ plugins {
 }
 
 kotlin {
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
     androidTarget()
     jvm("desktop")
