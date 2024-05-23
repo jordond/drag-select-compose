@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -92,8 +93,4 @@ android {
     kotlin {
         jvmToolchain(jdkVersion = 17)
     }
-}
-
-compose.experimental {
-    web.application {}
 }
