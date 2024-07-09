@@ -19,7 +19,7 @@ appcompat = "1.7.0"
 coil = "2.6.0"
 kamel = "0.9.5"
 ktor = "2.3.12"
-binaryCompatibility = "0.15.0"
+binaryCompatibility = "0.15.1"
 publish = "0.29.0"
 poko = "0.16.0"
 
