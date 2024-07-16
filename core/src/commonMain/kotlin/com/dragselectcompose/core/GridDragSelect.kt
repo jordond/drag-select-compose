@@ -4,6 +4,8 @@ import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
@@ -71,11 +73,13 @@ public fun <Item> Modifier.gridDragSelect(
         if (!enableHaptics) null
         else hapticFeedback ?: GridDragSelectDefaults.hapticsFeedback
 
+    val currentItems by rememberUpdatedState(items)
+
     pointerInput(Unit) {
         detectDragGesturesAfterLongPress(
             onDragStart = { offset ->
                 state.gridState.itemIndexAtPosition(offset)?.let { startIndex ->
-                    val item = items.getOrNull(startIndex)
+                    val item = currentItems.getOrNull(startIndex)
                     if (item != null && state.selected.contains(item).not()) {
                         haptics?.performHapticFeedback(HapticFeedbackType.LongPress)
                         state.startDrag(item, startIndex)
@@ -92,7 +96,7 @@ public fun <Item> Modifier.gridDragSelect(
                         ?: return@whenDragging
 
                     val newSelection =
-                        items.getSelectedItems(itemPosition, dragState, state::isSelected)
+                        currentItems.getSelectedItems(itemPosition, dragState, state::isSelected)
 
                     updateDrag(current = itemPosition)
                     updateSelected(newSelection)
