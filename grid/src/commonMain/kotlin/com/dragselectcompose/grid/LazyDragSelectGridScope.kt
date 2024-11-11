@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridItemSpanScope
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyGridScopeMarker
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.runtime.Composable
 import com.dragselectcompose.core.DragSelectState
 
@@ -66,6 +67,13 @@ public interface LazyDragSelectGridScope<Item> {
         contentType: (item: Item) -> Any? = { null },
         itemContent: @Composable LazyDragSelectGridItemScope<Item>.(item: Item) -> Unit,
     )
+
+    public fun itemsIndexed(
+        key: ((index: Int, item: Item) -> Any)? = null,
+        span: (LazyGridItemSpanScope.(index: Int, item: Item) -> GridItemSpan)? = null,
+        contentType: (index: Int, item: Item) -> Any? = { _, _ -> null },
+        itemContent: @Composable LazyDragSelectGridItemScope<Item>.(index: Int, item: Item) -> Unit,
+    )
 }
 
 /**
@@ -117,17 +125,39 @@ internal class DefaultLazyDragSelectGridScope<Item>(
         val items = this.items
         gridScope.items(
             count = items.size,
-            key = if (key != null) { index: Int -> key(items[index]) } else null,
-            span = if (span != null) {
+            key = if (key != null) { index -> key(items[index]) } else null,
+            span = if (span == null) null
+            else {
                 { span(items[it]) }
-            } else null,
-            contentType = { index: Int -> contentType(items[index]) }
+            },
+            contentType = { index -> contentType(items[index]) }
         ) { index ->
             val scope = LazyDragSelectGridItemScope(
                 state = this@DefaultLazyDragSelectGridScope.stateProvider(),
                 lazyGridItemScope = this,
             )
             itemContent(scope, items[index])
+        }
+    }
+
+    override fun itemsIndexed(
+        key: ((index: Int, item: Item) -> Any)?,
+        span: (LazyGridItemSpanScope.(index: Int, item: Item) -> GridItemSpan)?,
+        contentType: (index: Int, item: Item) -> Any?,
+        itemContent: @Composable LazyDragSelectGridItemScope<Item>.(index: Int, item: Item) -> Unit,
+    ) {
+        val items = this.items
+        gridScope.itemsIndexed(
+            items = items,
+            key = key,
+            span = span,
+            contentType = contentType,
+        ) { index, item ->
+            val scope = LazyDragSelectGridItemScope(
+                state = this@DefaultLazyDragSelectGridScope.stateProvider(),
+                lazyGridItemScope = this,
+            )
+            itemContent(scope, index, item)
         }
     }
 }
