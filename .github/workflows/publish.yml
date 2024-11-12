@@ -26,29 +26,11 @@ jobs:
           java-version: 17
           distribution: adopt
 
-      - name: Cache Gradle
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Cache Konan
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.konan/caches
-            ~/.konan/dependencies
-            ~/.konan/kotlin-native-prebuilt-macos-*
-          key: ${{ runner.os }}-konan-${{ hashFiles('**/gradle/libs.versions.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-konan-
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v3
+        uses: gradle/actions/wrapper-validation@v4
 
       - name: Deploy to Sonatype
         run: |
@@ -82,19 +64,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: setup-java
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: adopt
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v3
+        uses: gradle/actions/wrapper-validation@v4
 
       - name: Generate documentation
-        uses: gradle/gradle-build-action@v3
-        with:
-          arguments: dokkaHtmlMultiModule
+        run: ./gradlew dokkaHtmlMultiModule --no-configuration-cache
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
