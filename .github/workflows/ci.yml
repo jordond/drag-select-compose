@@ -37,7 +37,7 @@ jobs:
           distribution: adopt
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v3
+        uses: gradle/actions/wrapper-validation@v4
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -72,18 +72,6 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-
-      - name: Cache Konan
-        uses: actions/cache@v4
-        if: startsWith(matrix.config.os, 'macos')
-        with:
-          path: |
-            ~/.konan/caches
-            ~/.konan/dependencies
-            ~/.konan/kotlin-native-prebuilt-macos-*
-          key: ${{ runner.os }}-konan-${{ hashFiles('**/gradle/libs.versions.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-konan-
 
       - name: Gradle Wrapper Validation
         uses: gradle/actions/wrapper-validation@v4
