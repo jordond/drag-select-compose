@@ -2,7 +2,7 @@
 sdk-target = "35"
 sdk-compile = "35"
 sdk-min = "21"
-agp = "8.7.2"
+agp = "8.7.3"
 kotlin = "2.0.21"
 versions = "0.51.0"
 dokka = "1.9.20"
