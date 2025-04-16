@@ -21,7 +21,7 @@ kamel = "1.0.3"
 ktor = "3.0.3"
 binaryCompatibility = "0.17.0"
 publish = "0.30.0"
-poko = "0.18.2"
+poko = "0.18.6"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
