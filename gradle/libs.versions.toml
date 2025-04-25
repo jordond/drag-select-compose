@@ -20,7 +20,7 @@ coil = "2.7.0"
 kamel = "1.0.3"
 ktor = "3.0.3"
 binaryCompatibility = "0.17.0"
-publish = "0.30.0"
+publish = "0.31.0"
 poko = "0.18.6"
 
 [libraries]
