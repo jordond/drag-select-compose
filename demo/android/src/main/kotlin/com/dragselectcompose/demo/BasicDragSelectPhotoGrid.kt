@@ -34,7 +34,7 @@ import androidx.compose.ui.semantics.onLongClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil3.compose.rememberAsyncImagePainter
 import com.dragselectcompose.core.DragSelectState
 import com.dragselectcompose.core.gridDragSelect
 import com.dragselectcompose.core.rememberDragSelectState
