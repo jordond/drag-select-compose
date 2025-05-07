@@ -36,40 +36,32 @@ kotlin {
             languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
         }
 
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":dragselect"))
+        commonMain.dependencies {
+            implementation(project(":dragselect"))
 
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
 
-                implementation(libs.kamel)
-                implementation(libs.ktor.core)
-            }
+            implementation(libs.kamel)
+            implementation(libs.ktor.core)
         }
 
-        val androidMain by getting {
-            dependencies {
-                api(libs.activity.compose)
-                api(libs.appcompat)
-                api(libs.core.ktx)
-                implementation(libs.ktor.android)
-            }
+        androidMain.dependencies {
+            api(libs.activity.compose)
+            api(libs.appcompat)
+            api(libs.core.ktx)
+            implementation(libs.ktor.android)
         }
 
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.ktor.darwin)
-            }
+        iosMain.dependencies {
+            implementation(libs.ktor.darwin)
         }
 
-        val desktopMain by getting {
-            dependencies {
-                implementation(compose.desktop.common)
-                implementation(libs.ktor.java)
-            }
+        jvmMain.dependencies {
+            implementation(compose.desktop.common)
+            implementation(libs.ktor.java)
         }
     }
 }

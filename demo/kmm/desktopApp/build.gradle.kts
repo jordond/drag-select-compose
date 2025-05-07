@@ -11,11 +11,9 @@ plugins {
 kotlin {
     jvm()
     sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-                implementation(project(":demo:kmm:shared"))
-            }
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(project(":demo:kmm:shared"))
         }
     }
 }

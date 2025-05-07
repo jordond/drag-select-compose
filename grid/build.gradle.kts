@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.androidLibrary)
@@ -10,7 +12,7 @@ plugins {
 kotlin {
     explicitApi()
 
-    androidTarget() {
+    androidTarget {
         publishLibraryVariants("release")
     }
 
@@ -20,7 +22,7 @@ kotlin {
         browser()
     }
 
-    @OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
+    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
     }
@@ -36,15 +38,14 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                api(project(":core"))
-                api(project(":extensions"))
+        commonMain.dependencies {
+            api(project(":core"))
+            api(project(":extensions"))
 
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-            }
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(libs.material.icons)
         }
     }
 }

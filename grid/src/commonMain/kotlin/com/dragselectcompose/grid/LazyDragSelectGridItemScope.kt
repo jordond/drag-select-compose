@@ -1,7 +1,10 @@
 package com.dragselectcompose.grid
 
 import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
 import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -110,13 +113,19 @@ public class LazyDragSelectGridItemScope<Item>(
     }
 
     /**
-     * @see LazyDragSelectGridItemScope.animateItemPlacement
+     * @see LazyGridItemScope.animateItem
      */
     @OptIn(ExperimentalFoundationApi::class)
-    public fun Modifier.animateItemPlacement(
-        animationSpec: FiniteAnimationSpec<IntOffset>,
+    public fun Modifier.animateItem(
+        fadeInSpec: FiniteAnimationSpec<Float>? = spring(stiffness = Spring.StiffnessMediumLow),
+        placementSpec: FiniteAnimationSpec<IntOffset>? =
+            spring(
+                stiffness = Spring.StiffnessMediumLow,
+                visibilityThreshold = IntOffset.VisibilityThreshold
+            ),
+        fadeOutSpec: FiniteAnimationSpec<Float>? = spring(stiffness = Spring.StiffnessMediumLow),
     ): Modifier = lazyGridItemScope.run {
-        this@animateItemPlacement.animateItemPlacement(animationSpec)
+        this@animateItem.animateItem(fadeInSpec, placementSpec, fadeOutSpec)
     }
 
     /**

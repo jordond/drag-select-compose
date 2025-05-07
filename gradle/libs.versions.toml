@@ -1,6 +1,6 @@
 [versions]
-sdk-target = "35"
-sdk-compile = "35"
+sdk-target = "36"
+sdk-compile = "36"
 sdk-min = "21"
 agp = "8.10.0"
 kotlin = "2.1.20"
@@ -15,6 +15,7 @@ activity-compose = "1.10.1"
 compose-plugin = "1.8.0"
 compose-bom = "2025.05.00"
 compose-compiler = "1.5.4"
+material-icons = "1.7.3"
 appcompat = "1.7.0"
 coil = "2.7.0"
 kamel = "1.0.3"
@@ -38,6 +39,7 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+material-icons = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "material-icons" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
