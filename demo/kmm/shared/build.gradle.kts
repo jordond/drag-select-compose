@@ -10,7 +10,7 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     androidTarget()
-    jvm("desktop")
+    jvm()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -44,7 +44,8 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
 
-            implementation(libs.kamel)
+            implementation(libs.coil)
+            implementation(libs.coil.ktor)
             implementation(libs.ktor.core)
         }
 

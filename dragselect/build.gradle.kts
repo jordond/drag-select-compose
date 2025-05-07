@@ -15,7 +15,7 @@ kotlin {
         publishLibraryVariants("release")
     }
 
-    jvm("desktop")
+    jvm()
 
     js(IR) {
         browser()

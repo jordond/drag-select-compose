@@ -7,14 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.dragselectcompose.core.DragSelectState
 import com.dragselectcompose.core.rememberDragSelectState
 import com.dragselectcompose.grid.LazyDragSelectVerticalGrid
 import com.dragselectcompose.grid.indicator.SelectedIcon
 import com.dragselectcompose.grid.indicator.UnselectedIcon
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
-import io.ktor.http.Url
 
 @Composable
 fun PhotoGrid(
@@ -39,8 +37,11 @@ fun PhotoGrid(
                 Surface(
                     tonalElevation = 3.dp,
                 ) {
-                    KamelImage(
-                        resource = asyncPainterResource(Url(photo.url)),
+                    AsyncImage(
+                        model = photo.url,
+                        onError = {
+                            println("Error loading image: ${it.result.throwable.stackTraceToString()}")
+                        },
                         contentDescription = null,
                     )
                 }
