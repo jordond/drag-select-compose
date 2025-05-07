@@ -1,0 +1,45 @@
+public final class com/dragselectcompose/core/DragSelectState {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/foundation/lazy/grid/LazyGridState;ILjava/util/List;)V
+	public fun <init> (Ljava/util/List;Landroidx/compose/foundation/lazy/grid/LazyGridState;Lkotlin/jvm/functions/Function1;Lcom/dragselectcompose/core/DragState;)V
+	public final fun addSelected (Ljava/lang/Object;)V
+	public final fun clear ()V
+	public final fun disableSelectionMode ()V
+	public final fun enableSelectionMode ()V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGridState ()Landroidx/compose/foundation/lazy/grid/LazyGridState;
+	public final fun getInSelectionMode ()Z
+	public final fun getSelected ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun isSelected (Ljava/lang/Object;)Z
+	public final fun removeSelected (Ljava/lang/Object;)V
+	public fun toString ()Ljava/lang/String;
+	public final fun toggleSelectionMode ()V
+	public final fun updateSelected (Ljava/util/List;)V
+}
+
+public final class com/dragselectcompose/core/DragSelectStateKt {
+	public static final fun rememberDragSelectState (Landroidx/compose/foundation/lazy/grid/LazyGridState;Ljava/util/List;Landroidx/compose/runtime/Composer;II)Lcom/dragselectcompose/core/DragSelectState;
+	public static final fun rememberDragSelectState (Lkotlin/jvm/functions/Function1;Landroidx/compose/foundation/lazy/grid/LazyGridState;Ljava/util/List;Landroidx/compose/runtime/Composer;II)Lcom/dragselectcompose/core/DragSelectState;
+}
+
+public final class com/dragselectcompose/core/DragState {
+	public static final field $stable I
+	public fun <init> (II)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/dragselectcompose/core/GridDragSelectDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/dragselectcompose/core/GridDragSelectDefaults;
+	public final fun getAutoScrollThreshold (Landroidx/compose/runtime/Composer;I)F
+	public final fun getHapticsFeedback (Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/hapticfeedback/HapticFeedback;
+}
+
+public final class com/dragselectcompose/core/GridDragSelectKt {
+	public static final fun gridDragSelect (Landroidx/compose/ui/Modifier;Ljava/util/List;Lcom/dragselectcompose/core/DragSelectState;ZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun gridDragSelect$default (Landroidx/compose/ui/Modifier;Ljava/util/List;Lcom/dragselectcompose/core/DragSelectState;ZLjava/lang/Float;ZLandroidx/compose/ui/hapticfeedback/HapticFeedback;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
