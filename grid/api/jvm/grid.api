@@ -2,7 +2,8 @@ public final class com/dragselectcompose/grid/LazyDragSelectGridItemScope {
 	public static final field $stable I
 	public fun <init> (Lcom/dragselectcompose/core/DragSelectState;Landroidx/compose/foundation/lazy/grid/LazyGridItemScope;)V
 	public final fun SelectableItem (Ljava/lang/Object;Landroidx/compose/ui/Modifier;Ljava/lang/String;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZLcom/dragselectcompose/grid/indicator/AnimateSelectionOptions;FLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public final fun animateItemPlacement (Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public final fun animateItem (Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateItem$default (Lcom/dragselectcompose/grid/LazyDragSelectGridItemScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
 }
 
 public abstract interface class com/dragselectcompose/grid/LazyDragSelectGridScope {

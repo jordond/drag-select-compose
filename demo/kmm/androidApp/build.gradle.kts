@@ -8,10 +8,8 @@ plugins {
 kotlin {
     androidTarget()
     sourceSets {
-        val androidMain by getting {
-            dependencies {
-                implementation(project(":demo:kmm:shared"))
-            }
+        androidMain.dependencies {
+            implementation(project(":demo:kmm:shared"))
         }
     }
 }

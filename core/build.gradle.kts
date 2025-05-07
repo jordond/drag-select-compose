@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.androidLibrary)
@@ -15,13 +17,13 @@ kotlin {
         publishLibraryVariants("release")
     }
 
-    jvm("desktop")
+    jvm()
 
     js(IR) {
         browser()
     }
 
-    @OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
+    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
     }
