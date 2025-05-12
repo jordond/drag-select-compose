@@ -143,7 +143,7 @@ It provides the following functionality:
 
 - Adds a long-press drag gesture to select items.
 - Maintains a list of selected items.
-- Expose a `inSelectionMode: Boolean` which you can use to display a unselected state.
+- Expose a `inSelectionMode: Boolean` which you can use to display an unselected state.
 - If `enableAutoScroll` is `true` then the list will start to scroll when reaching the top or bottom
   of the list.
 - Will trigger a "long-press" haptics if `enableHaptics` is `true`.
@@ -290,7 +290,7 @@ Then install the `demo/android/build/outputs/apk/release/demo-release.apk` file 
 ### Multiplatform Demo
 
 The demo is inside of `:demo:kmm` module. In order to run it you should have the latest version of
-Android studio installed.
+Android Studio installed.
 
 Check out [the README](demo/README.md) for more information.
 
