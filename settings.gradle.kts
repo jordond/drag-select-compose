@@ -30,7 +30,6 @@ develocity {
 
 rootProject.name = "DragSelectCompose"
 
-include(":demo:android")
 include(
     ":demo:kmm:shared",
     ":demo:kmm:desktopApp",

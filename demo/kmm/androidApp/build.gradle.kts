@@ -1,24 +1,20 @@
 plugins {
-    alias(libs.plugins.multiplatform)
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.compose)
+    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.compose.compiler)
 }
 
+dependencies {
+    implementation(project(":demo:kmm:shared"))
+}
+
 kotlin {
-    androidTarget()
-    sourceSets {
-        androidMain.dependencies {
-            implementation(project(":demo:kmm:shared"))
-        }
-    }
+    jvmToolchain(11)
 }
 
 android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
     namespace = "dev.jordond.dragselectcompose.demo"
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
     defaultConfig {
         applicationId = "dev.jordond.dragselectcompose.demo"
@@ -31,9 +27,5 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlin {
-        jvmToolchain(jdkVersion = 11)
     }
 }

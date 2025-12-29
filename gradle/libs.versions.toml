@@ -1,27 +1,26 @@
 [versions]
 sdk-target = "36"
 sdk-compile = "36"
-sdk-min = "21"
+sdk-min = "23"
 agp = "8.13.2"
-kotlin = "2.2.0"
-versions = "0.52.0"
-dokka = "2.0.0"
+kotlin = "2.3.0"
+versions = "0.53.0"
+dokka = "2.1.0"
 core-ktx = "1.17.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.3.0"
 espresso-core = "3.7.0"
-lifecycle-runtime-ktx = "2.9.3"
-activity-compose = "1.10.1"
-compose-plugin = "1.8.2"
-compose-bom = "2025.08.01"
-compose-compiler = "1.5.4"
+lifecycle-runtime-ktx = "2.10.0"
+activity-compose = "1.12.2"
+compose-plugin = "1.9.3"
+compose-bom = "2025.12.01"
 material-icons = "1.7.3"
 appcompat = "1.7.1"
 coil = "3.3.0"
-ktor = "3.2.3"
+ktor = "3.3.3"
 binaryCompatibility = "0.18.1"
-publish = "0.34.0"
-poko = "0.19.3"
+publish = "0.35.0"
+poko = "0.21.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -56,7 +55,7 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dependencies = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibility" }
 publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
 poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
