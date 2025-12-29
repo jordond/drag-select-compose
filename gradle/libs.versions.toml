@@ -20,7 +20,7 @@ appcompat = "1.7.1"
 coil = "3.3.0"
 ktor = "3.2.3"
 binaryCompatibility = "0.18.1"
-publish = "0.34.0"
+publish = "0.35.0"
 poko = "0.19.3"
 
 [libraries]
