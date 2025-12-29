@@ -1,5 +1,3 @@
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-
 plugins {
     alias(libs.plugins.multiplatform) apply false
     alias(libs.plugins.androidApplication) apply false
@@ -16,7 +14,6 @@ plugins {
 apiValidation {
     ignoredProjects.addAll(
         listOf(
-            "android",
             "androidApp",
             "desktopApp",
             "shared",
@@ -24,6 +21,15 @@ apiValidation {
     )
 }
 
-tasks.withType<DokkaMultiModuleTask>().configureEach {
-    outputDirectory.set(rootDir.resolve("dokka"))
+dokka {
+    dokkaPublications.html {
+        outputDirectory.set(layout.projectDirectory.dir("dokka"))
+    }
+}
+
+dependencies {
+    dokka(project(":core"))
+    dokka(project(":dragselect"))
+    dokka(project(":extensions"))
+    dokka(project(":grid"))
 }

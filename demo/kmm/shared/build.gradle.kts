@@ -1,3 +1,6 @@
+import com.android.build.api.dsl.androidLibrary
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.multiplatform)
     kotlin("native.cocoapods")
@@ -9,7 +12,17 @@ plugins {
 kotlin {
     applyDefaultHierarchyTemplate()
 
-    androidTarget()
+    @Suppress("UnstableApiUsage")
+    androidLibrary {
+        compileSdk = libs.versions.sdk.compile.get().toInt()
+        namespace = "com.dragselectcompose.demo"
+        minSdk = libs.versions.sdk.min.get().toInt()
+
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
     jvm()
     iosX64()
     iosArm64()
@@ -64,26 +77,5 @@ kotlin {
             implementation(compose.desktop.common)
             implementation(libs.ktor.java)
         }
-    }
-}
-
-android {
-    compileSdk = libs.versions.sdk.compile.get().toInt()
-    namespace = "com.dragselectcompose.demo"
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-
-    defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlin {
-        jvmToolchain(jdkVersion = 17)
     }
 }

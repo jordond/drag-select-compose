@@ -1,4 +1,6 @@
+import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.multiplatform)
@@ -10,10 +12,18 @@ plugins {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
     explicitApi()
 
-    androidTarget {
-        publishLibraryVariants("release")
+    @Suppress("UnstableApiUsage")
+    androidLibrary {
+        compileSdk = libs.versions.sdk.compile.get().toInt()
+        namespace = "com.dragselectcompose.extensions"
+        minSdk = libs.versions.sdk.min.get().toInt()
+
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
 
     jvm()
@@ -44,26 +54,5 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
         }
-    }
-}
-
-android {
-    compileSdk = libs.versions.sdk.compile.get().toInt()
-    namespace = "com.dragselectcompose.extensions"
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
-    defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-        }
-    }
-
-    kotlin {
-        jvmToolchain(jdkVersion = 11)
     }
 }
