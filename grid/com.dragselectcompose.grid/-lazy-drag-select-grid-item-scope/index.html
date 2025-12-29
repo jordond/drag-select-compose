@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>LazyDragSelectGridItemScope</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
@@ -24,19 +24,17 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
-<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
                     DragSelectCompose
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
@@ -44,19 +42,19 @@
         <div class="library-version" id="library-version">
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":grid:dokkaHtmlPartial/commonMain">common</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":grid/commonMain">common</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":grid:dokkaHtmlPartial/commonMain" data-filter=":grid:dokkaHtmlPartial/commonMain">
+                                <input type="checkbox" class="checkbox--input" id=":grid/commonMain" data-filter=":grid/commonMain">
                                 <span class="checkbox--icon"></span>
                                 common
                             </label>
@@ -64,54 +62,56 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
             <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     DragSelectCompose
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageids="grid::com.dragselectcompose.grid/LazyDragSelectGridItemScope///PointingToDeclaration//367914061">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="grid::com.dragselectcompose.grid/LazyDragSelectGridItemScope///PointingToDeclaration//1907091217">
   <div class="breadcrumbs"><a href="../../index.html">grid</a><span class="delimiter">/</span><a href="../index.html">com.dragselectcompose.grid</a><span class="delimiter">/</span><span class="current">LazyDragSelectGridItemScope</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Lazy</span><wbr><span>Drag</span><wbr><span>Select</span><wbr><span>Grid</span><wbr><span>Item</span><wbr><span><span>Scope</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><a href="index.html">Item</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">state<span class="token operator">: </span><a href="../../../core/com.dragselectcompose.core/-drag-select-state/index.html">DragSelectState</a><span class="token operator">&lt;</span><a href="index.html">Item</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">lazyGridItemScope<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/grid/LazyGridItemScope.html">LazyGridItemScope</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Receiver scope being used by the item content parameter of <a href="../-lazy-drag-select-vertical-grid.html">LazyDragSelectVerticalGrid</a> or <a href="../-lazy-drag-select-horizontal-grid.html">LazyDragSelectHorizontalGrid</a>.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>Item</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The type of the items in the grid.</p></div></div></div></div><div class="table-row" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>state</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The <a href="../../../core/com.dragselectcompose.core/-drag-select-state/index.html">DragSelectState</a> that is being used to manage the selection.</p></div></div></div></div><div class="table-row" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>lazy</span><wbr><span>Grid</span><wbr><span>Item</span><wbr><span><span>Scope</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The <a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/grid/LazyGridItemScope.html">LazyGridItemScope</a> that is being used to render the items.</p></div></div></div></div></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><a href="index.html">Item</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">state<span class="token operator">: </span><a href="../../../core/com.dragselectcompose.core/-drag-select-state/index.html">DragSelectState</a><span class="token operator">&lt;</span><a href="index.html">Item</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">lazyGridItemScope<span class="token operator">: </span><span data-unresolved-link="androidx.compose.foundation.lazy.grid/LazyGridItemScope///PointingToDeclaration/">LazyGridItemScope</span></span></span><span class="token punctuation">)</span></div><p class="paragraph">Receiver scope being used by the item content parameter of <a href="../-lazy-drag-select-vertical-grid.html">LazyDragSelectVerticalGrid</a> or <a href="../-lazy-drag-select-horizontal-grid.html">LazyDragSelectHorizontalGrid</a>.</p><h4 class="tableheader">Parameters</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>Item</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The type of the items in the grid.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>state</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The <a href="../../../core/com.dragselectcompose.core/-drag-select-state/index.html">DragSelectState</a> that is being used to manage the selection.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>lazy</span><wbr><span>Grid</span><wbr><span>Item</span><wbr><span><span>Scope</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The <span data-unresolved-link="androidx.compose.foundation.lazy.grid/LazyGridItemScope///PointingToDeclaration/">LazyGridItemScope</span> that is being used to render the items.</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
-        <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="-2058973713%2FConstructors%2F367914061" anchor-label="LazyDragSelectGridItemScope" id="-2058973713%2FConstructors%2F367914061" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-2058973713%2FConstructors%2F1907091217" anchor-label="LazyDragSelectGridItemScope" id="-2058973713%2FConstructors%2F1907091217" data-filterable-set=":grid/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-lazy-drag-select-grid-item-scope.html"><span>Lazy</span><wbr><span>Drag</span><wbr><span>Select</span><wbr><span>Grid</span><wbr><span>Item</span><wbr><span><span>Scope</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2058973713%2FConstructors%2F367914061"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2058973713%2FConstructors%2F1907091217"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">state<span class="token operator">: </span><a href="../../../core/com.dragselectcompose.core/-drag-select-state/index.html">DragSelectState</a><span class="token operator">&lt;</span><a href="index.html">Item</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">lazyGridItemScope<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/lazy/grid/LazyGridItemScope.html">LazyGridItemScope</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">state<span class="token operator">: </span><a href="../../../core/com.dragselectcompose.core/-drag-select-state/index.html">DragSelectState</a><span class="token operator">&lt;</span><a href="index.html">Item</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">lazyGridItemScope<span class="token operator">: </span><span data-unresolved-link="androidx.compose.foundation.lazy.grid/LazyGridItemScope///PointingToDeclaration/">LazyGridItemScope</span></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -119,81 +119,81 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="-1839649469%2FFunctions%2F367914061" anchor-label="animateItem" id="-1839649469%2FFunctions%2F367914061" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1839649469%2FFunctions%2F1907091217" anchor-label="animateItem" id="-1839649469%2FFunctions%2F1907091217" data-filterable-set=":grid/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="animate-item.html"><span>animate</span><wbr><span><span>Item</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1839649469%2FFunctions%2F367914061"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1839649469%2FFunctions%2F1907091217"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token punctuation">.</span><a href="animate-item.html"><span class="token function">animateItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fadeInSpec<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/core/FiniteAnimationSpec.html">FiniteAnimationSpec</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>spring(stiffness = Spring.StiffnessMediumLow)<span class="token punctuation">, </span></span><span class="parameter ">placementSpec<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/core/FiniteAnimationSpec.html">FiniteAnimationSpec</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/IntOffset.html">IntOffset</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>spring(
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span><span class="token punctuation">.</span><a href="animate-item.html"><span class="token function">animateItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fadeInSpec<span class="token operator">: </span><span data-unresolved-link="androidx.compose.animation.core/FiniteAnimationSpec///PointingToDeclaration/">FiniteAnimationSpec</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>spring(stiffness = Spring.StiffnessMediumLow)<span class="token punctuation">, </span></span><span class="parameter ">placementSpec<span class="token operator">: </span><span data-unresolved-link="androidx.compose.animation.core/FiniteAnimationSpec///PointingToDeclaration/">FiniteAnimationSpec</span><span class="token operator">&lt;</span><span data-unresolved-link="androidx.compose.ui.unit/IntOffset///PointingToDeclaration/">IntOffset</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>spring(
                 stiffness = Spring.StiffnessMediumLow,
                 visibilityThreshold = IntOffset.VisibilityThreshold
-            )<span class="token punctuation">, </span></span><span class="parameter ">fadeOutSpec<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/animation/core/FiniteAnimationSpec.html">FiniteAnimationSpec</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>spring(stiffness = Spring.StiffnessMediumLow)</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a></div></div></div>
+            )<span class="token punctuation">, </span></span><span class="parameter ">fadeOutSpec<span class="token operator">: </span><span data-unresolved-link="androidx.compose.animation.core/FiniteAnimationSpec///PointingToDeclaration/">FiniteAnimationSpec</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>spring(stiffness = Spring.StiffnessMediumLow)</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-854611616%2FFunctions%2F367914061" anchor-label="IndicatorIcon" id="-854611616%2FFunctions%2F367914061" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain">
+<a data-name="-854611616%2FFunctions%2F1907091217" anchor-label="IndicatorIcon" id="-854611616%2FFunctions%2F1907091217" data-filterable-set=":grid/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon.html"><span>Indicator</span><wbr><span><span>Icon</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-854611616%2FFunctions%2F367914061"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-854611616%2FFunctions%2F1907091217"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon.html"><span class="token function">IndicatorIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">options<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon-options/index.html">IndicatorIconOptions</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon.html"><span class="token function">IndicatorIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">icon<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/vector/ImageVector.html">ImageVector</a><span class="token punctuation">, </span></span><span class="parameter ">tint<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token punctuation">, </span></span><span class="parameter ">contentDescription<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">padding<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token punctuation">, </span></span><span class="parameter ">backgroundColor<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Color.html">Color</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">border<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/unit/Dp.html">Dp</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">shape<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/Shape.html">Shape</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Indicator overlay to display the selected or unselected state of an item.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon.html"><span class="token function">IndicatorIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">options<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon-options/index.html">IndicatorIconOptions</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span><span class="token operator"> = </span>Modifier</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon.html"><span class="token function">IndicatorIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">icon<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui.graphics.vector/ImageVector///PointingToDeclaration/">ImageVector</span><span class="token punctuation">, </span></span><span class="parameter ">tint<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui.graphics/Color///PointingToDeclaration/">Color</span><span class="token punctuation">, </span></span><span class="parameter ">contentDescription<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">padding<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui.unit/Dp///PointingToDeclaration/">Dp</span><span class="token punctuation">, </span></span><span class="parameter ">backgroundColor<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui.graphics/Color///PointingToDeclaration/">Color</span><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">border<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui.unit/Dp///PointingToDeclaration/">Dp</span><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">shape<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui.graphics/Shape///PointingToDeclaration/">Shape</span><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span><span class="token operator"> = </span>Modifier</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Indicator overlay to display the selected or unselected state of an item.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-373242570%2FFunctions%2F367914061" anchor-label="SelectableItem" id="-373242570%2FFunctions%2F367914061" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain">
+<a data-name="-373242570%2FFunctions%2F1907091217" anchor-label="SelectableItem" id="-373242570%2FFunctions%2F1907091217" data-filterable-set=":grid/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-selectable-item.html"><span>Selectable</span><wbr><span><span>Item</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-373242570%2FFunctions%2F367914061"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-373242570%2FFunctions%2F1907091217"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="-selectable-item.html"><span class="token function">SelectableItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">item<span class="token operator">: </span><a href="index.html">Item</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">semanticsLabel<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DEFAULT_LABEL<span class="token punctuation">, </span></span><span class="parameter ">interactionSource<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/interaction/MutableInteractionSource.html">MutableInteractionSource</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">enableIconIndicator<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">selectedIcon<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a>&nbsp;</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/BoxScope.html">BoxScope</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{ SelectedIcon() }<span class="token punctuation">, </span></span><span class="parameter ">unselectedIcon<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a>&nbsp;</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/BoxScope.html">BoxScope</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{ UnselectedIcon() }<span class="token punctuation">, </span></span><span class="parameter ">animateSelection<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">animateSelectionOptions<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-animate-selection-options/index.html">AnimateSelectionOptions</a><span class="token operator"> = </span>AnimateSelectionDefaults.Default<span class="token punctuation">, </span></span><span class="parameter ">aspectRatio<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">1.0f</span><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a>&nbsp;</span><span class="token punctuation">(</span>toggled<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A Composable that provides selectable support for the <a href="-selectable-item.html">content</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span></div></div><span class="token keyword">fun </span><a href="-selectable-item.html"><span class="token function">SelectableItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">item<span class="token operator">: </span><a href="index.html">Item</a><span class="token punctuation">, </span></span><span class="parameter ">modifier<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">semanticsLabel<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DEFAULT_LABEL<span class="token punctuation">, </span></span><span class="parameter ">interactionSource<span class="token operator">: </span><span data-unresolved-link="androidx.compose.foundation.interaction/MutableInteractionSource///PointingToDeclaration/">MutableInteractionSource</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">enableIconIndicator<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">selectedIcon<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span>&nbsp;</span><span data-unresolved-link="androidx.compose.foundation.layout/BoxScope///PointingToDeclaration/">BoxScope</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{ SelectedIcon() }<span class="token punctuation">, </span></span><span class="parameter ">unselectedIcon<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span>&nbsp;</span><span data-unresolved-link="androidx.compose.foundation.layout/BoxScope///PointingToDeclaration/">BoxScope</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{ UnselectedIcon() }<span class="token punctuation">, </span></span><span class="parameter ">animateSelection<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">animateSelectionOptions<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-animate-selection-options/index.html">AnimateSelectionOptions</a><span class="token operator"> = </span>AnimateSelectionDefaults.Default<span class="token punctuation">, </span></span><span class="parameter ">aspectRatio<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">1.0f</span><span class="token punctuation">, </span></span><span class="parameter ">content<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span>&nbsp;</span><span class="token punctuation">(</span>toggled<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A Composable that provides selectable support for the <a href="-selectable-item.html">content</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1418172248%2FFunctions%2F367914061" anchor-label="SelectedIcon" id="-1418172248%2FFunctions%2F367914061" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain">
+<a data-name="-1418172248%2FFunctions%2F1907091217" anchor-label="SelectedIcon" id="-1418172248%2FFunctions%2F1907091217" data-filterable-set=":grid/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../com.dragselectcompose.grid.indicator/-selected-icon.html"><span>Selected</span><wbr><span><span>Icon</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1418172248%2FFunctions%2F367914061"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1418172248%2FFunctions%2F1907091217"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-selected-icon.html"><span class="token function">SelectedIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon-options/index.html">IndicatorIconOptions</a><span class="token operator"> = </span>IndicatorIconDefaults.selectedIconOptions()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Indicator icon for the selected state.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-selected-icon.html"><span class="token function">SelectedIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">modifier<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon-options/index.html">IndicatorIconOptions</a><span class="token operator"> = </span>IndicatorIconDefaults.selectedIconOptions()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Indicator icon for the selected state.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-837178175%2FFunctions%2F367914061" anchor-label="UnselectedIcon" id="-837178175%2FFunctions%2F367914061" data-filterable-set=":grid:dokkaHtmlPartial/commonMain"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":grid:dokkaHtmlPartial/commonMain" data-filterable-set=":grid:dokkaHtmlPartial/commonMain">
+<a data-name="-837178175%2FFunctions%2F1907091217" anchor-label="UnselectedIcon" id="-837178175%2FFunctions%2F1907091217" data-filterable-set=":grid/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":grid/commonMain" data-filterable-set=":grid/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../com.dragselectcompose.grid.indicator/-unselected-icon.html"><span>Unselected</span><wbr><span><span>Icon</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-837178175%2FFunctions%2F367914061"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-837178175%2FFunctions%2F1907091217"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/Composable.html"><span class="token annotation builtin">Composable</span></a></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-unselected-icon.html"><span class="token function">UnselectedIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">modifier<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.html">Modifier</a><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon-options/index.html">IndicatorIconOptions</a><span class="token operator"> = </span>IndicatorIconDefaults.unselectedIconOptions()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Indicator icon for the unselected state.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":grid/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="androidx.compose.runtime/Composable///PointingToDeclaration/"><span class="token annotation builtin">Composable</span></span></div></div><span class="token keyword">fun </span><a href="index.html">LazyDragSelectGridItemScope</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../com.dragselectcompose.grid.indicator/-unselected-icon.html"><span class="token function">UnselectedIcon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">modifier<span class="token operator">: </span><span data-unresolved-link="androidx.compose.ui/Modifier///PointingToDeclaration/">Modifier</span><span class="token operator"> = </span>Modifier<span class="token punctuation">, </span></span><span class="parameter ">options<span class="token operator">: </span><a href="../../com.dragselectcompose.grid.indicator/-indicator-icon-options/index.html">IndicatorIconOptions</a><span class="token operator"> = </span>IndicatorIconDefaults.unselectedIconOptions()</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Indicator icon for the unselected state.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -204,17 +204,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
