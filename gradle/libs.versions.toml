@@ -21,7 +21,7 @@ coil = "3.3.0"
 ktor = "3.2.3"
 binaryCompatibility = "0.18.1"
 publish = "0.34.0"
-poko = "0.19.3"
+poko = "0.21.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
