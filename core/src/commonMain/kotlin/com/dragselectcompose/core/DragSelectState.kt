@@ -197,10 +197,11 @@ public class DragSelectState<Item>(
      * @param[availableItems] The new list of available items.
      */
     public fun reconcile(availableItems: List<Item>) {
+        if (selectedState.isEmpty()) return
+
+        val availableByKey = availableItems.associateBy { compareSelector(it) }
         val newSelection = selectedState.mapNotNull { oldItem ->
-            availableItems.find { newItem ->
-                compareSelector(oldItem) == compareSelector(newItem)
-            }
+            availableByKey[compareSelector(oldItem)]
         }
         updateSelected(newSelection)
     }
