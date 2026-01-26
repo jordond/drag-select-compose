@@ -200,9 +200,9 @@ public class DragSelectState<Item>(
         if (selectedState.isEmpty()) return
 
         val availableByKey = availableItems.associateBy { compareSelector(it) }
-        val newSelection = selectedState.mapNotNull { oldItem ->
-            availableByKey[compareSelector(oldItem)]
-        }
+        val newSelection = selectedState
+            .mapNotNull { oldItem -> availableByKey[compareSelector(oldItem)] }
+            .distinctBy { compareSelector(it) }
         updateSelected(newSelection)
     }
 
