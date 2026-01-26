@@ -187,6 +187,25 @@ public class DragSelectState<Item>(
     }
 
     /**
+     * Reconciles the current selection with a new list of available items.
+     * Items matching by [compareSelector] remain selected with their new instances.
+     * Items not in the new list are removed from selection.
+     *
+     * This is useful when the underlying data changes (e.g., filtering, sorting)
+     * and you want to preserve selection state across item recreations.
+     *
+     * @param[availableItems] The new list of available items.
+     */
+    public fun reconcile(availableItems: List<Item>) {
+        val newSelection = selectedState.mapNotNull { oldItem ->
+            availableItems.find { newItem ->
+                compareSelector(oldItem) == compareSelector(newItem)
+            }
+        }
+        updateSelected(newSelection)
+    }
+
+    /**
      * Adds the provided item to the selected items.
      *
      * @param[item] The item to add.
