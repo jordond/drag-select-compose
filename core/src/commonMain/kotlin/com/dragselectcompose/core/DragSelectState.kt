@@ -38,6 +38,7 @@ public fun <Item> rememberDragSelectState(
  * @param[lazyGridState] The [LazyGridState] that will be used to control the items in the grid.
  * @param[initialSelection] The initial selection of items.
  * @param[compareSelector] A factory for selecting a property of [Item] to compare.
+ * Must return unique values for each distinct item (e.g., an ID property).
  * @return A [DragSelectState] that can be used to control the selection.
  */
 @Composable
@@ -68,6 +69,7 @@ public fun <Item> rememberDragSelectState(
  * @param[gridState] The [LazyGridState] that will be used to control the items in the grid.
  * @param[dragState] The current drag state.
  * @param[compareSelector] A factory for selecting a property of [Item] to compare.
+ * Must return unique values for each distinct item (e.g., an ID property).
  */
 @Suppress("MemberVisibilityCanBePrivate")
 @Poko
@@ -193,6 +195,11 @@ public class DragSelectState<Item>(
      *
      * This is useful when the underlying data changes (e.g., filtering, sorting)
      * and you want to preserve selection state across item recreations.
+     *
+     * **Important:** The [compareSelector] must return unique values for each distinct item.
+     * If [availableItems] contains multiple items with the same [compareSelector] value,
+     * only the last item will be available for reconciliation. This is the same requirement
+     * as throughout the rest of the DragSelectState API.
      *
      * @param[availableItems] The new list of available items.
      */
